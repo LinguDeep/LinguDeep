@@ -1,16 +1,20 @@
-## Hi there 👋
+LinguDeep 🧠🌍
 
-<!--
-**LinguDeep/LinguDeep** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+A simple and effective site for learning languages and memorizing vocabulary.
 
-Here are some ideas to get you started:
+📌 About
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+LinguDeep is a web-based platform that helps users learn new words and strengthen their vocabulary. It’s designed to be simple, fast, and easy to use just open the website and start learning.
+
+✨ Features
+📖 Learn new words quickly
+🔁 Memorize vocabulary using repetition
+🧠 Smart word review
+📊 Track your progress easily
+🌐 Multi language support
+🚀 How to Use
+Open index.html in your browser
+Start exploring vocabulary exercises
+Review words and track your learning progress
+
+No installation or server setup is required. Just open the site in any modern browser!
