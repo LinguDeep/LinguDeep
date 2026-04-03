@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Resource hints: pre-connect to external origins before they're needed -->
+    <link rel="preconnect" href="https://www.gstatic.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://api.mymemory.translated.net">
+    <link rel="preconnect" href="https://translate.googleapis.com">
+    <link rel="preconnect" href="https://api.datamuse.com">
+    <link rel="dns-prefetch" href="https://api.dictionaryapi.dev">
+    <link rel="dns-prefetch" href="https://static.cloudflareinsights.com">
+
+    <!-- Mobile Optimization -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#1a1a2e">
+
+    <!-- SEO -->
+    <meta name="description" content="LinguDeep - Learn languages with gamified experience. Master 1000+ words.">
+
+    <title>LinguDeep | Language Learning</title>
+
+    <script>
+    (function(){
+        var titles={tr:'LinguDeep | Kelime Ezberi',en:'LinguDeep | Language Learning',fr:'LinguDeep | Apprentissage des Langues',de:'LinguDeep | Sprachenlernen',es:'LinguDeep | Aprendizaje de Idiomas',it:'LinguDeep | Apprendimento Linguistico',pt:'LinguDeep | Aprendizado de Idiomas',ja:'LinguDeep | 言語学習',zh:'LinguDeep | 语言学习',ar:'LinguDeep | تعلم اللغات',ko:'LinguDeep | 언어 학습',hi:'LinguDeep | भाषा सीखना',nl:'LinguDeep | Taal Leren',sv:'LinguDeep | Språkinlärning'};
+        var descs={tr:'LinguDeep - Dil öğrenmenin en eğlenceli yolu. 1000+ kelimeyi oyunlaştırılmış deneyimle öğren.',en:'LinguDeep - Learn languages the fun way. Master 1000+ words with a gamified experience.',fr:'LinguDeep - Apprenez les langues de façon amusante. Maîtrisez 1000+ mots avec une expérience gamifiée.',de:'LinguDeep - Sprachen lernen auf unterhaltsame Weise. Meistere 1000+ Wörter spielerisch.',es:'LinguDeep - Aprende idiomas de forma divertida. Domina 1000+ palabras con experiencia gamificada.',it:'LinguDeep - Impara le lingue in modo divertente. Padroneggia 1000+ parole con esperienza gamificata.',pt:'LinguDeep - Aprenda idiomas de forma divertida. Domine 1000+ palavras com experiência gamificada.',ja:'LinguDeep - 楽しく言語を学ぼう。ゲーム感覚で1000以上の単語をマスター。',zh:'LinguDeep - 用有趣的方式学习语言。通过游戏化体验掌握1000+单词。',ar:'LinguDeep - تعلم اللغات بطريقة ممتعة. أتقن أكثر من 1000 كلمة بتجربة ألعاب.',ko:'LinguDeep - 재미있게 언어를 배우세요. 게임화된 경험으로 1000개 이상의 단어를 마스터하세요.',hi:'LinguDeep - मज़ेदार तरीके से भाषाएं सीखें। गेमीफाइड अनुभव से 1000+ शब्द सीखें।',nl:'LinguDeep - Leer talen op een leuke manier. Beheers 1000+ woorden met een gamified ervaring.',sv:'LinguDeep - Lär dig språk på ett roligt sätt. Bemästra 1000+ ord med en spelifierad upplevelse.'};
+        var lang=(navigator.language||'en').split('-')[0].toLowerCase();
+        var supported=['tr','en','fr','de','es','it','pt','ja','zh','ar','ko','hi','nl','sv'];
+        if(supported.indexOf(lang)===-1) lang='en';
+        document.documentElement.lang=lang;
+        document.title=titles[lang]||titles['en'];
+        var desc=document.querySelector('meta[name="description"]');
+        if(desc) desc.setAttribute('content',descs[lang]||descs['en']);
+    })();
+    </script>
+    <link rel="stylesheet" href="style_new.css?v=2.2">
+    <link rel="stylesheet" href="index.css?v=2.2">
+    <link rel="stylesheet" href="mobile-fix.css?v=10.1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Mobile styles are fully controlled by mobile-fix.css -->
+    <style id="mob7">
+    #mobileBottomNav{display:none}
+    </style>
+
+</head>
+
+<body>
+
+    <div class="app-shell glass-shell" id="appShell">
+        <div class="app-layout">
+            <!-- Sidebar Navigation -->
+            <aside class="sidebar">
+                <div class="logo">LinguDeep</div>
+
+                <!-- Quick Course Switcher -->
+                <div class="course-switcher" id="courseSwitcher">
+                    <!-- Current course card injected here -->
+                </div>
+
+                <nav class="side-nav">
+                    <a href="#" class="nav-item active" id="navLearn">
+                        <i class="fas fa-home"></i>
+                        <span>ÖĞREN</span>
+                    </a>
+                    <a href="#" class="nav-item" id="navPractice">
+                        <i class="fas fa-dumbbell"></i>
+                        <span>PRATİK</span>
+                    </a>
+                    <a href="#" class="nav-item" id="navLeagues">
+                        <i class="fas fa-trophy"></i>
+                        <span>LİGLER</span>
+                    </a>
+                    <a href="#" class="nav-item" id="navSettings">
+                        <i class="fas fa-cog"></i>
+                        <span>AYARLAR</span>
+                    </a>
+                </nav>
+            </aside>
+
+            <!-- Main Content Area -->
+            <main class="main-content">
+                <div class="container">
+                    <!-- Navigation Header (Inside Main Content) -->
+                    <div id="navigationHeader" style=" margin-bottom: 30px;">
+                        <div class="back-link" id="backBtn">
+                            <i class="fas fa-chevron-left"></i> Geri Dön
+                        </div>
+                        <h2 id="viewTitle">Seviye Seçin</h2>
+                    </div>
+
+                    <!-- Level Selection View -->
+                    <div id="levelView" class="level-grid">
+                        <!-- Levels will be injected here -->
+                    </div>
+
+                    <!-- Chapter Selection View (Path Style) -->
+                    <div id="chapterView" class="path-container">
+                        <!-- Chapter nodes will be injected here -->
+                    </div>
+
+                    <!-- Main Welcome View -->
+                    <div id="welcomeView" class="welcome-hero animate-in">
+                        <div class="hero-content">
+                            <i class="fas fa-brain hero-icon"></i>
+                            <h1>Dil Öğrenmenin En Eğlenceli Yolu</h1>
+                            <p>1000'den fazla temel kelimeyi oyunlaştırılmış bir yapıyla ezberle.</p>
+                            <button class="btn btn-primary" id="bigStartBtn">Hadi Başlayalım</button>
+                        </div>
+                    </div>
+
+                    <!-- Leagues View -->
+                    <div id="leaguesView" class="profile-page animate-in">
+                        <div class="profile-section">
+                            <h3 class="section-label">İLERLEME VE LİGLER</h3>
+                            <div class="personal-stats-dashboard">
+                                <div class="achievement-summary">
+                                    <div class="milestone-card glass">
+                                        <i class="fas fa-crown" style="color: #ffc800;"></i>
+                                        <span class="milestone-val" id="bestXp">0</span>
+                                        <span class="milestone-label">EN YÜKSEK SKOR</span>
+                                    </div>
+                                    <div class="milestone-card glass">
+                                        <i class="fas fa-bolt" style="color: #1cb0f6;"></i>
+                                        <span class="milestone-val" id="totalSessions">0</span>
+                                        <span class="milestone-label">TAMAMLANAN SEANS</span>
+                                    </div>
+                                </div>
+
+                                <div class="league-progression glass">
+                                    <div
+                                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                                        <h3 id="leagueTitle">BRONZ LİG YOLCULUĞU</h3>
+                                        <span id="leaguePercent">0%</span>
+                                    </div>
+                                    <div class="progress-bar-large">
+                                        <div class="progress-fill" id="leagueProgressFill" style="width: 0%"></div>
+                                    </div>
+
+                                    <div class="week-chart-container" id="weekChart">
+                                        <!-- Dynamic bars will be injected here -->
+                                    </div>
+                                    <p id="leagueStatusText"
+                                        style="margin-top: 35px; font-size: 0.9rem; color: var(--text-secondary);">Gümüş
+                                        Lig'e yükselmek için daha fazla XP kazanmalısın.</p>
+                                </div>
+                            </div>
+
+                            <!-- Deep Analysis Section -->
+                            <h3 class="section-label" style="margin-top: 40px;">ÖĞRENME ANALİZİ</h3>
+                            <div class="analysis-grid">
+                                <div class="analysis-card glass">
+                                    <i class="fas fa-fire-alt" style="color: #ff9600;"></i>
+                                    <div class="analysis-info">
+                                        <h4>En Güçlü Seviye</h4>
+                                        <span id="strongestLevel">-</span>
+                                    </div>
+                                </div>
+                                <div class="analysis-card glass">
+                                    <i class="fas fa-bullseye" style="color: var(--accent-green);"></i>
+                                    <div class="analysis-info">
+                                        <h4>Ortalama Doğruluk</h4>
+                                        <span id="avgAccuracy">0%</span>
+                                    </div>
+                                </div>
+                                <div class="analysis-card glass">
+                                    <i class="fas fa-clock" style="color: var(--accent-blue);"></i>
+                                    <div class="analysis-info">
+                                        <h4>Toplam Çalışma</h4>
+                                        <span id="totalTime">0 dk</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Personal Records (Self-Competition) Section -->
+                            <h3 class="section-label" style="margin-top: 40px;">KİŞİSEL REKORLARIN (EN İYİ SEANSLAR)
+                            </h3>
+                            <div id="personalRecordsList" class="leaderboard-card glass">
+                                <!-- Dynamic records will be injected here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Settings View -->
+                    <div id="settingsView" class="profile-page animate-in">
+                        <div class="profile-section">
+                            <h3 class="section-label">UYGULAMA AYARLARI</h3>
+                            <div class="settings-group">
+                                <div class="settings-card card-hover">
+                                    <div class="setting-detail">
+                                        <div class="setting-icon-bg"
+                                            style="background: rgba(88, 204, 2, 0.1); color: var(--accent-green);">
+                                            <i class="fas fa-volume-up"></i>
+                                        </div>
+                                        <div class="setting-info">
+                                            <h4>Sesli Telaffuz</h4>
+                                            <p>Sorularda kelimeler otomatik seslendirilir.</p>
+                                        </div>
+                                    </div>
+                                    <div class="setting-action">
+                                        <label class="switch">
+                                            <input type="checkbox" id="autoPlayToggle" checked>
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="settings-card card-hover">
+                                    <div class="setting-detail">
+                                        <div class="setting-icon-bg"
+                                            style="background: rgba(28, 176, 246, 0.1); color: #1cb0f6;">
+                                            <i class="fas fa-moon"></i>
+                                        </div>
+                                        <div class="setting-info">
+                                            <h4>Gece Modu</h4>
+                                            <p>Premium karanlık tema görünümü.</p>
+                                        </div>
+                                    </div>
+                                    <div class="setting-action">
+                                        <label class="switch">
+                                            <input type="checkbox" id="themeToggle">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="settings-card card-hover">
+                                    <div class="setting-detail">
+                                        <div class="setting-icon-bg"
+                                            style="background: rgba(255, 150, 0, 0.1); color: #ff9600;">
+                                            <i class="fas fa-globe"></i>
+                                        </div>
+                                        <div class="setting-info">
+                                            <h4 id="langSettingsTitle">Dil Tercihleri</h4>
+                                            <p id="langSettingsDesc">Öğrenme rotanızı ve uygulama dilini belirleyin.</p>
+                                        </div>
+                                    </div>
+                                    <div class="setting-action"
+                                        style="display: flex; gap: 10px; flex-direction: column;">
+                                        <div class="setting-sub-label"
+                                            style="font-size: 0.7rem; font-weight: 800; color: var(--text-secondary); opacity: 0.6;">
+                                            INTERFACE</div>
+                                        <select id="uiLangSelect" class="glass-select" style="margin-bottom: 10px;">
+                                            <option value="tr">Türkçe</option>
+                                            <option value="en">English</option>
+                                            <option value="es">Español</option>
+                                            <option value="fr">Français</option>
+                                            <option value="de">Deutsch</option>
+                                            <option value="it">Italian</option>
+                                            <option value="pt">Portuguese</option>
+                                            <option value="ru">Russian</option>
+                                            <option value="ja">Japanese</option>
+                                            <option value="zh">Chinese</option>
+                                            <option value="ko">Korean</option>
+                                            <option value="ar">Arabic</option>
+                                        </select>
+
+                                        <div class="setting-sub-label"
+                                            style="font-size: 0.7rem; font-weight: 800; color: var(--text-secondary); opacity: 0.6;">
+                                            LEARNING FROM</div>
+                                        <select id="sourceLangSelect" class="glass-select" style="margin-bottom: 5px;">
+                                            <option value="tr">Türkçe</option>
+                                            <option value="en">English</option>
+                                            <option value="fr">Français</option>
+                                            <option value="de">Deutsch</option>
+                                            <option value="es">Español</option>
+                                        </select>
+
+                                        <div class="setting-sub-label"
+                                            style="font-size: 0.7rem; font-weight: 800; color: var(--text-secondary); opacity: 0.6;">
+                                            LEARNING TARGET</div>
+                                        <select id="targetLangSelect" class="glass-select">
+                                            <option value="en">English</option>
+                                            <option value="es">Spanish</option>
+                                            <option value="fr">French</option>
+                                            <option value="de">German</option>
+                                            <option value="it">Italian</option>
+                                            <option value="pt">Portuguese</option>
+                                            <option value="ru">Russian</option>
+                                            <option value="ja">Japanese</option>
+                                            <option value="zh">Chinese</option>
+                                            <option value="ko">Korean</option>
+                                            <option value="ar">Arabic</option>
+                                            <option value="hi">Hindi</option>
+                                            <option value="nl">Dutch</option>
+                                            <option value="tr">Turkish</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="profile-section">
+                            <h3 class="section-label">HESAP YÖNETİMİ</h3>
+                            <div class="settings-group">
+                                <div class="settings-card card-hover">
+                                    <div class="setting-detail">
+                                        <div class="setting-icon-bg"
+                                            style="background: rgba(124, 77, 255, 0.1); color: var(--accent-violet);">
+                                            <i class="fas fa-user-circle"></i>
+                                        </div>
+                                        <div class="setting-info">
+                                            <h4>Oturum</h4>
+                                            <p>Giriş yapıldı: <strong id="currentUserName">...</strong></p>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-secondary" id="logoutBtn"
+                                        style="margin-top: 10px; width: 100%; border: 1px solid rgba(255,255,255,0.1);">
+                                        <i class="fas fa-sign-out-alt"></i> ÇIKIŞ YAP
+                                    </button>
+                                </div>
+                                <div class="settings-card card-hover">
+                                    <div class="setting-detail">
+                                        <div class="setting-icon-bg"
+                                            style="background: rgba(28, 176, 246, 0.1); color: var(--accent-blue);">
+                                            <i class="fas fa-key"></i>
+                                        </div>
+                                        <div class="setting-info">
+                                            <h4>Şifre Değiştir</h4>
+                                            <p>Hesap güvenliğinizi güncelleyin.</p>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-primary" id="changePassBtn"
+                                        style="margin-top: 10px; width: 100%;">
+                                        <i class="fas fa-shield-alt"></i> ŞİFRE DEĞİŞTİR
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="profile-section">
+                            <h3 class="section-label">HESAP VE VERİ</h3>
+                            <div class="settings-group">
+                                <div class="settings-card danger-border">
+                                    <div class="setting-detail">
+                                        <div class="setting-icon-bg"
+                                            style="background: rgba(255, 75, 75, 0.1); color: #ff4b4b;">
+                                            <i class="fas fa-history"></i>
+                                        </div>
+                                        <div class="setting-info">
+                                            <h4>İlerlemeyi Temizle</h4>
+                                            <p>Tüm verilerin kalıcı olarak sıfırlanır.</p>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-danger" id="resetProgressBtn"
+                                        style="width: 100%; margin-top: 10px;">
+                                        <i class="fas fa-trash-alt"></i> SIFIRLA
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Right Widgets Bar -->
+            <aside class="widgets-area">
+                <div class="top-stats">
+                    <div class="stat-item" title="Günlük Seri">
+                        <i class="fas fa-fire streak-icon"></i>
+                        <span id="streakCount">1</span>
+                    </div>
+                    <div class="stat-item" title="Toplam XP">
+                        <i class="fas fa-star xp-icon"></i>
+                        <span id="totalXP">0</span>
+                    </div>
+                    <div class="stat-item" title="Öğrenilen">
+                        <i class="fas fa-check-circle learned-icon"></i>
+                        <span id="learnedCount">0</span>
+                    </div>
+                </div>
+
+                <div class="widget-card glass">
+                    <div class="widget-header">
+                        <h3>Günlük Hedefler</h3>
+                        <a href="#" id="viewAllQuests">TÜMÜ</a>
+                    </div>
+                    <div class="quest-item">
+                        <div class="quest-icon-wrapper" style="color: #ffc800;">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="quest-info">
+                            <p id="questXpLabel">50 XP Kazan</p>
+                            <div class="progress-bar-small">
+                                <div class="progress-fill" style="width: 40%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="quest-item">
+                        <div class="quest-icon-wrapper" style="color: var(--accent-green);">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <div class="quest-info">
+                            <p id="questWordLabel">10 Kelime Tamamla</p>
+                            <div class="progress-bar-small">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="widget-card glass">
+                    <div class="widget-header">
+                        <h3>İlerleme</h3>
+                    </div>
+                    <div class="progress-stat">
+                        <span>Toplam Başarı</span>
+                        <span id="totalProgress">0%</span>
+                    </div>
+                    <div class="progress-bar-large">
+                        <div class="progress-fill" id="totalProgressFill" style="width: 0%"></div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+    </div> <!-- End Container -->
+    </main> <!-- End Main Content -->
+    </div> <!-- End App Layout -->
+    </div> <!-- End App Shell -->
+
+    <!-- Quiz Modal (MCQ Focus) -->
+    <div class="modal-overlay" id="learnModal">
+        <div class="quiz-top-bar">
+            <i class="fas fa-times" id="closeLearnBtn"></i>
+            <div class="health-pill" id="livesDisplay">
+                <i class="fas fa-heart pulse-slow"
+                    style="color: #ff4b4b; filter: drop-shadow(0 0 5px rgba(255, 75, 75, 0.5));"></i>
+                <span id="livesCount" style="font-weight: 800; font-size: 1.1rem; color: #fff;">5</span>
+            </div>
+        </div>
+
+        <div class="quiz-container">
+            <div id="comboBadge" class="combo-badge" style="display: none;">
+                <i class="fas fa-fire"></i> <span id="comboCount">0</span> KOMBO
+            </div>
+
+            <div id="quizFeedback" class="quiz-feedback-container"></div>
+
+            <div style="text-align: center; margin-bottom: 40px; width: 100%;">
+                <h1 class="card-title" id="questionText">...</h1>
+                <div class="speaker-btn" id="ttsBtn" style="margin: 10px auto;">
+                    <i class="fas fa-volume-up"></i>
+                </div>
+            </div>
+
+            <div class="options-grid" id="optionsGrid">
+                <!-- 4 Options will be injected here -->
+            </div>
+
+            <!-- Scramble/Sentence Mode Container -->
+            <div id="scrambleArea"
+                style="display: none; flex-direction: column; align-items: center; gap: 30px; width: 100%; margin: 20px 0;">
+                <div id="scrambleTarget"
+                    style="min-height: 80px; width: 100%; border: 2px dashed rgba(255,255,255,0.1); border-radius: 20px; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px; padding: 15px; background: rgba(0,0,0,0.1);">
+                    <!-- Selected words appear here -->
+                </div>
+                <div id="scrambleOptions"
+                    style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; width: 100%;">
+                    <!-- Available words appear here -->
+                </div>
+                <div class="quiz-footer">
+                    <button class="btn btn-secondary" id="skipBtn">PAS GEÇ</button>
+                    <button class="btn btn-primary" id="checkScrambleBtn" style="display: none;">KONTROL ET</button>
+                </div>
+
+                <div class="quiz-progress-outer">
+                    <div class="quiz-progress-inner" id="quizProgressBar"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-overlay" id="resultsModal">
+            <div class="glass" id="resultsContent" style="text-align: center; width: 90%; max-width: 500px;">
+                <!-- Content injected by JS -->
+            </div>
+        </div>
+
+        <!-- Quests Modal -->
+        <div class="modal-overlay" id="questsModal">
+            <div class="glass">
+                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 35px;">
+                    <div>
+                        <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 5px;">Günlük Hedefler</h2>
+                        <p style="color: var(--text-secondary); font-size: 0.95rem;">Tamamlayarak ekstra XP ve ödüller
+                            kazan.</p>
+                    </div>
+                    <div id="closeQuestsBtn"
+                        style="width: 40px; height: 40px; border-radius: 12px; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: var(--transition);">
+                        <i class="fas fa-times" style="opacity: 0.7;"></i>
+                    </div>
+                </div>
+
+                <div class="quests-list">
+                    <div class="quest-card-detailed">
+                        <div class="quest-icon-box" style="background: rgba(255, 200, 0, 0.15); color: #ffc800;">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div style="flex: 1;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <h4 style="font-size: 1.1rem; font-weight: 700;">XP Avcısı</h4>
+                                <span style="font-size: 0.85rem; font-weight: 800; color: #ffc800;">20/50 XP</span>
+                            </div>
+                            <div class="progress-bar-small">
+                                <div class="progress-fill" style="width: 40%; background: #ffc800;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quest-card-detailed">
+                        <div class="quest-icon-box"
+                            style="background: rgba(88, 204, 2, 0.15); color: var(--accent-green);">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <div style="flex: 1;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <h4 style="font-size: 1.1rem; font-weight: 700;">Kelime Ustası</h4>
+                                <span
+                                    style="font-size: 0.85rem; font-weight: 800; color: var(--accent-green);">0/10</span>
+                            </div>
+                            <div class="progress-bar-small">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" id="claimQuestsBtn"
+                    style="width: 100%; margin-top: 35px; opacity: 0.5; cursor: not-allowed;">
+                    ÖDÜLLERİ TOPLA
+                </button>
+            </div>
+        </div>
+
+        <!-- Global Language Setup Modal (First Step) -->
+        <div class="modal-overlay" id="languageSetupModal" style="display: none; z-index: 100000;">
+            <div class="glass animate-pop premium-modal"
+                style="max-width: 650px; width: 95%; max-height: 90vh; overflow-y: auto; padding: 50px 60px 60px 60px; text-align: center;">
+                <div class="security-tag"
+                    style="background: rgba(255, 150, 0, 0.1); color: #ff9600; border: 1px solid rgba(255,150,0,0.2);">
+                    <i class="fas fa-globe"></i> Global Language Engine
+                </div>
+
+                <div class="auth-brand" style="margin-bottom: 50px; position: relative;">
+                    <div
+                        style="position: absolute; top: -20px; right: 0; display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-globe" style="font-size: 0.85rem; color: var(--text-secondary);"></i>
+                        <select id="setupUILang" class="glass-select"
+                            style="padding: 6px 10px; font-size: 0.8rem; min-width: 110px;">
+                            <option value="en">English</option>
+                            <option value="es">Spanish</option>
+                            <option value="fr">French</option>
+                            <option value="de">German</option>
+                            <option value="it">Italian</option>
+                            <option value="pt">Portuguese</option>
+                            <option value="ru">Russian</option>
+                            <option value="ja">Japanese</option>
+                            <option value="zh">Chinese</option>
+                            <option value="ko">Korean</option>
+                            <option value="ar">Arabic</option>
+                            <option value="nl">Dutch</option>
+                            <option value="tr">Turkish</option>
+                            <option value="hi">Hindi</option>
+                            <option value="pl">Polish</option>
+                            <option value="sv">Swedish</option>
+                            <option value="no">Norwegian</option>
+                            <option value="da">Danish</option>
+                            <option value="fi">Finnish</option>
+                        </select>
+                    </div>
+                    <div class="auth-brand-icon" style="background: linear-gradient(135deg, #ffc800, #ff9600);">
+                        <i class="fas fa-language" style="font-size: 2.5rem; color: #fff;"></i>
+                    </div>
+                    <h1 class="auth-title">Welcome!</h1>
+                    <p style="color: var(--text-secondary); font-size: 1.1rem; font-weight: 500;">Let's customize your
+                        learning path</p>
+                </div>
+                <div style="text-align: left; margin-bottom: 35px;">
+                    <label
+                        style="font-size: 0.8rem; margin-bottom: 10px; display: block; font-weight: 800; color: var(--text-secondary); text-transform: uppercase;">YOUR
+                        LANGUAGE</label>
+                    <select id="setupSourceLang" class="glass-select" style="padding: 18px; font-size: 1rem;">
+                        <option value="en" selected>English</option>
+                        <option value="es">Spanish</option>
+                        <option value="fr">French</option>
+                        <option value="de">German</option>
+                        <option value="it">Italian</option>
+                        <option value="pt">Portuguese</option>
+                        <option value="ru">Russian</option>
+                        <option value="ja">Japanese</option>
+                        <option value="zh">Chinese</option>
+                        <option value="ko">Korean</option>
+                        <option value="ar">Arabic</option>
+                        <option value="nl">Dutch</option>
+                        <option value="tr">Turkish</option>
+                    </select>
+                </div>
+
+                <div style="text-align: left; margin-bottom: 50px;">
+                    <label
+                        style="font-size: 0.8rem; margin-bottom: 10px; display: block; font-weight: 800; color: var(--text-secondary); text-transform: uppercase;">TARGET
+                        LANGUAGE</label>
+                    <select id="setupTargetLang" class="glass-select" style="padding: 18px; font-size: 1rem;">
+                        <option value="en" selected>English</option>
+                        <option value="es">Spanish</option>
+                        <option value="fr">French</option>
+                        <option value="de">German</option>
+                        <option value="it">Italian</option>
+                        <option value="pt">Portuguese</option>
+                        <option value="ru">Russian</option>
+                        <option value="ja">Japanese</option>
+                        <option value="zh">Chinese</option>
+                        <option value="ko">Korean</option>
+                        <option value="ar">Arabic</option>
+                        <option value="nl">Dutch</option>
+                        <option value="tr">Turkish</option>
+                    </select>
+                </div>
+
+                <button class="btn btn-primary" id="confirmLanguageBtn"
+                    style="width: 100%; padding: 22px; font-weight: 800; font-size: 1.2rem; border-radius: 22px; box-shadow: 0 15px 30px rgba(88, 204, 2, 0.3);">
+                    START THE JOURNEY <i class="fas fa-arrow-right" style="margin-left: 10px;"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Guidebook Modal -->
+        <div class="modal-overlay" id="guidebookModal"
+            style="opacity: 0; pointer-events: none; z-index: 1000; background: rgba(0,0,0,0.85); backdrop-filter: blur(20px);">
+            <div class="container" style="max-width: 650px; margin-top: 5vh;">
+                <div class="glass"
+                    style="padding: 40px; border-radius: 40px; position: relative; max-height: 90vh; overflow-y: auto; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 40px 100px rgba(0,0,0,0.8);">
+                    <button class="btn-icon" id="closeGuidebookBtn"
+                        style="position: absolute; top: 25px; right: 25px; background: rgba(255,255,255,0.05); color: white; width: 45px; height: 45px; border-radius: 18px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <div id="guidebookContent"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Login/Register Modal -->
+        <div class="modal-overlay" id="authModal" style="display: none; z-index: 100005;">
+            <div class="glass animate-pop premium-modal"
+                style="max-width: 480px; width: 95%; max-height: 95vh; overflow-y: auto; padding: 50px 40px; text-align: center;">
+                <div class="security-tag">
+                    <i class="fas fa-shield-alt"></i> Secure Connection
+                </div>
+
+                <div class="auth-brand" style="margin-bottom: 40px;">
+                    <div class="auth-brand-icon">
+                        <i class="fas fa-brain" style="font-size: 2.5rem; color: #000;"></i>
+                    </div>
+                    <h1 class="auth-title">LinguDeep</h1>
+                    <p style="color: var(--text-secondary); font-size: 1.1rem; font-weight: 500;">The future of language
+                        learning</p>
+                </div>
+
+                <div id="loginForm">
+                    <div class="auth-input-group">
+                        <input type="email" id="loginEmail" class="premium-input" placeholder="E-posta" autocomplete="email">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="auth-input-group" style="margin-bottom: 10px;">
+                        <input type="password" id="loginPassword" class="premium-input" placeholder="Şifre" autocomplete="current-password">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <p id="loginError" style="color:#ff4b4b;font-size:0.85rem;margin-bottom:14px;display:none;"></p>
+
+                    <button class="btn btn-primary" id="loginBtn"
+                        style="width: 100%; padding: 18px; font-weight: 800; font-size: 1.1rem; border-radius: 20px; margin-bottom: 20px;">GİRİŞ YAP</button>
+
+                    <button id="googleLoginBtnEl"
+                        style="width:100%;display:flex;align-items:center;justify-content:center;gap:12px;padding:16px;border-radius:20px;margin-bottom:14px;background:#fff;color:#3c4043;font-weight:700;font-size:1rem;border:1.5px solid #dadce0;cursor:pointer;transition:box-shadow 0.2s;"
+                        onmouseover="this.style.boxShadow='0 4px 16px rgba(0,0,0,0.15)'" onmouseout="this.style.boxShadow='none'">
+                        <i class="fab fa-google" style="font-size:1.2rem;color:#4285F4;"></i>
+                        <span id="googleLoginBtnText">Google ile Devam Et</span>
+                    </button>
+
+                    <div class="auth-divider">
+                        <div class="divider-line"></div>
+                        <span>or</span>
+                        <div class="divider-line"></div>
+                    </div>
+
+                    <button class="btn btn-outline" id="showRegisterBtn">Yeni Hesap Oluştur</button>
+                </div>
+
+                <div id="registerForm" style="display: none;">
+                    <div class="auth-input-group">
+                        <input type="email" id="regEmail" class="premium-input" placeholder="E-posta" autocomplete="email">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="auth-input-group">
+                        <input type="text" id="regDisplayName" class="premium-input" placeholder="Görünen Ad (İsteğe Bağlı)" autocomplete="username">
+                        <i class="fas fa-id-badge"></i>
+                    </div>
+                    <div class="auth-input-group">
+                        <input type="password" id="regPassword" class="premium-input" placeholder="Şifre Oluştur (min. 6 karakter)" autocomplete="new-password">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <div class="auth-input-group" style="margin-bottom: 10px;">
+                        <input type="password" id="regPasswordConfirm" class="premium-input"
+                            placeholder="Şifreyi Onayla" autocomplete="new-password">
+                        <i class="fas fa-check-double"></i>
+                    </div>
+                    <p id="registerError" style="color:#ff4b4b;font-size:0.85rem;margin-bottom:14px;display:none;"></p>
+
+                    <button class="btn btn-primary" id="registerBtn"
+                        style="width: 100%; padding: 18px; font-weight: 800; border-radius: 18px; margin-bottom: 15px;">KAYIT OL</button>
+                    <button id="googleRegBtnEl"
+                        style="width:100%;display:flex;align-items:center;justify-content:center;gap:12px;padding:16px;border-radius:20px;margin-bottom:10px;background:#fff;color:#3c4043;font-weight:700;font-size:1rem;border:1.5px solid #dadce0;cursor:pointer;transition:box-shadow 0.2s;"
+                        onmouseover="this.style.boxShadow='0 4px 16px rgba(0,0,0,0.15)'" onmouseout="this.style.boxShadow='none'">
+                        <i class="fab fa-google" style="font-size:1.2rem;color:#4285F4;"></i>
+                        <span id="googleRegBtnText">Google ile Devam Et</span>
+                    </button>
+                    <button class="btn btn-outline" id="backToLoginBtn">Zaten Hesabım Var</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Placement Test Modal -->
+        <div class="modal-overlay" id="placementModal" style="display: none; z-index: 100010;">
+            <div class="glass animate-pop premium-modal placement-card">
+                <div style="text-align: center; margin-bottom: 40px;">
+                    <div
+                        style="display: inline-flex; width: 70px; height: 70px; background: rgba(28, 176, 246, 0.1); border-radius: 24px; align-items: center; justify-content: center; margin-bottom: 20px; border: 1px solid rgba(28, 176, 246, 0.2);">
+                        <i class="fas fa-rocket" style="font-size: 2rem; color: var(--accent-blue);"></i>
+                    </div>
+                    <h2
+                        style="font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 900; margin-bottom: 15px; letter-spacing: -1px; text-align: center;">
+                        Placement Test</h2>
+                    <p style="color: var(--text-secondary); font-size: 1.2rem; font-weight: 500;">We're preparing the
+                        best
+                        learning path for you...</p>
+
+                </div>
+
+                <div id="placementQuestion">
+                    <div class="placement-question-box">
+                        <h3 id="placementQuestionText"
+                            style="font-size: clamp(1.8rem, 4vw, 2.4rem); font-weight: 800; line-height: 1.3;"></h3>
+                    </div>
+                    <div id="placementOptions" class="options-grid">
+                        <!-- Options injected by JS -->
+                    </div>
+
+                    <div class="placement-progress-wrapper">
+                        <div class="placement-progress-bar" id="placementProgress"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script defer src="idioms.js?v=2.1"></script>
+        <script defer src="sentences_curated.js?v=2.1"></script>
+        <script defer src="words.js?v=2.1"></script>
+        <!-- Firebase SDK (compat) -->
+        <script defer src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+        <script defer src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+        <script defer src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+        <script defer src="firebase-config.js"></script>
+        <script defer src="app.js?v=2.1"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"1e4760b958cf43e590e7621d33a50487","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+
+<!-- Mobile Bottom Navigation — OUTSIDE app-shell to avoid Safari backdrop-filter/fixed trap -->
+<nav id="mobileBottomNav">
+    <a href="#" class="mob-nav-item active" id="mobNavLearn"
+       onclick="try{app.goHome();}catch(e){}; _mobNavActive(this); return false;">
+        <i class="fas fa-home"></i><span>ÖĞREN</span>
+    </a>
+    <a href="#" class="mob-nav-item" id="mobNavPractice"
+       onclick="try{app.showLevelSelection();}catch(e){}; _mobNavActive(this); return false;">
+        <i class="fas fa-dumbbell"></i><span>PRATİK</span>
+    </a>
+    <a href="#" class="mob-nav-item" id="mobNavLeagues"
+       onclick="try{app.showLeagues();}catch(e){}; _mobNavActive(this); return false;">
+        <i class="fas fa-trophy"></i><span>LİGLER</span>
+    </a>
+    <a href="#" class="mob-nav-item" id="mobNavSettings"
+       onclick="try{app.showSettings();}catch(e){}; _mobNavActive(this); return false;">
+        <i class="fas fa-cog"></i><span>AYARLAR</span>
+    </a>
+</nav>
+<script>
+function _mobNavActive(el){
+    document.querySelectorAll('#mobileBottomNav .mob-nav-item').forEach(function(n){n.classList.remove('active');});
+    el.classList.add('active');
+}
+</script>
+</body>
+
+</html>
