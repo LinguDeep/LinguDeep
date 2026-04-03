@@ -6,6 +6,7 @@ const LANG_FLAGS = {
     es: { flag: "🇪🇸", nameTr: "İspanyolca", nameEn: "Spanish", locale: "es-ES" },
     it: { flag: "🇮🇹", nameTr: "İtalyanca", nameEn: "Italian", locale: "it-IT" },
     pt: { flag: "🇵🇹", nameTr: "Portekizce", nameEn: "Portuguese", locale: "pt-PT" },
+    ru: { flag: "🇷🇺", nameTr: "Rusça", nameEn: "Russian", locale: "ru-RU" },
     ja: { flag: "🇯🇵", nameTr: "Japonca", nameEn: "Japanese", locale: "ja-JP" },
     zh: { flag: "🇨🇳", nameTr: "Çince", nameEn: "Chinese", locale: "zh-CN" },
     ar: { flag: "🇸🇦", nameTr: "Arapça", nameEn: "Arabic", locale: "ar-SA" },
@@ -5597,7 +5598,9 @@ class LinguPro {
                         this.saveToCloud(true); // Immediate Firebase sync
                         // Refresh chapter map immediately to unlock next unit
                         if (this.current.level) {
-                            setTimeout(() => this.renderPathNodes(), 100);
+                            setTimeout(() => {
+                                this.renderPathNodes().catch(e => console.error("renderPathNodes after chapter completion failed:", e));
+                            }, 0);
                         }
                     }
                 }
