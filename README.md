@@ -29,5 +29,5 @@ LinguDeep is a web based platform that helps users learn new words and strengthe
 3. Review words and track your learning progress
 
 No installation or server setup is required. Just open the site in any modern browser!
-![LinguDeep App Screenshot](./assets/image.png)
 ![LinguDeep](./assets/image2.png)
+![LinguDeep App Screenshot](./assets/image.png)
