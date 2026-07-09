@@ -289,19 +289,19 @@ const Dashboard: React.FC<DashboardProps> = ({ activeTab, setActiveTab, onStartL
                   {idx % 7 === 0 && (
                     <div className={`w-full max-w-sm rounded-2xl border p-3 flex items-center gap-3 shadow-sm ${c.cardBg} ${c.cardBorder}`}>
                       {/* Left icon */}
-                      <div className={`w-9 h-9 rounded-lg flex items-center justify-center border flex-shrink-0 ${c.iconBoxBg} ${SECTION_ICON_COLORS[cat]}`}>
-                        {SECTION_ICONS[cat]}
+                      <div className={`w-9 h-9 rounded-lg flex items-center justify-center border flex-shrink-0 ${c.iconBoxBg} ${SECTION_ICON_COLORS[Math.floor(idx / 7) % 7]}`}>
+                        {SECTION_ICONS[Math.floor(idx / 7) % 7]}
                       </div>
                       {/* Title — truncated to never overflow */}
                       <div className="flex-1 min-w-0 text-center">
                         <p className="text-[9px] font-bold text-indigo-500 uppercase tracking-widest">{getTranslation('section', interfaceLang)} {Math.floor(idx / 7) + 1}</p>
                         <p className={`font-outfit font-black text-xs truncate ${c.pageText}`}>
-                          {translateCategoryName((SECTION_TITLES[tier] || SECTION_TITLES[1])[cat], interfaceLang)}
+                          {translateCategoryName((SECTION_TITLES[tier] || SECTION_TITLES[1])[Math.floor(idx / 7) % 7], interfaceLang)}
                         </p>
                       </div>
                       {/* Right icon */}
-                      <div className={`w-9 h-9 rounded-lg flex items-center justify-center border flex-shrink-0 ${c.iconBoxBg} ${SECTION_ICON_COLORS[cat]}`}>
-                        {SECTION_ICONS[cat]}
+                      <div className={`w-9 h-9 rounded-lg flex items-center justify-center border flex-shrink-0 ${c.iconBoxBg} ${SECTION_ICON_COLORS[Math.floor(idx / 7) % 7]}`}>
+                        {SECTION_ICONS[Math.floor(idx / 7) % 7]}
                       </div>
                     </div>
                   )}
