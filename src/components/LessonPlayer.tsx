@@ -169,6 +169,16 @@ const VOCAB_MAP: Record<string, Record<string, string>> = {
   'sun': { en: 'Sun', tr: 'Güneş', es: 'El sol', fill: 'sol', fr: 'Le soleil', de: 'Die Sonne', ja: '太陽', it: 'Il sole', zh: '太阳', pt: 'O sol', ru: 'Солнце', ko: '태양' },
   'rain': { en: 'Rain', tr: 'Yağmur', es: 'La lluvia', fr: 'La pluie', de: 'Der Regen', ja: '雨', it: 'La pioggia', zh: '雨', pt: 'A chuva', ru: 'Дождь', ko: '비' },
   'wind': { en: 'Wind', tr: 'Rüzgar', es: 'El viento', fr: 'Le vent', de: 'Der Wind', ja: '風', it: 'Il vento', zh: '风', pt: 'O vento', ru: 'Ветер', ko: '바람' },
+  'where is the station': { en: "Where is the station?", tr: "İstasyon nerede?", es: "¿Dónde está la estación?", fr: "Où est la gare ?", de: "Wo ist der Bahnhof?", it: "Dov'è la stazione?", pt: "Onde fica a estação?", ru: "Где находится станция?", zh: "车站在哪里？", ja: "駅はどこですか？", ko: "역이 어디인가요?", ar: "أين المحطة؟", nl: "Waar is het station?", sv: "Var ligger stationen?", hi: "स्टेशन कहाँ है?" },
+  'how much is this': { en: "How much is this?", tr: "Bu ne kadar?", es: "¿Cuánto cuesta esto?", fr: "Combien ça coûte ?", de: "Wie viel kostet das?", it: "Quanto costa questo?", pt: "Quanto custa isto?", ru: "Сколько это стоит?", zh: "这个多少钱？", ja: "これはいくらですか？", ko: "이것은 얼마인가요?", ar: "بكم هذا؟", nl: "Hoeveel kost dit?", sv: "Hur mycket kostar den här?", hi: "यह कितने का है?" },
+  'i love my family': { en: "I love my family.", tr: "Ailemi seviyorum.", es: "Amo a mi familia.", fr: "J'aime ma famille.", de: "Ich liebe meine Familie.", it: "Amo la mia famiglia.", pt: "Eu amo a minha família.", ru: "Я люблю свою семью.", zh: "我爱我的家庭。", ja: "家族を愛しています。", ko: "가족을 사랑합니다.", ar: "أنا أحب عائلتي.", nl: "Ik hou van mijn familie.", sv: "Jag älskar min familj.", hi: "मैं अपने परिवार से प्यार करता हूँ।" },
+  'what is your name': { en: "What is your name?", tr: "Adınız nedir?", es: "¿Cómo te llamas?", fr: "Comment vous appelez-vous ?", de: "Wie heißen Sie?", it: "Come ti chiami?", pt: "Qual é o seu nome?", ru: "Как вас зовут?", zh: "你叫什么名字？", ja: "お名前は何ですか？", ko: "이름이 무엇인가요?", ar: "ما اسمك؟", nl: "Wat is je naam?", sv: "Vad heter du?", hi: "आपका नाम क्या है?" },
+  'i speak some english': { en: "I speak some English.", tr: "Biraz İngilizce konuşuyorum.", es: "Hablo un poco de inglés.", fr: "Je parle un peu anglais.", de: "Ich spreche ein wenig Englisch.", it: "Parlo un po' di inglese.", pt: "Eu falo um pouco de inglês.", ru: "Я немного говорю по-английски.", zh: "我会说一点英语。", ja: "英語が少し話せます。", ko: "영어를 조금 할 줄 압니다.", ar: "أتحدث القليل من الإنجليزية.", nl: "Ik spreek een beetje Engels.", sv: "Jag talar lite engelska.", hi: "मैं थोड़ी अंग्रेजी बोलता हूँ।" },
+  'if i had money, i would travel': { en: "If I had money, I would travel.", tr: "Param olsaydı seyahat ederdim.", es: "Si tuviera dinero, viajaría.", fr: "Si j'avais de l'argent, je voyagerais.", de: "Wenn ich Geld hätte, würde ich reisen.", it: "Se avessi soldi, viaggerei.", pt: "Se eu tivesse dinheiro, viajaria.", ru: "Если бы у меня были деньги, я бы путешествовал.", zh: "如果我有钱，我就会去旅行。", ja: "お金があれば旅行するのに。", ko: "돈이 있다면 여행을 갈 텐데요.", ar: "لو كان لدي مال لسافرت.", nl: "Als ik geld had, zou ik reizen.", sv: "Om jag hade pengar skulle jag resa.", hi: "अगर मेरे पास पैसे होते, तो я यात्रा करता।" },
+  'please explain this to me': { en: "Please explain this to me.", tr: "Lütfen bunu bana açıklayın.", es: "Por favor explécame esto.", fr: "S'il vous plaît expliquez-moi cela.", de: "Bitte erklären Sie mir das.", it: "Per favore spiegami questo.", pt: "Por favor, explique-me isto.", ru: "Пожалуйста, объясните мне это.", zh: "请向我解释一下这个。", ja: "これを説明してください。", ko: "이것을 설명해 주세요.", ar: "يرجى شرح هذا لي.", nl: "Leg dit me alstublieft uit.", sv: "Förklara detta för mig, tack.", hi: "कृपया मुझे यह समझाएं।" },
+  'actions speak louder than words': { en: "Actions speak louder than words.", tr: "Lafla peynir gemisi yürümez.", es: "Las palabras se las lleva el viento.", fr: "Les actes parlent plus que les mots.", de: "Taten sagen mehr als Worte.", it: "Le azioni contano più delle parole.", pt: "Ações valem mais que palavras.", ru: "Дела говорят громче слов.", zh: "事实胜于雄辩。", ja: "論より証拠。", ko: "말보다 행동이 중요하다.", ar: "الأفعال أبلغ من الأقوال.", nl: "Geen woorden maar daden.", sv: "Handlingar talar högre än ord.", hi: "कथनी से करनी भली।" },
+  'it is raining heavily today': { en: "It is raining heavily today.", tr: "Bugün çok şiddetli yağmur yağıyor.", es: "Hoy está lloviendo fuertemente.", fr: "Il pleut à verse aujourd'hui.", de: "Heute regnet es in Strömen.", it: "Oggi sta piovendo forte.", pt: "Hoje está chovendo muito.", ru: "Сегодня идет сильный дождь.", zh: "今天雨下得很大。", ja: "今日は大雨 gが降っています。", ko: "오늘 비가 많이 내립니다.", ar: "إنها تمطر بغزارة اليوم.", nl: "Het regent hard vandaag.", sv: "Det regnar kraftigt idag.", hi: "आज बहुत तेज बारिश ho रही है।" },
+  'i look forward to meeting you': { en: "I look forward to meeting you.", tr: "Sizinle tanışmayı dört gözle bekliyorum.", es: "Espero conocerte pronto.", fr: "J'ai hâte de vous rencontrer.", de: "Ich freue mich darauf, Sie kennenzulernen.", it: "Non vedo l'ora di conoscerti.", pt: "Estou ansioso para conhecer você.", ru: "Я с нетерпением жду встречи с вами.", zh: "我期待与您见面。", ja: "お会いできるのを楽しみにしています。", ko: "만나 뵙기를 기대합니다.", ar: "أتطلع للقائك.", nl: "Ik verheug me erop u te ontmoeten.", sv: "Jag ser fram emot att träffa dig.", hi: "मुझे आपसे मिलने का इंतजार है।" },
 };
 
 const translatePhrase = (phrase: string, toLang: string): string => {
@@ -189,6 +199,24 @@ const translatePhrase = (phrase: string, toLang: string): string => {
   }
   
   return phrase;
+};
+
+const shuffleArray = <T,>(array: T[]): T[] => {
+  const arr = [...array];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+};
+
+const prepareQuestionsForPlay = (questions: Question[]): Question[] => {
+  return questions.map(q => {
+    if (q.type === 'multiple-choice' || q.type === 'fill-blank') {
+      return { ...q, options: shuffleArray(q.options || []) };
+    }
+    return q;
+  });
 };
 
 const localizeQuestionsForUser = (questions: Question[], _targetLang: string, nativeLang: string): Question[] => {
@@ -323,7 +351,7 @@ const LessonPlayer: React.FC<LessonPlayerProps> = ({
             const localizedQuestions = localizeQuestionsForUser(lessonData.questions, langCode, interfaceLang);
             setLesson({
               ...lessonData,
-              questions: localizedQuestions
+              questions: prepareQuestionsForPlay(localizedQuestions)
             });
             setLoading(false);
             return;
@@ -357,7 +385,7 @@ const LessonPlayer: React.FC<LessonPlayerProps> = ({
           order: lessonIdx,
           title: `Lesson #${lessonIdx}`,
           xpReward: tierNum * 10 + 10,
-          questions: localizedQuestions
+          questions: prepareQuestionsForPlay(localizedQuestions)
         });
       } catch (e) {
         console.error('Error generating dynamic fallback lesson', e);
@@ -648,19 +676,19 @@ const LessonPlayer: React.FC<LessonPlayerProps> = ({
               const isSelected = selectedOption === option;
               
               let btnClass = theme === 'dark' 
-                ? "border-slate-800 bg-slate-900/60 hover:bg-slate-800 text-slate-300" 
-                : "border-slate-200 bg-white hover:bg-slate-50 text-slate-700 shadow-sm";
-                
-              if (isSelected) {
-                btnClass = "border-indigo-500 bg-indigo-500/10 text-indigo-400 border-b-4";
-              }
+                ? isSelected
+                  ? "border-indigo-500 bg-indigo-500/10 text-indigo-400"
+                  : "border-slate-800 bg-slate-900/60 hover:bg-slate-800 text-slate-300"
+                : isSelected
+                  ? "border-indigo-500 bg-indigo-500/10 text-indigo-400"
+                  : "border-slate-200 bg-white hover:bg-slate-50 text-slate-700 shadow-sm";
 
               return (
                 <button
                   key={option}
                   onClick={() => !isAnswered && setSelectedOption(option)}
                   disabled={isAnswered}
-                  className={`w-full text-left font-outfit font-extrabold p-4 rounded-2xl shadow-playful-inner transition-all flex items-center justify-between border-2 ${btnClass}`}
+                  className={`w-full text-left font-outfit font-extrabold p-4 rounded-2xl shadow-playful-inner transition-all flex items-center justify-between border-2 border-b-4 ${btnClass}`}
                 >
                   <span>{option}</span>
                   {isSelected && <div className="w-3 h-3 rounded-full bg-indigo-500 shadow-glow shadow-indigo-500/50"></div>}
@@ -676,19 +704,19 @@ const LessonPlayer: React.FC<LessonPlayerProps> = ({
               const isSelected = selectedOption === option;
               
               let btnClass = theme === 'dark' 
-                ? "border-slate-800 bg-slate-900/60 hover:bg-slate-800 text-slate-300" 
-                : "border-slate-200 bg-white hover:bg-slate-50 text-slate-700 shadow-sm";
-                
-              if (isSelected) {
-                btnClass = "border-indigo-500 bg-indigo-500/10 text-indigo-400 border-b-4";
-              }
+                ? isSelected
+                  ? "border-indigo-500 bg-indigo-500/10 text-indigo-400"
+                  : "border-slate-800 bg-slate-900/60 hover:bg-slate-800 text-slate-300"
+                : isSelected
+                  ? "border-indigo-500 bg-indigo-500/10 text-indigo-400"
+                  : "border-slate-200 bg-white hover:bg-slate-50 text-slate-700 shadow-sm";
 
               return (
                 <button
                   key={option}
                   onClick={() => !isAnswered && setSelectedOption(option)}
                   disabled={isAnswered}
-                  className={`w-full text-left font-outfit font-extrabold p-4 rounded-2xl shadow-playful-inner transition-all flex items-center justify-between border-2 ${btnClass}`}
+                  className={`w-full text-left font-outfit font-extrabold p-4 rounded-2xl shadow-playful-inner transition-all flex items-center justify-between border-2 border-b-4 ${btnClass}`}
                 >
                   <span>{option}</span>
                   {isSelected && <div className="w-3 h-3 rounded-full bg-indigo-500 shadow-glow shadow-indigo-500/50"></div>}
@@ -731,21 +759,23 @@ const LessonPlayer: React.FC<LessonPlayerProps> = ({
                   const isSelected = tapLeftSelected === word;
                   
                   let btnClass = theme === 'dark' 
-                    ? "border-slate-800 bg-slate-900/60 hover:bg-slate-800 text-slate-350" 
-                    : "border-slate-200 bg-white hover:bg-slate-50 text-slate-700 shadow-sm";
-                    
-                  if (isMatched) {
-                    btnClass = "border-emerald-500 bg-emerald-500/15 text-emerald-450 opacity-40 cursor-not-allowed border-b-0";
-                  } else if (isSelected) {
-                    btnClass = "border-indigo-500 bg-indigo-500/10 text-indigo-400 border-b-4";
-                  }
+                    ? isMatched
+                      ? "border-emerald-500 bg-emerald-500/15 text-emerald-450 opacity-40 cursor-not-allowed"
+                      : isSelected
+                        ? "border-indigo-500 bg-indigo-500/10 text-indigo-400"
+                        : "border-slate-800 bg-slate-900/60 hover:bg-slate-800 text-slate-350"
+                    : isMatched
+                      ? "border-emerald-500 bg-emerald-500/15 text-emerald-450 opacity-40 cursor-not-allowed"
+                      : isSelected
+                        ? "border-indigo-500 bg-indigo-500/10 text-indigo-400"
+                        : "border-slate-200 bg-white hover:bg-slate-50 text-slate-700 shadow-sm";
 
                   return (
                     <button
                       key={word}
                       disabled={isMatched || isAnswered}
                       onClick={() => setTapLeftSelected(word)}
-                      className={`w-full font-outfit font-bold p-3.5 rounded-xl text-center shadow-playful-inner text-sm md:text-base border-2 transition-all ${btnClass}`}
+                      className={`w-full font-outfit font-bold p-3.5 rounded-xl text-center shadow-playful-inner text-sm md:text-base border-2 border-b-4 transition-all ${btnClass}`}
                     >
                       {word}
                     </button>
@@ -763,21 +793,23 @@ const LessonPlayer: React.FC<LessonPlayerProps> = ({
                   const isSelected = tapRightSelected === word;
                   
                   let btnClass = theme === 'dark' 
-                    ? "border-slate-800 bg-slate-900/60 hover:bg-slate-800 text-slate-355" 
-                    : "border-slate-200 bg-white hover:bg-slate-50 text-slate-700 shadow-sm";
-                    
-                  if (isMatched) {
-                    btnClass = "border-emerald-500 bg-emerald-500/15 text-emerald-450 opacity-40 cursor-not-allowed border-b-0";
-                  } else if (isSelected) {
-                    btnClass = "border-indigo-500 bg-indigo-500/10 text-indigo-400 border-b-4";
-                  }
+                    ? isMatched
+                      ? "border-emerald-500 bg-emerald-500/15 text-emerald-450 opacity-40 cursor-not-allowed"
+                      : isSelected
+                        ? "border-indigo-500 bg-indigo-500/10 text-indigo-400"
+                        : "border-slate-800 bg-slate-900/60 hover:bg-slate-800 text-slate-355"
+                    : isMatched
+                      ? "border-emerald-500 bg-emerald-500/15 text-emerald-450 opacity-40 cursor-not-allowed"
+                      : isSelected
+                        ? "border-indigo-500 bg-indigo-500/10 text-indigo-400"
+                        : "border-slate-200 bg-white hover:bg-slate-50 text-slate-700 shadow-sm";
 
                   return (
                     <button
                       key={word}
                       disabled={isMatched || isAnswered}
                       onClick={() => setTapRightSelected(word)}
-                      className={`w-full font-outfit font-bold p-3.5 rounded-xl text-center shadow-playful-inner text-sm md:text-base border-2 transition-all ${btnClass}`}
+                      className={`w-full font-outfit font-bold p-3.5 rounded-xl text-center shadow-playful-inner text-sm md:text-base border-2 border-b-4 transition-all ${btnClass}`}
                     >
                       {word}
                     </button>

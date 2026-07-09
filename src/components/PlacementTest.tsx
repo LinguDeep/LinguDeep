@@ -20,7 +20,7 @@ interface LangVocab {
 
 const LANGUAGE_VOCABULARY: Record<string, LangVocab> = {
   es: { hello: 'Hola', goodbye: 'Adiós', please: 'Por favor', thankYou: 'Gracias', mother: 'La madre', father: 'El padre', friend: 'El amigo', brother: 'El hermano', sister: 'La hermana', water: 'El agua', bread: 'El pan', book: 'El libro', one: 'Uno', two: 'Dos', three: 'Tres', red: 'Rojo', blue: 'Azul', green: 'Verde', sun: 'El sol', rain: 'La lluvia', wind: 'El viento' },
-  fr: { hello: 'Bonjour', goodbye: 'Au revoir', please: 'S\'il vous plaît', thankYou: 'Merci', mother: 'La mère', father: 'Le père', friend: 'L\'ami', brother: 'Le frère', sister: 'La sœur', water: 'L\'eau', bread: 'Le pain', book: 'Le livre', one: 'Un', two: 'Deux', three: 'Trois', red: 'Rouge', blue: 'Bleu', green: 'Vert', sun: 'Le soleil', rain: 'La pluie', wind: 'Le vent' },
+  fr: { hello: 'Bonjour', goodbye: 'Au revoir', please: 'S\'il vous plaît', thankYou: 'Merci', mother: 'La mère', father: 'Le père', friend: 'L\'ami', brother: 'Le frère', sister: 'La sœur', water: 'L\'eau', bread: 'Le pan', book: 'Le livre', one: 'Un', two: 'Deux', three: 'Trois', red: 'Rouge', blue: 'Bleu', green: 'Vert', sun: 'Le soleil', rain: 'La pluie', wind: 'Le vent' },
   de: { hello: 'Hallo', goodbye: 'Tschüss', please: 'Bitte', thankYou: 'Danke', mother: 'Die Mutter', father: 'Der Vater', friend: 'Der Freund', brother: 'Der Bruder', sister: 'Die Schwester', water: 'Das Wasser', bread: 'Das Brot', book: 'Das Buch', one: 'Eins', two: 'Zwei', three: 'Drei', red: 'Rot', blue: 'Blau', green: 'Grün', sun: 'Die Sonne', rain: 'Der Regen', wind: 'Der Wind' },
   ja: { hello: 'こんにちは', goodbye: 'さようなら', please: 'お願いします', thankYou: 'ありがとう', mother: '母', father: '父', friend: '友達', brother: '兄', sister: '姉', water: '水', bread: 'パン', book: '本', one: '一', two: '二', three: '三', red: '赤', blue: '青', green: '緑', sun: '太陽', rain: '雨', wind: '風' },
   it: { hello: 'Ciao', goodbye: 'Arrivederci', please: 'Per favore', thankYou: 'Grazie', mother: 'La madre', father: 'Il padre', friend: 'L\'amico', brother: 'Il fratello', sister: 'La sorella', water: 'L\'acqua', bread: 'Il pane', book: 'Il libro', one: 'Uno', two: 'Due', three: 'Tre', red: 'Rosso', blue: 'Blu', green: 'Verde', sun: 'Il sol', rain: 'La pioggia', wind: 'Il vento' },
@@ -51,14 +51,13 @@ const getLanguageName = (id: string) => {
   return names[id] || 'Target Language';
 };
 
-// Fisher-Yates shuffle algorithm
 const shuffleArray = <T,>(array: T[]): T[] => {
-  const shuffled = [...array];
-  for (let i = shuffled.length - 1; i > 0; i--) {
+  const arr = [...array];
+  for (let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    [arr[i], arr[j]] = [arr[j], arr[i]];
   }
-  return shuffled;
+  return arr;
 };
 
 const getDynamicQuestions = (langCode: string, nativeLang: string): Question[] => {
@@ -66,34 +65,23 @@ const getDynamicQuestions = (langCode: string, nativeLang: string): Question[] =
   const targetVocab = LANGUAGE_VOCABULARY[langCode] || LANGUAGE_VOCABULARY.en;
   const targetName = getLanguageName(langCode);
   
-  // When learning English with non-English interface, ask for English translation of native words
-  if (langCode === 'en' && nativeLang !== 'en') {
-    return [
-      { id: 1, prompt: `How do you say "${nativeVocab.hello}" in English?`, options: shuffleArray([targetVocab.hello, targetVocab.goodbye, targetVocab.please, targetVocab.thankYou]), correctAnswer: targetVocab.hello },
-      { id: 2, prompt: `How do you say "${nativeVocab.goodbye}" in English?`, options: shuffleArray([targetVocab.goodbye, targetVocab.hello, targetVocab.please, targetVocab.thankYou]), correctAnswer: targetVocab.goodbye },
-      { id: 3, prompt: `How do you say "${nativeVocab.please}" in English?`, options: shuffleArray([targetVocab.please, targetVocab.hello, targetVocab.goodbye, targetVocab.thankYou]), correctAnswer: targetVocab.please },
-      { id: 4, prompt: `How do you say "${nativeVocab.thankYou}" in English?`, options: shuffleArray([targetVocab.thankYou, targetVocab.please, targetVocab.goodbye, targetVocab.hello]), correctAnswer: targetVocab.thankYou },
-      { id: 5, prompt: `How do you say "${nativeVocab.mother}" in English?`, options: shuffleArray([targetVocab.mother, targetVocab.father, targetVocab.friend, targetVocab.one]), correctAnswer: targetVocab.mother },
-      { id: 6, prompt: `How do you say "${nativeVocab.father}" in English?`, options: shuffleArray([targetVocab.father, targetVocab.mother, targetVocab.friend, targetVocab.two]), correctAnswer: targetVocab.father },
-      { id: 7, prompt: `How do you say "${nativeVocab.water}" in English?`, options: shuffleArray([targetVocab.water, targetVocab.bread, targetVocab.book, targetVocab.three]), correctAnswer: targetVocab.water },
-      { id: 8, prompt: `How do you say "${nativeVocab.bread}" in English?`, options: shuffleArray([targetVocab.bread, targetVocab.water, targetVocab.book, targetVocab.one]), correctAnswer: targetVocab.bread },
-      { id: 9, prompt: `How do you say "${nativeVocab.book}" in English?`, options: shuffleArray([targetVocab.book, targetVocab.water, targetVocab.bread, targetVocab.two]), correctAnswer: targetVocab.book },
-      { id: 10, prompt: `How do you say "${nativeVocab.one}" in English?`, options: shuffleArray([targetVocab.one, targetVocab.two, targetVocab.three, targetVocab.water]), correctAnswer: targetVocab.one }
-    ];
-  }
-  
-    return [
-    { id: 1, prompt: `How do you say "${nativeVocab.hello}" in ${targetName}?`, options: shuffleArray([targetVocab.hello, targetVocab.goodbye, targetVocab.please, targetVocab.thankYou]), correctAnswer: targetVocab.hello },
-    { id: 2, prompt: `How do you say "${nativeVocab.goodbye}" in ${targetName}?`, options: shuffleArray([targetVocab.goodbye, targetVocab.hello, targetVocab.please, targetVocab.thankYou]), correctAnswer: targetVocab.goodbye },
-    { id: 3, prompt: `How do you say "${nativeVocab.please}" in ${targetName}?`, options: shuffleArray([targetVocab.please, targetVocab.hello, targetVocab.goodbye, targetVocab.thankYou]), correctAnswer: targetVocab.please },
-    { id: 4, prompt: `How do you say "${nativeVocab.thankYou}" in ${targetName}?`, options: shuffleArray([targetVocab.thankYou, targetVocab.please, targetVocab.goodbye, targetVocab.hello]), correctAnswer: targetVocab.thankYou },
-    { id: 5, prompt: `How do you say "${nativeVocab.mother}" in ${targetName}?`, options: shuffleArray([targetVocab.mother, targetVocab.father, targetVocab.friend, targetVocab.one]), correctAnswer: targetVocab.mother },
-    { id: 6, prompt: `How do you say "${nativeVocab.father}" in ${targetName}?`, options: shuffleArray([targetVocab.father, targetVocab.mother, targetVocab.friend, targetVocab.two]), correctAnswer: targetVocab.father },
-    { id: 7, prompt: `How do you say "${nativeVocab.water}" in ${targetName}?`, options: shuffleArray([targetVocab.water, targetVocab.bread, targetVocab.book, targetVocab.three]), correctAnswer: targetVocab.water },
-    { id: 8, prompt: `How do you say "${nativeVocab.bread}" in ${targetName}?`, options: shuffleArray([targetVocab.bread, targetVocab.water, targetVocab.book, targetVocab.one]), correctAnswer: targetVocab.bread },
-    { id: 9, prompt: `How do you say "${nativeVocab.book}" in ${targetName}?`, options: shuffleArray([targetVocab.book, targetVocab.water, targetVocab.bread, targetVocab.two]), correctAnswer: targetVocab.book },
-    { id: 10, prompt: `How do you say "${nativeVocab.one}" in ${targetName}?`, options: shuffleArray([targetVocab.one, targetVocab.two, targetVocab.three, targetVocab.water]), correctAnswer: targetVocab.one }
+  const rawQuestions = [
+    { id: 1, prompt: `How do you say "${nativeVocab.hello}" in ${targetName}?`, options: [targetVocab.hello, targetVocab.goodbye, targetVocab.please, targetVocab.thankYou], correctAnswer: targetVocab.hello },
+    { id: 2, prompt: `How do you say "${nativeVocab.goodbye}" in ${targetName}?`, options: [targetVocab.goodbye, targetVocab.hello, targetVocab.please, targetVocab.thankYou], correctAnswer: targetVocab.goodbye },
+    { id: 3, prompt: `How do you say "${nativeVocab.please}" in ${targetName}?`, options: [targetVocab.please, targetVocab.hello, targetVocab.goodbye, targetVocab.thankYou], correctAnswer: targetVocab.please },
+    { id: 4, prompt: `How do you say "${nativeVocab.thankYou}" in ${targetName}?`, options: [targetVocab.thankYou, targetVocab.please, targetVocab.goodbye, targetVocab.hello], correctAnswer: targetVocab.thankYou },
+    { id: 5, prompt: `How do you say "${nativeVocab.mother}" in ${targetName}?`, options: [targetVocab.mother, targetVocab.father, targetVocab.friend, targetVocab.one], correctAnswer: targetVocab.mother },
+    { id: 6, prompt: `How do you say "${nativeVocab.father}" in ${targetName}?`, options: [targetVocab.father, targetVocab.mother, targetVocab.friend, targetVocab.two], correctAnswer: targetVocab.father },
+    { id: 7, prompt: `How do you say "${nativeVocab.water}" in ${targetName}?`, options: [targetVocab.water, targetVocab.bread, targetVocab.book, targetVocab.three], correctAnswer: targetVocab.water },
+    { id: 8, prompt: `How do you say "${nativeVocab.bread}" in ${targetName}?`, options: [targetVocab.bread, targetVocab.water, targetVocab.book, targetVocab.one], correctAnswer: targetVocab.bread },
+    { id: 9, prompt: `How do you say "${nativeVocab.book}" in ${targetName}?`, options: [targetVocab.book, targetVocab.water, targetVocab.bread, targetVocab.two], correctAnswer: targetVocab.book },
+    { id: 10, prompt: `How do you say "${nativeVocab.one}" in ${targetName}?`, options: [targetVocab.one, targetVocab.two, targetVocab.three, targetVocab.water], correctAnswer: targetVocab.one }
   ];
+
+  return rawQuestions.map(q => ({
+    ...q,
+    options: shuffleArray(q.options)
+  }));
 };
 
 const PlacementTest: React.FC<PlacementTestProps> = ({
@@ -102,7 +90,7 @@ const PlacementTest: React.FC<PlacementTestProps> = ({
   onComplete,
 }) => {
   const { interfaceLang, theme } = useAuth();
-  const questions = getDynamicQuestions(languageCode, interfaceLang);
+  const [questions] = useState(() => getDynamicQuestions(languageCode, interfaceLang));
 
   // Placement States
   const [step, setStep] = useState<'playing' | 'result'>('playing');
@@ -146,20 +134,26 @@ const PlacementTest: React.FC<PlacementTestProps> = ({
     if (finalScore >= 8) {
       return {
         tier: 3,
-        title: 'Tier 3: Expert Advanced Level',
-        description: 'Spectacular score! You have strong grasp of grammar, idioms, and vocabulary. Skip the basics and dive straight into advanced conversation courses.'
+        title: getTranslation('weeklyLeague', interfaceLang), // Placeholder/General Translation for Title or custom key
+        description: interfaceLang === 'tr' 
+          ? 'Mükemmel sonuç! Dilbilgisi ve kelimelere çok iyi hakimsiniz. Başlangıç seviyesini atlayıp doğrudan İleri Seviye (Tier 3) derslerine başlayabilirsiniz.'
+          : 'Spectacular score! You have strong grasp of grammar and vocabulary. Skip the basics and dive straight into Advanced (Tier 3) courses.'
       };
     } else if (finalScore >= 4) {
       return {
         tier: 2,
-        title: 'Tier 2: Intermediate Level',
-        description: 'Good job! You know the base expressions and conjugations. We recommend starting at Tier 2 to polish up intermediate family, communication, and work units.'
+        title: getTranslation('learn', interfaceLang),
+        description: interfaceLang === 'tr'
+          ? 'Tebrikler! Temel yapıları ve kelimeleri biliyorsunuz. Orta Seviye (Tier 2) derslerinden başlamanızı öneririz.'
+          : 'Good job! You know the base expressions. We recommend starting at Intermediate Level (Tier 2).'
       };
     } else {
       return {
         tier: 1,
-        title: 'Tier 1: Beginner Level',
-        description: 'Welcome to your language learning adventure! We recommend starting at Tier 1 to master the basics of greetings, polite expressions, and everyday items.'
+        title: getTranslation('getStarted', interfaceLang),
+        description: interfaceLang === 'tr'
+          ? 'Dil öğrenme macerana hoş geldin! Temel selamlaşma ve kelimeleri öğrenmek için Başlangıç Seviyesinden (Tier 1) başlamanı öneririz.'
+          : 'Welcome to your language learning adventure! We recommend starting at Beginner Level (Tier 1).'
       };
     }
   };
@@ -196,7 +190,9 @@ const PlacementTest: React.FC<PlacementTestProps> = ({
         <div className="flex-1 w-full max-w-2xl mx-auto flex flex-col justify-center my-4">
           <span className={`text-xs font-bold uppercase tracking-widest mb-1.5 block ${
             theme === 'dark' ? 'text-slate-500' : 'text-slate-450'
-          }`}>Placement Test</span>
+          }`}>
+            {getTranslation('takeTestBtn', interfaceLang)}
+          </span>
           
           <h3 className={`text-xl md:text-2xl font-outfit font-extrabold mb-6 leading-snug ${
             theme === 'dark' ? 'text-white' : 'text-slate-950'
@@ -208,20 +204,21 @@ const PlacementTest: React.FC<PlacementTestProps> = ({
             {currentQuestion.options.map((option) => {
               const isSelected = selectedOption === option;
               
+              // We lock border thickness to border-b-4 globally to prevent layout shifting
               let btnClass = theme === 'dark'
-                ? 'border-slate-800 bg-slate-900/60 hover:bg-slate-850 text-slate-300'
-                : 'border-slate-250 bg-white hover:bg-slate-50 text-slate-750 shadow-sm';
-                
-              if (isSelected) {
-                btnClass = 'border-indigo-500 bg-indigo-500/10 text-indigo-400 border-b-4';
-              }
+                ? isSelected 
+                  ? 'border-indigo-500 bg-indigo-500/10 text-indigo-400'
+                  : 'border-slate-800 bg-slate-900/60 hover:bg-slate-850 text-slate-300'
+                : isSelected
+                  ? 'border-indigo-500 bg-indigo-500/10 text-indigo-400'
+                  : 'border-slate-250 bg-white hover:bg-slate-50 text-slate-750 shadow-sm';
 
               return (
                 <button
                   key={option}
                   onClick={() => handleOptionSelect(option)}
                   disabled={isAnswered}
-                  className={`w-full text-left font-outfit font-extrabold p-4 rounded-2xl transition-all flex items-center justify-between border-2 ${btnClass}`}
+                  className={`w-full text-left font-outfit font-extrabold p-4 rounded-2xl transition-all flex items-center justify-between border-2 border-b-4 ${btnClass}`}
                 >
                   <span>{option}</span>
                   {isSelected && <div className="w-3 h-3 rounded-full bg-indigo-500 shadow-glow shadow-indigo-500/50"></div>}
@@ -238,7 +235,7 @@ const PlacementTest: React.FC<PlacementTestProps> = ({
           
           <div>
             <h2 className={`text-3xl font-black font-outfit mb-2 ${theme === 'dark' ? 'text-white' : 'text-slate-950'}`}>
-              Placement Successful!
+              {getTranslation('testCompleted', interfaceLang)}
             </h2>
             <div className="inline-block bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 text-xs font-black uppercase tracking-wider px-3.5 py-1.5 rounded-full mb-4">
               {title}
@@ -252,7 +249,7 @@ const PlacementTest: React.FC<PlacementTestProps> = ({
             onClick={() => onComplete(tier)} 
             className="w-full btn-3d-green bg-emerald-600 border-emerald-800 text-white font-extrabold py-4 rounded-2xl"
           >
-            Claim Level & Save Progress
+            {getTranslation('saveLevel', interfaceLang)}
           </button>
         </div>
       )}
@@ -268,7 +265,7 @@ const PlacementTest: React.FC<PlacementTestProps> = ({
                 <div className={`hidden sm:block text-xs font-semibold ${
                   theme === 'dark' ? 'text-slate-500' : 'text-slate-450'
                 }`}>
-                  {getTranslation('checkAnswer', interfaceLang)}
+                  {interfaceLang === 'tr' ? 'Bir cevap seçin ve kontrol edin' : 'Select an answer and check'}
                 </div>
                 <button
                   onClick={handleCheckAnswer}
@@ -277,7 +274,7 @@ const PlacementTest: React.FC<PlacementTestProps> = ({
                     !selectedOption
                       ? theme === 'dark'
                         ? 'bg-slate-850 border-b-4 border-slate-950 text-slate-600 cursor-not-allowed'
-                        : 'bg-slate-200 border-b-4 border-slate-300 text-slate-400 cursor-not-allowed'
+                        : 'bg-slate-200 border-b-4 border-slate-300 text-slate-450 cursor-not-allowed'
                       : 'btn-3d-blue bg-indigo-650 border-indigo-850 text-white'
                   }`}
                 >
@@ -305,7 +302,7 @@ const PlacementTest: React.FC<PlacementTestProps> = ({
                     <div className={`text-xs ${theme === 'dark' ? 'text-slate-450' : 'text-slate-500'}`}>
                       {selectedOption === currentQuestion.correctAnswer 
                         ? getTranslation('excellentJob', interfaceLang) 
-                        : `${getTranslation('correctAnswerMsg', interfaceLang)}: ${currentQuestion.correctAnswer}`
+                        : `${interfaceLang === 'tr' ? 'Doğru Cevap' : 'Correct Answer'}: ${currentQuestion.correctAnswer}`
                       }
                     </div>
                   </div>

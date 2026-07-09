@@ -694,10 +694,26 @@ export function localizePrompt(prompt: string, interfaceLang: string): string {
 
   // 2. Vocabulary words translation dictionary (English to target interface language)
   const vocabWords: Record<string, Record<string, string>> = {
-    tr: { Hello: 'Merhaba', Goodbye: 'Hoşça kal', Please: 'Lütfen', 'Thank you': 'Teşekkürler', Mother: 'Anne', Father: 'Baba', Friend: 'Arkadaş', Brother: 'Erkek kardeş', Sister: 'Kız kardeş', Water: 'Su', Bread: 'Ekmek', Book: 'Kitap', One: 'Bir', Two: 'İki', Three: 'Üç', Red: 'Kırmızı', Blue: 'Mavi', Green: 'Yeşil', Sun: 'Güneş', Rain: 'Yağmur', Wind: 'Rüzgar' },
-    es: { Hello: 'Hola', Goodbye: 'Adiós', Please: 'Por favor', 'Thank you': 'Gracias', Mother: 'Madre', Father: 'Padre', Friend: 'Amigo', Brother: 'Hermano', Sister: 'Hermana', Water: 'Agua', Bread: 'Pan', Book: 'Libro', One: 'Uno', Two: 'Dos', Three: 'Tres', Red: 'Rojo', Blue: 'Azul', Green: 'Verde', Sun: 'Sol', Rain: 'Lluvia', Wind: 'Viento' },
-    fr: { Hello: 'Bonjour', Goodbye: 'Au revoir', Please: 'S\'il vous plaît', 'Thank you': 'Merci', Mother: 'Mère', Father: 'Père', Friend: 'Ami', Brother: 'Frère', Sister: 'Sœur', Water: 'Eau', Bread: 'Pain', Book: 'Livre', One: 'Un', Two: 'Deux', Three: 'Trois', Red: 'Rouge', Blue: 'Bleu', Green: 'Vert', Sun: 'Soleil', Rain: 'Pluie', Wind: 'Vent' },
-    de: { Hello: 'Hallo', Goodbye: 'Tschüss', Please: 'Bitte', 'Thank you': 'Danke', Mother: 'Mutter', Father: 'Vater', Friend: 'Freund', Brother: 'Bruder', Sister: 'Schwester', Water: 'Wasser', Bread: 'Brot', Book: 'Buch', One: 'Eins', Two: 'Zwei', Three: 'Drei', Red: 'Rot', Blue: 'Blau', Green: 'Grün', Sun: 'Sonne', Rain: 'Regen', Wind: 'Wind' }
+    tr: { 
+      Hello: 'Merhaba', Goodbye: 'Hoşça kal', Please: 'Lütfen', 'Thank you': 'Teşekkürler', Mother: 'Anne', Father: 'Baba', Friend: 'Arkadaş', Brother: 'Erkek kardeş', Sister: 'Kız kardeş', Water: 'Su', Bread: 'Ekmek', Book: 'Kitap', One: 'Bir', Two: 'İki', Three: 'Üç', Red: 'Kırmızı', Blue: 'Mavi', Green: 'Yeşil', Sun: 'Güneş', Rain: 'Yağmur', Wind: 'Rüzgar',
+      "Where is the station?": "İstasyon nerede?", "How much is this?": "Bu ne kadar?", "I love my family.": "Ailemi seviyorum.", "What is your name?": "Adınız nedir?", "I speak some English.": "Biraz İngilizce konuşuyorum.",
+      "If I had money, I would travel.": "Param olsaydı seyahat ederdim.", "Please explain this to me.": "Lütfen bunu bana açıklayın.", "Actions speak louder than words.": "Lafla peynir gemisi yürümez.", "It is raining heavily today.": "Bugün çok şiddetli yağmur yağıyor.", "I look forward to meeting you.": "Sizinle tanışmayı dört gözle bekliyorum."
+    },
+    es: { 
+      Hello: 'Hola', Goodbye: 'Adiós', Please: 'Por favor', 'Thank you': 'Gracias', Mother: 'Madre', Father: 'Padre', Friend: 'Amigo', Brother: 'Hermano', Sister: 'Hermana', Water: 'Agua', Bread: 'Pan', Book: 'Libro', One: 'Uno', Two: 'Dos', Three: 'Tres', Red: 'Rojo', Blue: 'Azul', Green: 'Verde', Sun: 'Sol', Rain: 'Lluvia', Wind: 'Viento',
+      "Where is the station?": "¿Dónde está la estación?", "How much is this?": "¿Cuánto cuesta esto?", "I love my family.": "Amo a mi familia.", "What is your name?": "¿Cómo te llamas?", "I speak some English.": "Hablo un poco de inglés.",
+      "If I had money, I would travel.": "Si tuviera dinero, viajaría.", "Please explain this to me.": "Por favor explícame esto.", "Actions speak louder than words.": "Las palabras se las lleva el viento.", "It is raining heavily today.": "Hoy está lloviendo fuertemente.", "I look forward to meeting you.": "Espero conocerte pronto."
+    },
+    fr: { 
+      Hello: 'Bonjour', Goodbye: 'Au revoir', Please: 'S\'il vous plaît', 'Thank you': 'Merci', Mother: 'Mère', Father: 'Père', Friend: 'Ami', Brother: 'Frère', Sister: 'Sœur', Water: 'Eau', Bread: 'Pain', Book: 'Livre', One: 'Un', Two: 'Deux', Three: 'Trois', Red: 'Rouge', Blue: 'Bleu', Green: 'Vert', Sun: 'Soleil', Rain: 'Pluie', Wind: 'Vent',
+      "Where is the station?": "Où est la gare ?", "How much is this?": "Combien ça coûte ?", "I love my family.": "J'aime ma famille.", "What is your name?": "Comment vous appelez-vous ?", "I speak some English.": "Je parle un peu anglais.",
+      "If I had money, I would travel.": "Si j'avais de l'argent, je voyagerais.", "Please explain this to me.": "S'il vous plaît expliquez-moi cela.", "Actions speak louder than words.": "Les actes parlent plus que les mots.", "It is raining heavily today.": "Il pleut à verse aujourd'hui.", "I look forward to meeting you.": "J'ai hâte de vous rencontrer."
+    },
+    de: { 
+      Hello: 'Hallo', Goodbye: 'Tschüss', Please: 'Bitte', 'Thank you': 'Danke', Mother: 'Mutter', Father: 'Vater', Friend: 'Freund', Brother: 'Bruder', Sister: 'Schwester', Water: 'Wasser', Bread: 'Brot', Book: 'Buch', One: 'Eins', Two: 'Zwei', Three: 'Drei', Red: 'Rot', Blue: 'Blau', Green: 'Grün', Sun: 'Sonne', Rain: 'Regen', Wind: 'Wind',
+      "Where is the station?": "Wo ist der Bahnhof?", "How much is this?": "Wie viel kostet das?", "I love my family.": "Ich liebe meine Familie.", "What is your name?": "Wie heißen Sie?", "I speak some English.": "Ich spreche ein wenig Englisch.",
+      "If I had money, I would travel.": "Wenn ich Geld hätte, würde ich reisen.", "Please explain this to me.": "Bitte erklären Sie mir das.", "Actions speak louder than words.": "Taten sagen mehr als Worte.", "It is raining heavily today.": "Heute regnet es in Strömen.", "I look forward to meeting you.": "Ich freue mich darauf, Sie kennenzulernen."
+    }
   };
 
   // Helpers to get localized version
