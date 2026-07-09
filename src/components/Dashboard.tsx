@@ -13,6 +13,52 @@ import Leaderboard from './Leaderboard';
 import Shop from './Shop';
 import Profile from './Profile';
 
+const translateTierLabel = (tier: number, interfaceLang: string): string => {
+  const keyMap: Record<number, string> = {
+    1: 'basics',
+    2: 'intermediate',
+    3: 'advanced'
+  };
+  const key = keyMap[tier];
+  return key ? getTranslation(key as any, interfaceLang) : String(tier);
+};
+
+const translateLessonTitle = (title: string, interfaceLang: string): string => {
+  const parts = title.split(' #');
+  if (parts.length === 2) {
+    const categoryName = parts[0];
+    const num = parts[1];
+    const keyMap: Record<string, string> = {
+      'Greetings': 'greetings',
+      'Polite Words': 'politeWords',
+      'Daily Talk': 'dailyTalk',
+      'Food & Drink': 'foodDrink',
+      'Study': 'study',
+      'Numbers': 'numbers',
+      'Colors': 'colors',
+      'Family': 'family',
+      'Relatives': 'relatives',
+      'Social': 'social',
+      'Dining': 'dining',
+      'Media': 'media',
+      'Quantities': 'quantities',
+      'Environment': 'environment',
+      'Professional': 'professional',
+      'Dialogues': 'dialogues',
+      'Translation': 'translation',
+      'Cuisine': 'cuisine',
+      'Literature': 'literature',
+      'Review A': 'reviewA',
+      'Review B': 'reviewB'
+    };
+    const key = keyMap[categoryName];
+    if (key) {
+      return `${getTranslation(key as any, interfaceLang)} #${num}`;
+    }
+  }
+  return title;
+};
+
 /* ═══════════════════════════════════════════════
    TYPES
    ═══════════════════════════════════════════════ */
@@ -29,12 +75,7 @@ interface DashboardProps {
    HELPERS — short names, icons, titles
    ═══════════════════════════════════════════════ */
 
-/** Short tier labels that NEVER clip */
-const TIER_LABEL: Record<number, string> = {
-  1: 'Basics',
-  2: 'Intermediate',
-  3: 'Advanced',
-};
+
 
 /** Section topic titles PER TIER — short enough to fit with truncate */
 const SECTION_TITLES: Record<number, string[]> = {
@@ -203,7 +244,7 @@ const Dashboard: React.FC<DashboardProps> = ({ activeTab, setActiveTab, onStartL
               }`}
             >
               {TIER_ICONS[course.tier]}
-              <span>{TIER_LABEL[course.tier]}</span>
+              <span>{translateTierLabel(course.tier, interfaceLang)}</span>
               {TIER_ICONS[course.tier]}
             </button>
           );
@@ -285,14 +326,14 @@ const Dashboard: React.FC<DashboardProps> = ({ activeTab, setActiveTab, onStartL
                     </div>
                     {!locked && (
                       <span className={`mt-2 px-2 py-0.5 rounded-full text-[10px] font-bold truncate max-w-[130px] border ${c.labelBg}`}>
-                        {lesson.title}
+                        {translateLessonTitle(lesson.title, interfaceLang)}
                       </span>
                     )}
 
                     {/* Popup */}
                     {popup?.id === lesson.id && (
                       <div className={`absolute z-30 bottom-20 sm:bottom-24 border rounded-2xl p-4 w-56 text-center ${c.popupBg}`}>
-                        <h4 className="font-outfit font-black text-sm mb-1">{lesson.title}</h4>
+                        <h4 className="font-outfit font-black text-sm mb-1">{translateLessonTitle(lesson.title, interfaceLang)}</h4>
                         <p className={`text-xs mb-3 ${c.muted}`}>+{lesson.xpReward} XP</p>
                         <div className="flex gap-2">
                           <button onClick={() => setPopup(null)} className={`flex-1 text-xs font-bold py-2 rounded-lg border ${c.cardBorder} ${c.hoverBg}`}>

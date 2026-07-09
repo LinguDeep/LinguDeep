@@ -99,7 +99,7 @@ const Profile: React.FC = () => {
           <span className={`inline-block border text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-lg mt-2 ${
             theme === 'dark' ? 'bg-slate-800 border-slate-700 text-slate-400' : 'bg-slate-150 border-slate-250 text-slate-600'
           }`}>
-            Tier {userProfile?.unlockedTier} Student
+            {getTranslation('studentTier', interfaceLang).replace('{tier}', String(userProfile?.unlockedTier || 1))}
           </span>
         </div>
       </div>
@@ -107,7 +107,7 @@ const Profile: React.FC = () => {
       {/* Stats Grid */}
       <h3 className={`font-outfit font-black text-base uppercase tracking-wider mb-3 mt-8 ${
         theme === 'dark' ? 'text-slate-350' : 'text-slate-600'
-      }`}>Your Progress</h3>
+      }`}>{getTranslation('yourProgress', interfaceLang)}</h3>
       
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
         <div className={`border rounded-2xl p-4 text-center ${
@@ -115,7 +115,7 @@ const Profile: React.FC = () => {
         }`}>
           <div className="text-orange-500 flex justify-center mb-1"><Flame size={24} className="fill-current" /></div>
           <div className="text-xl font-outfit font-black">{userProfile?.streak || 0}</div>
-          <div className={`text-[10px] font-bold uppercase ${theme === 'dark' ? 'text-slate-500' : 'text-slate-400'}`}>Streak Days</div>
+          <div className={`text-[10px] font-bold uppercase ${theme === 'dark' ? 'text-slate-500' : 'text-slate-400'}`}>{getTranslation('streakDays', interfaceLang)}</div>
         </div>
 
         <div className={`border rounded-2xl p-4 text-center ${
@@ -123,7 +123,7 @@ const Profile: React.FC = () => {
         }`}>
           <div className="text-indigo-400 flex justify-center mb-1"><Award size={24} /></div>
           <div className="text-xl font-outfit font-black">{userProfile?.totalXP || 0}</div>
-          <div className={`text-[10px] font-bold uppercase ${theme === 'dark' ? 'text-slate-500' : 'text-slate-400'}`}>Total XP</div>
+          <div className={`text-[10px] font-bold uppercase ${theme === 'dark' ? 'text-slate-500' : 'text-slate-400'}`}>{getTranslation('totalXP', interfaceLang)}</div>
         </div>
 
         <div className={`border rounded-2xl p-4 text-center ${
@@ -131,7 +131,7 @@ const Profile: React.FC = () => {
         }`}>
           <div className="text-amber-500 flex justify-center mb-1"><Coins size={24} className="fill-current" /></div>
           <div className="text-xl font-outfit font-black">{userProfile?.gems || 0}</div>
-          <div className={`text-[10px] font-bold uppercase ${theme === 'dark' ? 'text-slate-500' : 'text-slate-400'}`}>Gems Balance</div>
+          <div className={`text-[10px] font-bold uppercase ${theme === 'dark' ? 'text-slate-500' : 'text-slate-400'}`}>{getTranslation('gemsBalance', interfaceLang)}</div>
         </div>
 
         <div className={`border rounded-2xl p-4 text-center ${
@@ -139,14 +139,14 @@ const Profile: React.FC = () => {
         }`}>
           <div className="text-emerald-400 flex justify-center mb-1"><CheckCircle2 size={24} /></div>
           <div className="text-xl font-outfit font-black">{completedLessonsCount}</div>
-          <div className={`text-[10px] font-bold uppercase ${theme === 'dark' ? 'text-slate-500' : 'text-slate-400'}`}>Lessons Done</div>
+          <div className={`text-[10px] font-bold uppercase ${theme === 'dark' ? 'text-slate-500' : 'text-slate-400'}`}>{getTranslation('completedLessons', interfaceLang)}</div>
         </div>
       </div>
 
       {/* Badges Section */}
       <h3 className={`font-outfit font-black text-base uppercase tracking-wider mb-3 ${
         theme === 'dark' ? 'text-slate-350' : 'text-slate-600'
-      }`}>Badges & Achievements</h3>
+      }`}>{getTranslation('unlockedBadges', interfaceLang)}</h3>
 
       {loadingBadges ? (
         <div className="grid grid-cols-2 gap-4">
@@ -157,13 +157,31 @@ const Profile: React.FC = () => {
           ))}
         </div>
       ) : badges.length === 0 ? (
-        <p className="text-sm text-slate-500">No badges configured in target database.</p>
+        <p className="text-sm text-slate-500">{getTranslation('noBadges', interfaceLang)}</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
           {badges.map((badge) => {
             const isUnlocked = (userProfile?.totalXP || 0) >= badge.requirementXP 
               && (userProfile?.streak || 0) >= badge.requirementStreak;
             
+            const getBadgeNameKey = (id: string) => {
+              if (id === 'first_steps') return 'firstStepsName';
+              if (id === 'streak_3day') return 'streak3dayName';
+              if (id === 'xp_master') return 'xpMasterName';
+              return '';
+            };
+            const getBadgeDescKey = (id: string) => {
+              if (id === 'first_steps') return 'firstStepsDesc';
+              if (id === 'streak_3day') return 'streak3dayDesc';
+              if (id === 'xp_master') return 'xpMasterDesc';
+              return '';
+            };
+            
+            const nameKey = getBadgeNameKey(badge.id);
+            const descKey = getBadgeDescKey(badge.id);
+            const displayName = nameKey ? getTranslation(nameKey as any, interfaceLang) : badge.name;
+            const displayDesc = descKey ? getTranslation(descKey as any, interfaceLang) : badge.description;
+
             return (
               <div
                 key={badge.id}
@@ -185,14 +203,14 @@ const Profile: React.FC = () => {
                   {getBadgeIcon(badge.icon, isUnlocked)}
                 </div>
                 <div className="space-y-0.5">
-                  <h4 className="font-outfit font-black text-sm">{badge.name}</h4>
+                  <h4 className="font-outfit font-black text-sm">{displayName}</h4>
                   <p className={`text-[10px] leading-relaxed font-semibold ${
                     theme === 'dark' ? 'text-slate-400' : 'text-slate-500'
-                  }`}>{badge.description}</p>
+                  }`}>{displayDesc}</p>
                   {isUnlocked ? (
                     <div className="text-[10px] text-emerald-400 font-extrabold flex items-center gap-1 mt-1">
                       <Check className="w-3 h-3 stroke-[3]" />
-                      <span>Unlocked</span>
+                      <span>{getTranslation('unlocked', interfaceLang)}</span>
                     </div>
                   ) : (
                     <div className={`text-[10px] font-extrabold mt-1 ${

@@ -53,6 +53,51 @@ export interface TranslationDictionary {
   email: string;
   password: string;
   syncPending: string;
+  basics?: string;
+  intermediate?: string;
+  advanced?: string;
+  greetings?: string;
+  politeWords?: string;
+  dailyTalk?: string;
+  foodDrink?: string;
+  study?: string;
+  numbers?: string;
+  colors?: string;
+  family?: string;
+  relatives?: string;
+  social?: string;
+  dining?: string;
+  media?: string;
+  quantities?: string;
+  environment?: string;
+  professional?: string;
+  dialogues?: string;
+  translation?: string;
+  cuisine?: string;
+  literature?: string;
+  reviewA?: string;
+  reviewB?: string;
+  yourProgress?: string;
+  studentTier?: string;
+  noBadges?: string;
+  noRankings?: string;
+  noRankingsDesc?: string;
+  streakFreezeName?: string;
+  streakFreezeDesc?: string;
+  doubleOrNothingName?: string;
+  doubleOrNothingDesc?: string;
+  xpBoosterName?: string;
+  xpBoosterDesc?: string;
+  firstStepsName?: string;
+  firstStepsDesc?: string;
+  streak3dayName?: string;
+  streak3dayDesc?: string;
+  xpMasterName?: string;
+  xpMasterDesc?: string;
+  buy?: string;
+  noShopItems?: string;
+  noShopItemsDesc?: string;
+  unlocked?: string;
 }
 
 export const TRANSLATIONS: Record<InterfaceLang, TranslationDictionary> = {
@@ -109,6 +154,51 @@ export const TRANSLATIONS: Record<InterfaceLang, TranslationDictionary> = {
     email: 'Email Address',
     password: 'Password',
     syncPending: 'Pending Sync',
+    basics: 'Basics',
+    intermediate: 'Intermediate',
+    advanced: 'Advanced',
+    greetings: 'Greetings',
+    politeWords: 'Polite Words',
+    dailyTalk: 'Daily Talk',
+    foodDrink: 'Food & Drink',
+    study: 'Study',
+    numbers: 'Numbers',
+    colors: 'Colors',
+    family: 'Family',
+    relatives: 'Relatives',
+    social: 'Social',
+    dining: 'Dining',
+    media: 'Media',
+    quantities: 'Quantities',
+    environment: 'Environment',
+    professional: 'Professional',
+    dialogues: 'Dialogues',
+    translation: 'Translation',
+    cuisine: 'Cuisine',
+    literature: 'Literature',
+    reviewA: 'Review A',
+    reviewB: 'Review B',
+    yourProgress: 'Your Progress',
+    studentTier: 'Tier {tier} Student',
+    noBadges: 'No badges configured in target database.',
+    noRankings: 'No rankings yet',
+    noRankingsDesc: 'Users will appear here once they complete lessons!',
+    streakFreezeName: 'Streak Freeze',
+    streakFreezeDesc: 'Allows your daily streak to remain in place if you miss a day of active practice.',
+    doubleOrNothingName: 'Double or Nothing',
+    doubleOrNothingDesc: 'Bet 50 gems to win 100 if you maintain a 7-day learning streak.',
+    xpBoosterName: 'XP Booster',
+    xpBoosterDesc: 'Double all XP rewards earned from learning lessons for the next 30 minutes.',
+    firstStepsName: 'First Steps',
+    firstStepsDesc: 'Complete your first ever learning lesson in LinguDeep.',
+    streak3dayName: 'Dedicated Learner',
+    streak3dayDesc: 'Reach and maintain a 3-day active learning streak.',
+    xpMasterName: 'Language Master',
+    xpMasterDesc: 'Gain a total of 500 Experience Points (XP) to reach language mastery.',
+    buy: 'Buy',
+    noShopItems: 'Bazaar is empty',
+    noShopItemsDesc: 'No shop items defined in database.',
+    unlocked: 'Unlocked',
   },
   tr: {
     learn: 'Öğren',
@@ -163,6 +253,51 @@ export const TRANSLATIONS: Record<InterfaceLang, TranslationDictionary> = {
     email: 'E-posta Adresi',
     password: 'Şifre',
     syncPending: 'Senkronizasyon Bekliyor',
+    basics: 'Temel Seviye',
+    intermediate: 'Orta Seviye',
+    advanced: 'İleri Seviye',
+    greetings: 'Selamlaşma',
+    politeWords: 'Nezaket',
+    dailyTalk: 'Günlük Sohbet',
+    foodDrink: 'Yiyecek & İçecek',
+    study: 'Ders Çalışma',
+    numbers: 'Sayılar',
+    colors: 'Renkler',
+    family: 'Aile',
+    relatives: 'Akrabalar',
+    social: 'Sosyal Hayat',
+    dining: 'Yemek',
+    media: 'Medya',
+    quantities: 'Miktarlar',
+    environment: 'Çevre',
+    professional: 'İş Hayatı',
+    dialogues: 'Diyaloglar',
+    translation: 'Çeviri',
+    cuisine: 'Mutfak',
+    literature: 'Edebiyat',
+    reviewA: 'Genel Tekrar A',
+    reviewB: 'Genel Tekrar B',
+    yourProgress: 'Gelişiminiz',
+    studentTier: '{tier}. Aşama Öğrencisi',
+    noBadges: 'Veritabanında kayıtlı rozet bulunamadı.',
+    noRankings: 'Henüz sıralama yok',
+    noRankingsDesc: 'Kullanıcılar ders tamamladıkça burada listelenecektir!',
+    streakFreezeName: 'Seri Dondurucu',
+    streakFreezeDesc: 'Aktif çalışmayı kaçırdığınız gün günlük serinizin bozulmamasını sağlar.',
+    doubleOrNothingName: 'Çift veya Hiç',
+    doubleOrNothingDesc: '50 gem yatırın, 7 günlük seriyi korursanız 100 gem kazanın.',
+    xpBoosterName: 'XP Artırıcı',
+    xpBoosterDesc: 'Önümüzdeki 30 dakika boyunca tamamlanan derslerden iki kat XP kazanın.',
+    firstStepsName: 'İlk Adımlar',
+    firstStepsDesc: 'LinguDeep\'teki ilk dersinizi tamamlayın.',
+    streak3dayName: 'Kararlı Öğrenci',
+    streak3dayDesc: '3 günlük aktif çalışma serisine ulaşın ve koruyun.',
+    xpMasterName: 'Dil Ustası',
+    xpMasterDesc: 'Dil hakimiyetine ulaşmak için toplam 500 Deneyim Puanı (XP) kazanın.',
+    buy: 'Satın Al',
+    noShopItems: 'Pazar boş',
+    noShopItemsDesc: 'Veritabanında mağaza ürünü tanımlanmamış.',
+    unlocked: 'Açıldı',
   },
   es: {
     learn: 'Aprender',
@@ -217,6 +352,51 @@ export const TRANSLATIONS: Record<InterfaceLang, TranslationDictionary> = {
     email: 'Correo electrónico',
     password: 'Contraseña',
     syncPending: 'Sincronización Pendiente',
+    basics: 'Básico',
+    intermediate: 'Intermedio',
+    advanced: 'Avanzado',
+    greetings: 'Saludos',
+    politeWords: 'Cortesía',
+    dailyTalk: 'Conversación Diaria',
+    foodDrink: 'Comida y Bebida',
+    study: 'Estudio',
+    numbers: 'Números',
+    colors: 'Colores',
+    family: 'Familia',
+    relatives: 'Parientes',
+    social: 'Vida Social',
+    dining: 'Cena',
+    media: 'Medios',
+    quantities: 'Cantidades',
+    environment: 'Entorno',
+    professional: 'Profesional',
+    dialogues: 'Diálogos',
+    translation: 'Traducción',
+    cuisine: 'Cocina',
+    literature: 'Literatura',
+    reviewA: 'Repaso A',
+    reviewB: 'Repaso B',
+    yourProgress: 'Tu Progreso',
+    studentTier: 'Estudiante de Nivel {tier}',
+    noBadges: 'No hay insignias configuradas en la base de datos.',
+    noRankings: 'No hay clasificaciones aún',
+    noRankingsDesc: '¡Los usuarios aparecerán aquí cuando completen lecciones!',
+    streakFreezeName: 'Protector de Racha',
+    streakFreezeDesc: 'Permite mantener tu racha diaria si olvidas practicar un día.',
+    doubleOrNothingName: 'Doble o Nada',
+    doubleOrNothingDesc: 'Apuesta 50 gemas para ganar 100 si mantienes una racha de 7 días.',
+    xpBoosterName: 'Potenciador de XP',
+    xpBoosterDesc: 'Duplica todas las recompensas de XP de tus lecciones durante 30 minutos.',
+    firstStepsName: 'Primeros Pasos',
+    firstStepsDesc: 'Completa tu primera lección de aprendizaje en LinguDeep.',
+    streak3dayName: 'Estudiante Dedicado',
+    streak3dayDesc: 'Alcanza y mantén una racha de aprendizaje activo de 3 días.',
+    xpMasterName: 'Maestro del Idioma',
+    xpMasterDesc: 'Gana un total de 500 puntos de experiencia (XP) para dominar el idioma.',
+    buy: 'Comprar',
+    noShopItems: 'El bazar está vacío',
+    noShopItemsDesc: 'No hay artículos definidos en la base de datos.',
+    unlocked: 'Desbloqueado',
   },
   fr: {
     learn: 'Apprendre',

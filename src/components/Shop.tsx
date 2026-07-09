@@ -114,8 +114,8 @@ const Shop: React.FC = () => {
           theme === 'dark' ? 'border-slate-700 bg-slate-900/40 text-slate-400' : 'border-slate-300 bg-white text-slate-500'
         }`}>
           <ShieldAlert className="w-12 h-12 text-slate-500 mx-auto mb-2" />
-          <h3 className="font-outfit font-bold text-lg">Bazaar is empty</h3>
-          <p className="text-sm text-slate-500 mt-1">No shop items defined in database.</p>
+          <h3 className="font-outfit font-bold text-lg">{getTranslation('noShopItems', interfaceLang)}</h3>
+          <p className="text-sm text-slate-500 mt-1">{getTranslation('noShopItemsDesc', interfaceLang)}</p>
         </div>
       ) : (
         <div className="space-y-4">
@@ -123,6 +123,23 @@ const Shop: React.FC = () => {
             const hasPurchased = !!userProfile?.purchasedItems?.includes(item.id);
             const canAfford = (userProfile?.gems || 0) >= item.cost;
             const isPurchasing = purchasingId === item.id;
+
+            const getNameKey = (id: string) => {
+              if (id === 'streak_freeze') return 'streakFreezeName';
+              if (id === 'gems_booster') return 'doubleOrNothingName';
+              if (id === 'xp_boost') return 'xpBoosterName';
+              return '';
+            };
+            const getDescKey = (id: string) => {
+              if (id === 'streak_freeze') return 'streakFreezeDesc';
+              if (id === 'gems_booster') return 'doubleOrNothingDesc';
+              if (id === 'xp_boost') return 'xpBoosterDesc';
+              return '';
+            };
+            const nameKey = getNameKey(item.id);
+            const descKey = getDescKey(item.id);
+            const displayName = nameKey ? getTranslation(nameKey as any, interfaceLang) : item.name;
+            const displayDesc = descKey ? getTranslation(descKey as any, interfaceLang) : item.description;
 
             return (
               <div
@@ -140,11 +157,11 @@ const Shop: React.FC = () => {
                     {resolveIcon(item.icon)}
                   </div>
                   <div className="space-y-1">
-                    <h3 className="font-outfit font-black text-sm">{item.name}</h3>
+                    <h3 className="font-outfit font-black text-sm">{displayName}</h3>
                     <p className={`text-xs leading-relaxed max-w-sm font-medium ${
                       theme === 'dark' ? 'text-slate-400' : 'text-slate-500'
                     }`}>
-                      {item.description}
+                      {displayDesc}
                     </p>
                   </div>
                 </div>
@@ -173,7 +190,7 @@ const Shop: React.FC = () => {
                     ) : hasPurchased ? (
                       getTranslation('owned', interfaceLang)
                     ) : (
-                      'Buy'
+                      getTranslation('buy', interfaceLang)
                     )}
                   </button>
                 </div>

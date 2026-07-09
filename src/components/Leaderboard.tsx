@@ -90,8 +90,8 @@ const Leaderboard: React.FC = () => {
           theme === 'dark' ? 'border-slate-700 bg-slate-900/40 text-slate-350' : 'border-slate-300 bg-white text-slate-650 shadow-sm'
         }`}>
           <ShieldAlert className="w-12 h-12 text-slate-500 mx-auto mb-2" />
-          <h3 className="font-outfit font-bold text-lg">No rankings yet</h3>
-          <p className="text-sm text-slate-500 mt-1">Users will appear here once they complete lessons!</p>
+          <h3 className="font-outfit font-bold text-lg">{getTranslation('noRankings', interfaceLang)}</h3>
+          <p className="text-sm text-slate-500 mt-1">{getTranslation('noRankingsDesc', interfaceLang)}</p>
         </div>
       ) : (
         <div className="space-y-3">
