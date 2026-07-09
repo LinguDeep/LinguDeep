@@ -27,7 +27,7 @@ export interface AuthContextType {
   setInterfaceLang: (lang: 'en' | 'tr' | 'es') => void;
   theme: 'dark' | 'light';
   toggleTheme: () => void;
-  login: (email: string, password: string) => Promise<void>;
+  login: (email: string, password: string, selectedLanguage?: string, placementTier?: number) => Promise<void>;
   signup: (email: string, password: string, displayName: string, selectedLanguage: string, placementTier: number) => Promise<void>;
   loginWithGoogle: (selectedLanguage: string, placementTier: number) => Promise<void>;
   logout: () => Promise<void>;
@@ -99,11 +99,23 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return unsubscribe;
   }, []);
 
-  const login = async (email: string, password: string) => {
+  const login = async (email: string, password: string, selectedLanguage?: string, placementTier?: number) => {
     if (!auth) throw new Error('Firebase Auth is not initialized.');
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     const profile = await getUserProfile(userCredential.user.uid);
-    setUserProfile(profile);
+    if (profile) {
+      if (selectedLanguage) {
+        profile.currentLanguage = selectedLanguage;
+        if (placementTier && placementTier > (profile.unlockedTier || 1)) {
+          profile.unlockedTier = placementTier;
+        }
+        await updateUserProfile(userCredential.user.uid, {
+          currentLanguage: selectedLanguage,
+          unlockedTier: profile.unlockedTier
+        });
+      }
+      setUserProfile(profile);
+    }
   };
 
   const signup = async (
@@ -144,6 +156,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     // Check if user profile already exists in Firestore
     const existingProfile = await getUserProfile(uid);
     if (existingProfile) {
+      existingProfile.currentLanguage = selectedLanguage;
+      if (placementTier > (existingProfile.unlockedTier || 1)) {
+        existingProfile.unlockedTier = placementTier;
+      }
+      await updateUserProfile(uid, {
+        currentLanguage: selectedLanguage,
+        unlockedTier: existingProfile.unlockedTier
+      });
       setUserProfile(existingProfile);
     } else {
       // New profile sync

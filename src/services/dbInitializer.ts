@@ -21,7 +21,7 @@ const SAMPLE_LANGUAGES: Language[] = [
   { id: 'en', name: 'English', flag: '🇺🇸', code: 'en' },
 ];
 
-interface LangVocab {
+export interface LangVocab {
   hello: string;
   goodbye: string;
   please: string;
@@ -45,7 +45,7 @@ interface LangVocab {
   wind: string;
 }
 
-const LANGUAGE_VOCABULARY: Record<string, LangVocab> = {
+export const LANGUAGE_VOCABULARY: Record<string, LangVocab> = {
   es: { hello: 'Hola', goodbye: 'Adiós', please: 'Por favor', thankYou: 'Gracias', mother: 'La madre', father: 'El padre', friend: 'El amigo', brother: 'El hermano', sister: 'La hermana', water: 'El agua', bread: 'El pan', book: 'El libro', one: 'Uno', two: 'Dos', three: 'Tres', red: 'Rojo', blue: 'Azul', green: 'Verde', sun: 'El sol', rain: 'La lluvia', wind: 'El viento' },
   fr: { hello: 'Bonjour', goodbye: 'Au revoir', please: 'S\'il vous plaît', thankYou: 'Merci', mother: 'La mère', father: 'Le père', friend: 'L\'ami', brother: 'Le frère', sister: 'La sœur', water: 'L\'eau', bread: 'Le pain', book: 'Le livre', one: 'Un', two: 'Deux', three: 'Trois', red: 'Rouge', blue: 'Bleu', green: 'Vert', sun: 'Le soleil', rain: 'La pluie', wind: 'Le vent' },
   de: { hello: 'Hallo', goodbye: 'Tschüss', please: 'Bitte', thankYou: 'Danke', mother: 'Die Mutter', father: 'Der Vater', friend: 'Der Freund', brother: 'Der Bruder', sister: 'Die Schwester', water: 'Das Wasser', bread: 'Das Brot', book: 'Das Buch', one: 'Eins', two: 'Zwei', three: 'Drei', red: 'Rot', blue: 'Blau', green: 'Grün', sun: 'Die Sonne', rain: 'Der Regen', wind: 'Der Wind' },
@@ -149,7 +149,7 @@ function shuffleOptions(options: string[]): string[] {
   return arr;
 }
 
-function generateQuestionsForLesson(lang: Language, tier: number, lessonIndex: number, vocab: LangVocab): Question[] {
+export function generateQuestionsForLesson(lang: Language, tier: number, lessonIndex: number, vocab: LangVocab): Question[] {
   const langName = lang.name;
   const categoryIndex = (lessonIndex - 1) % 7;
 

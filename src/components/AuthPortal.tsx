@@ -69,7 +69,7 @@ const AuthPortal: React.FC<AuthPortalProps> = ({
     try {
       if (isLoginMode) {
         // Sign in
-        await login(email.trim(), password);
+        await login(email.trim(), password, selectedLanguage, placementTier);
       } else {
         // Sign up
         if (!displayName.trim()) {
