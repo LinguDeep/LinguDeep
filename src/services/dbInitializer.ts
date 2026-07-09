@@ -129,16 +129,40 @@ const INTERMEDIATE_VOCAB: Record<string, Record<string, string>> = {
   cost: { en: "How much is this?", tr: "Bu ne kadar?", es: "¿Cuánto cuesta esto?", fr: "Combien ça coûte ?", de: "Wie viel kostet das?", it: "Quanto costa questo?", pt: "Quanto custa isto?", ru: "Сколько это стоит?", zh: "这个多少钱？", ja: "これはいくらですか？", ko: "이것은 얼마인가요?", ar: "بكم هذا؟", nl: "Hoeveel kost dit?", sv: "Hur mycket kostar den här?", hi: "यह कितने का है?" },
   family: { en: "I love my family.", tr: "Ailemi seviyorum.", es: "Amo a mi familia.", fr: "J'aime ma famille.", de: "Ich liebe meine Familie.", it: "Amo la mia famiglia.", pt: "Eu amo a minha família.", ru: "Я люблю свою семью.", zh: "我爱我的家庭。", ja: "家族を愛しています。", ko: "가족을 사랑합니다.", ar: "أنا أحب عائلتي.", nl: "Ik hou van mijn familie.", sv: "Jag älskar min familj.", hi: "मैं अपने pfरिवार से प्यार करता हूँ।" }, // tr: Ailemi seviyorum.
   name: { en: "What is your name?", tr: "Adınız nedir?", es: "¿Cómo te llamas?", fr: "Comment vous appelez-vous ?", de: "Wie heißen Sie?", it: "Come ti chiami?", pt: "Qual é o seu nome?", ru: "Как вас зовут?", zh: "你叫什么名字？", ja: "お名前は何ですか？", ko: "이름이 무엇인가요?", ar: "ما اسمك؟", nl: "Wat is je naam?", sv: "Vad heter du?", hi: "आपका नाम क्या है?" },
-  speak: { en: "I speak some English.", tr: "Biraz İngilizce konuşuyorum.", es: "Hablo un poco de inglés.", fr: "Je parle un peu anglais.", de: "Ich spreche ein wenig Englisch.", it: "Parlo un po' di inglese.", pt: "Eu falo um pouco de inglês.", ru: "Я немного говорю по-английски.", zh: "我会说一点英语。", ja: "英語が少し話せます。", ko: "영어를 조금 할 줄 압니다.", ar: "أتحدث القليل من الإنجليزية.", nl: "Ik spreek een beetje Engels.", sv: "Jag talar lite engelska.", hi: "मैं थोड़ी अंग्रेजी बोलता हूँ।" }
+  speak: { en: "I speak some English.", tr: "Biraz İngilizce konuşuyorum.", es: "Hablo un poco de inglés.", fr: "Je parle un peu anglais.", de: "Ich spreche ein wenig Englisch.", it: "Parlo un po' di inglese.", pt: "Eu falo um pouco de inglês.", ru: "Я немного говорю по-английски.", zh: "我会说一点英语。", ja: "英語が少し話せます。", ko: "영어를 조금 할 줄 압니다.", ar: "أتحدث القليل من الإنجليزية.", nl: "Ik spreek een beetje Engels.", sv: "Jag talar lite engelska.", hi: "मैं थोड़ी अंग्रेजी बोलता हूँ。" }
 };
 
 const ADVANCED_VOCAB: Record<string, Record<string, string>> = {
-  travel: { en: "If I had money, I would travel.", tr: "Param olsaydı seyahat ederdim.", es: "Si tuviera dinero, viajaría.", fr: "Si j'avais de l'argent, je voyagerais.", de: "Wenn ich Geld hätte, würde ich reisen.", it: "Se avessi soldi, viaggerei.", pt: "Se eu tivesse dinheiro, viajaria.", ru: "Если бы у меня были деньги, я бы путешествовал.", zh: "如果我有钱，我就会去旅行。", ja: "お金があれば旅行するのに。", ko: "돈이 있다면 여행을 갈 텐데요.", ar: "لو كان لدي مال لسافرت.", nl: "Als ik geld had, zou ik reizen.", sv: "Om jag hade pengar skulle jag resa.", hi: "अगर मेरे पास पैसे होते, तो मैं यात्रा करता।" },
-  explain: { en: "Please explain this to me.", tr: "Lütfen bunu bana açıklayın.", es: "Por favor explécame esto.", fr: "S'il vous plaît expliquez-moi cela.", de: "Bitte erklären Sie mir das.", it: "Per favore spiegami questo.", pt: "Por favor, explique-me isto.", ru: "Пожалуйста, объясните мне это.", zh: "请向我解释一下这个。", ja: "これを説明してください。", ko: "이것을 설명해 주세요.", ar: "يرجى شرح هذا لي.", nl: "Leg dit me alstublieft uit.", sv: "Förklara detta för mig, tack.", hi: "कृपया मुझे यह समझाएं।" },
-  actions: { en: "Actions speak louder than words.", tr: "Lafla peynir gemisi yürümez.", es: "Las palabras se las lleva el viento.", fr: "Les actes parlent plus que les mots.", de: "Taten sagen mehr als Worte.", it: "Le azioni contano più delle parole.", pt: "Ações valem mais que palavras.", ru: "Дела говорят громче слов.", zh: "事实胜于雄辩。", ja: "論より証拠。", ko: "말보다 행동이 중요하다.", ar: "الأفعال أبلغ من الأقوال.", nl: "Geen woorden maar daden.", sv: "Handlingar talar högre än ord.", hi: "कथनी से करनी भली।" },
-  rain: { en: "It is raining heavily today.", tr: "Bugün çok şiddetli yağmur yağıyor.", es: "Hoy está lloviendo fuertemente.", fr: "Il pleut à verse aujourd'hui.", de: "Heute regnet es in Strömen.", it: "Oggi sta piovendo forte.", pt: "Hoje está chovendo muito.", ru: "Сегодня идет сильный дождь.", zh: "今天雨下得很大。", ja: "今日は大雨が降っています。", ko: "오늘 비가 많이 내립니다.", ar: "إنها تمطر بغزارة اليوم.", nl: "Het regent hard vandaag.", sv: "Det regnar kraftigt idag.", hi: "आज बहुत तेज बारिश हो रही है।" },
-  meet: { en: "I look forward to meeting you.", tr: "Sizinle tanışmayı dört gözle bekliyorum.", es: "Espero conocerte pronto.", fr: "J'ai hâte de vous rencontrer.", de: "Ich freue mich darauf, Sie kennenzulernen.", it: "Non vedo l'ora di conoscerti.", pt: "Estou ansioso para conhecer você.", ru: "Я с нетерпением жду встречи с вами.", zh: "我期待与您见面。", ja: "お会いできるのを楽しみにしています。", ko: "만나 뵙기를 기대합니다.", ar: "أتطلع للقائك.", nl: "Ik verheug me erop u te ontmoeten.", sv: "Jag ser fram emot att träffa dig.", hi: "मुझे आपसे मिलने का इंतजार है।" }
+  travel: { en: "If I had money, I would travel.", tr: "Param olsaydı seyahat ederdim.", es: "Si tuviera dinero, viajaría.", fr: "Si j'avais de l'argent, je voyagerais.", de: "Wenn ich Geld hätte, würde ich reisen.", it: "Se avessi soldi, viaggerei.", pt: "Se eu tivesse dinheiro, viajaria.", ru: "Если бы у меня были деньги, я бы путешествовал.", zh: "如果我有钱，我就会去旅行。", ja: "お金があれば旅行するのに。", ko: "돈이 있다면 여행을 갈 텐데요.", ar: "لو كان لدي مال لسافرت.", nl: "Als ik geld had, zou ik reizen.", sv: "Om jag hade pengar skulle jag resa.", hi: "अगर मेरे पास पैसे होते, तो मैं यात्रा करता。" },
+  explain: { en: "Please explain this to me.", tr: "Lütfen bunu bana açıklayın.", es: "Por favor explécame esto.", fr: "S'il vous plaît expliquez-moi cela.", de: "Bitte erklären Sie mir das.", it: "Per favore spiegami questo.", pt: "Por favor, explique-me isto.", ru: "Пожалуйста, объясните мне это.", zh: "请向我解释一下这个。", ja: "これを説明してください。", ko: "이것을 설명해 주세요.", ar: "يرجى شرح هذا لي.", nl: "Leg dit me alstublieft uit.", sv: "Förklara detta för mig, tack.", hi: "कृपया मुझे यह समझाएं。" },
+  actions: { en: "Actions speak louder than words.", tr: "Lafla peynir gemisi yürümez.", es: "Las palabras se las lleva el viento.", fr: "Les actes parlent plus que les mots.", de: "Taten sagen mehr als Worte.", it: "Le azioni contano più delle parole.", pt: "Ações valem mais que palavras.", ru: "Дела говорят громче слов.", zh: "事实胜于雄辩。", ja: "論より証拠。", ko: "말보다 행동이 중요하다.", ar: "الأفعال أبلغ من الأقوال.", nl: "Geen woorden maar daden.", sv: "Handlingar talar högre än ord.", hi: "कथनी से करनी भली。" },
+  rain: { en: "It is raining heavily today.", tr: "Bugün çok şiddetli yağmur yağıyor.", es: "Hoy está lloviendo fuertemente.", fr: "Il pleut à verse aujourd'hui.", de: "Heute regnet es in Strömen.", it: "Oggi sta piovendo forte.", pt: "Hoje está chovendo muito.", ru: "Сегодня идет сильный дождь.", zh: "今天雨下得很大。", ja: "今日は大雨が降っています。", ko: "오늘 비가 많이 내립니다.", ar: "إنها تمطر بغزارة اليوم.", nl: "Het regent hard vandaag.", sv: "Det regnar kraftigt idag.", hi: "आज बहुत तेज बारिश हो रही है。" },
+  meet: { en: "I look forward to meeting you.", tr: "Sizinle tanışmayı dört gözle bekliyorum.", es: "Espero conocerte pronto.", fr: "J'ai hâte de vous rencontrer.", de: "Ich freue mich darauf, Sie kennenzulernen.", it: "Non vedo l'ora di conoscerti.", pt: "Estou ansioso para conhecer você.", ru: "Я с нетерпением жду встречи с вами.", zh: "我期待与您见面。", ja: "お会いできるのを楽しみにしています。", ko: "만나 뵙기를 기대합니다.", ar: "أتطلع للقائك.", nl: "Ik verheug me erop u te ontmoeten.", sv: "Jag ser fram emot att träffa dig.", hi: "मुझे आपसे मिलने का इंतजार है。" }
 };
+
+const TIER1_VOCAB_ITEMS: { key: keyof LangVocab; english: string }[] = [
+  { key: 'hello', english: 'Hello' },
+  { key: 'goodbye', english: 'Goodbye' },
+  { key: 'please', english: 'Please' },
+  { key: 'thankYou', english: 'Thank you' },
+  { key: 'mother', english: 'Mother' },
+  { key: 'father', english: 'Father' },
+  { key: 'friend', english: 'Friend' },
+  { key: 'brother', english: 'Brother' },
+  { key: 'sister', english: 'Sister' },
+  { key: 'water', english: 'Water' },
+  { key: 'bread', english: 'Bread' },
+  { key: 'book', english: 'Book' },
+  { key: 'one', english: 'One' },
+  { key: 'two', english: 'Two' },
+  { key: 'three', english: 'Three' },
+  { key: 'red', english: 'Red' },
+  { key: 'blue', english: 'Blue' },
+  { key: 'green', english: 'Green' },
+  { key: 'sun', english: 'Sun' },
+  { key: 'rain', english: 'Rain' },
+  { key: 'wind', english: 'Wind' },
+];
 
 function shuffleOptions(options: string[]): string[] {
   const arr = [...options];
@@ -152,105 +176,40 @@ function shuffleOptions(options: string[]): string[] {
 export function generateQuestionsForLesson(lang: Language, tier: number, lessonIndex: number, vocab: LangVocab): Question[] {
   const langName = lang.name;
   const categoryIndex = (lessonIndex - 1) % 7;
+  const sectionIndex = Math.floor((lessonIndex - 1) / 7);
 
   if (tier === 1) {
-    if (categoryIndex === 0) {
-      return [
-        { id: `q_${lang.id}_1_${lessonIndex}_1`, type: 'multiple-choice', prompt: `How do you say "Hello" in ${langName}?`, options: shuffleOptions([vocab.hello, vocab.goodbye, vocab.please, vocab.thankYou]), correctAnswer: vocab.hello },
-        { id: `q_${lang.id}_1_${lessonIndex}_2`, type: 'translate', prompt: `Translate: "${vocab.hello}"`, correctAnswer: 'Hello' },
-        { id: `q_${lang.id}_1_${lessonIndex}_3`, type: 'multiple-choice', prompt: `How do you say "Goodbye" in ${langName}?`, options: shuffleOptions([vocab.goodbye, vocab.hello, vocab.please, vocab.thankYou]), correctAnswer: vocab.goodbye },
-        { id: `q_${lang.id}_1_${lessonIndex}_4`, type: 'translate', prompt: `Translate: "${vocab.goodbye}"`, correctAnswer: 'Goodbye' },
-        { id: `q_${lang.id}_1_${lessonIndex}_5`, type: 'fill-blank', prompt: `Complete: "${vocab.hello}, ..." (Hello, goodbye)`, options: shuffleOptions([vocab.goodbye, vocab.please, vocab.thankYou, vocab.friend]), correctAnswer: vocab.goodbye },
-        { id: `q_${lang.id}_1_${lessonIndex}_6`, type: 'multiple-choice', prompt: `Translate: "Goodbye, hello"`, options: shuffleOptions([`${vocab.goodbye}, ${vocab.hello}`, `${vocab.hello}, ${vocab.please}`, `${vocab.please}, ${vocab.thankYou}`, vocab.friend]), correctAnswer: `${vocab.goodbye}, ${vocab.hello}` },
-        { id: `q_${lang.id}_1_${lessonIndex}_7`, type: 'translate', prompt: `Translate: "${vocab.hello}, ${vocab.goodbye}"`, correctAnswer: 'Hello, goodbye' },
-        { id: `q_${lang.id}_1_${lessonIndex}_8`, type: 'fill-blank', prompt: `Complete: "${vocab.hello.substring(0, 2)}..." (Hello)`, options: shuffleOptions([vocab.hello, vocab.goodbye, vocab.please, vocab.friend]), correctAnswer: vocab.hello },
-        { id: `q_${lang.id}_1_${lessonIndex}_9`, type: 'multiple-choice', prompt: `How do you say "Please" in ${langName}?`, options: shuffleOptions([vocab.please, vocab.hello, vocab.goodbye, vocab.thankYou]), correctAnswer: vocab.please },
-        { id: `q_${lang.id}_1_${lessonIndex}_10`, type: 'tap-pairs', prompt: 'Match the greetings', options: [vocab.hello, 'Hello', vocab.goodbye, 'Goodbye', vocab.please, 'Please', vocab.thankYou, 'Thank you'], correctAnswer: `${vocab.hello}:Hello,${vocab.goodbye}:Goodbye,${vocab.please}:Please,${vocab.thankYou}:Thank you` }
-      ];
-    } else if (categoryIndex === 1) {
-      return [
-        { id: `q_${lang.id}_1_${lessonIndex}_1`, type: 'multiple-choice', prompt: `How do you say "Please" in ${langName}?`, options: shuffleOptions([vocab.please, vocab.hello, vocab.goodbye, vocab.thankYou]), correctAnswer: vocab.please },
-        { id: `q_${lang.id}_1_${lessonIndex}_2`, type: 'translate', prompt: `Translate: "${vocab.please}"`, correctAnswer: 'Please' },
-        { id: `q_${lang.id}_1_${lessonIndex}_3`, type: 'multiple-choice', prompt: `How do you say "Thank you" in ${langName}?`, options: shuffleOptions([vocab.thankYou, vocab.please, vocab.goodbye, vocab.hello]), correctAnswer: vocab.thankYou },
-        { id: `q_${lang.id}_1_${lessonIndex}_4`, type: 'translate', prompt: `Translate: "${vocab.thankYou}"`, correctAnswer: 'Thank you' },
-        { id: `q_${lang.id}_1_${lessonIndex}_5`, type: 'fill-blank', prompt: `Complete: "${vocab.please}, ..." (Please, thank you)`, options: shuffleOptions([vocab.thankYou, vocab.hello, vocab.goodbye, vocab.friend]), correctAnswer: vocab.thankYou },
-        { id: `q_${lang.id}_1_${lessonIndex}_6`, type: 'multiple-choice', prompt: `Translate: "Please, thank you"`, options: shuffleOptions([`${vocab.please}, ${vocab.thankYou}`, `${vocab.hello}, ${vocab.goodbye}`, `${vocab.please}, ${vocab.goodbye}`, vocab.friend]), correctAnswer: `${vocab.please}, ${vocab.thankYou}` },
-        { id: `q_${lang.id}_1_${lessonIndex}_7`, type: 'translate', prompt: `Translate: "${vocab.please}, ${vocab.thankYou}"`, correctAnswer: 'Please, thank you' },
-        { id: `q_${lang.id}_1_${lessonIndex}_8`, type: 'fill-blank', prompt: `Complete: "... ${vocab.please} (Hello, please)"`, options: shuffleOptions([vocab.hello, vocab.goodbye, vocab.thankYou, vocab.friend]), correctAnswer: vocab.hello },
-        { id: `q_${lang.id}_1_${lessonIndex}_9`, type: 'multiple-choice', prompt: `How do you say "Hello" in ${langName}?`, options: shuffleOptions([vocab.hello, vocab.please, vocab.goodbye, vocab.thankYou]), correctAnswer: vocab.hello },
-        { id: `q_${lang.id}_1_${lessonIndex}_10`, type: 'tap-pairs', prompt: 'Match the polite words', options: [vocab.please, 'Please', vocab.thankYou, 'Thank you', vocab.hello, 'Hello', vocab.goodbye, 'Goodbye'], correctAnswer: `${vocab.please}:Please,${vocab.thankYou}:Thank you,${vocab.hello}:Hello,${vocab.goodbye}:Goodbye` }
-      ];
-    } else if (categoryIndex === 2) {
-      return [
-        { id: `q_${lang.id}_1_${lessonIndex}_1`, type: 'multiple-choice', prompt: `How do you say "Friend" in ${langName}?`, options: shuffleOptions([vocab.friend, vocab.mother, vocab.father, vocab.brother]), correctAnswer: vocab.friend },
-        { id: `q_${lang.id}_1_${lessonIndex}_2`, type: 'translate', prompt: `Translate: "${vocab.friend}"`, correctAnswer: 'Friend' },
-        { id: `q_${lang.id}_1_${lessonIndex}_3`, type: 'multiple-choice', prompt: `How do you say "Hello friend" in ${langName}?`, options: shuffleOptions([`${vocab.hello} ${vocab.friend}`, `${vocab.goodbye} ${vocab.friend}`, `${vocab.please} ${vocab.friend}`, vocab.friend]), correctAnswer: `${vocab.hello} ${vocab.friend}` },
-        { id: `q_${lang.id}_1_${lessonIndex}_4`, type: 'translate', prompt: `Translate: "${vocab.hello} ${vocab.friend}"`, correctAnswer: 'Hello friend' },
-        { id: `q_${lang.id}_1_${lessonIndex}_5`, type: 'fill-blank', prompt: `Complete: "${vocab.hello} ..." (Hello, friend)`, options: shuffleOptions([vocab.friend, vocab.mother, vocab.father, vocab.please]), correctAnswer: vocab.friend },
-        { id: `q_${lang.id}_1_${lessonIndex}_6`, type: 'multiple-choice', prompt: `Translate: "Goodbye friend"`, options: shuffleOptions([`${vocab.goodbye} ${vocab.friend}`, `${vocab.hello} ${vocab.friend}`, `${vocab.please} ${vocab.friend}`, vocab.friend]), correctAnswer: `${vocab.goodbye} ${vocab.friend}` },
-        { id: `q_${lang.id}_1_${lessonIndex}_7`, type: 'translate', prompt: `Translate: "${vocab.goodbye} ${vocab.friend}"`, correctAnswer: 'Goodbye friend' },
-        { id: `q_${lang.id}_1_${lessonIndex}_8`, type: 'fill-blank', prompt: `Complete: "${vocab.please}, ... (Please, friend)"`, options: shuffleOptions([vocab.friend, vocab.mother, vocab.father, vocab.hello]), correctAnswer: vocab.friend },
-        { id: `q_${lang.id}_1_${lessonIndex}_9`, type: 'multiple-choice', prompt: `How do you say "Please" in ${langName}?`, options: shuffleOptions([vocab.please, vocab.friend, vocab.mother, vocab.father]), correctAnswer: vocab.please },
-        { id: `q_${lang.id}_1_${lessonIndex}_10`, type: 'tap-pairs', prompt: 'Match communication words', options: [vocab.friend, 'Friend', vocab.please, 'Please', vocab.thankYou, 'Thank you', vocab.hello, 'Hello'], correctAnswer: `${vocab.friend}:Friend,${vocab.please}:Please,${vocab.thankYou}:Thank you,${vocab.hello}:Hello` }
-      ];
-    } else if (categoryIndex === 3) {
-      return [
-        { id: `q_${lang.id}_1_${lessonIndex}_1`, type: 'multiple-choice', prompt: `How do you say "Water" in ${langName}?`, options: shuffleOptions([vocab.water, vocab.bread, vocab.book, vocab.one]), correctAnswer: vocab.water },
-        { id: `q_${lang.id}_1_${lessonIndex}_2`, type: 'translate', prompt: `Translate: "${vocab.water}"`, correctAnswer: 'Water' },
-        { id: `q_${lang.id}_1_${lessonIndex}_3`, type: 'multiple-choice', prompt: `How do you say "Bread" in ${langName}?`, options: shuffleOptions([vocab.bread, vocab.water, vocab.book, vocab.two]), correctAnswer: vocab.bread },
-        { id: `q_${lang.id}_1_${lessonIndex}_4`, type: 'translate', prompt: `Translate: "${vocab.bread}"`, correctAnswer: 'Bread' },
-        { id: `q_${lang.id}_1_${lessonIndex}_5`, type: 'fill-blank', prompt: `Complete: "${vocab.bread} & ... (Bread & water)"`, options: shuffleOptions([vocab.water, vocab.book, vocab.hello, vocab.friend]), correctAnswer: vocab.water },
-        { id: `q_${lang.id}_1_${lessonIndex}_6`, type: 'multiple-choice', prompt: `Translate: "Water, please"`, options: shuffleOptions([`${vocab.water}, ${vocab.please}`, `${vocab.bread}, ${vocab.please}`, `${vocab.water}, ${vocab.thankYou}`, vocab.hello]), correctAnswer: `${vocab.water}, ${vocab.please}` },
-        { id: `q_${lang.id}_1_${lessonIndex}_7`, type: 'translate', prompt: `Translate: "${vocab.water}, ${vocab.please}"`, correctAnswer: 'Water, please' },
-        { id: `q_${lang.id}_1_${lessonIndex}_8`, type: 'fill-blank', prompt: `Complete: "... ${vocab.please} (Bread, please)"`, options: shuffleOptions([vocab.bread, vocab.water, vocab.book, vocab.friend]), correctAnswer: vocab.bread },
-        { id: `q_${lang.id}_1_${lessonIndex}_9`, type: 'multiple-choice', prompt: `Translate: "Thank you for the water"`, options: shuffleOptions([`${vocab.thankYou}, ${vocab.water}`, `${vocab.please}, ${vocab.water}`, vocab.one, vocab.two]), correctAnswer: `${vocab.thankYou}, ${vocab.water}` },
-        { id: `q_${lang.id}_1_${lessonIndex}_10`, type: 'tap-pairs', prompt: 'Match food terms', options: [vocab.water, 'Water', vocab.bread, 'Bread', vocab.please, 'Please', vocab.thankYou, 'Thank you'], correctAnswer: `${vocab.water}:Water,${vocab.bread}:Bread,${vocab.please}:Please,${vocab.thankYou}:Thank you` }
-      ];
-    } else if (categoryIndex === 4) {
-      return [
-        { id: `q_${lang.id}_1_${lessonIndex}_1`, type: 'multiple-choice', prompt: `How do you say "Book" in ${langName}?`, options: shuffleOptions([vocab.book, vocab.water, vocab.bread, vocab.friend]), correctAnswer: vocab.book },
-        { id: `q_${lang.id}_1_${lessonIndex}_2`, type: 'translate', prompt: `Translate: "${vocab.book}"`, correctAnswer: 'Book' },
-        { id: `q_${lang.id}_1_${lessonIndex}_3`, type: 'multiple-choice', prompt: `Translate to ${langName}: "My book, please"`, options: shuffleOptions([`${vocab.book}, ${vocab.please}`, `${vocab.water}, ${vocab.please}`, `${vocab.bread}, ${vocab.please}`, vocab.hello]), correctAnswer: `${vocab.book}, ${vocab.please}` },
-        { id: `q_${lang.id}_1_${lessonIndex}_4`, type: 'translate', prompt: `Translate: "${vocab.book}, ${vocab.please}"`, correctAnswer: 'Book, please' },
-        { id: `q_${lang.id}_1_${lessonIndex}_5`, type: 'fill-blank', prompt: `Complete: "${vocab.friend} & ... (Friend & book)"`, options: shuffleOptions([vocab.book, vocab.water, vocab.bread, vocab.hello]), correctAnswer: vocab.book },
-        { id: `q_${lang.id}_1_${lessonIndex}_6`, type: 'multiple-choice', prompt: `Translate: "Thank you for the book"`, options: shuffleOptions([`${vocab.thankYou}, ${vocab.book}`, `${vocab.please}, ${vocab.book}`, vocab.hello, vocab.friend]), correctAnswer: `${vocab.thankYou}, ${vocab.book}` },
-        { id: `q_${lang.id}_1_${lessonIndex}_7`, type: 'translate', prompt: `Translate: "${vocab.thankYou}, ${vocab.book}"`, correctAnswer: 'Thank you, book' },
-        { id: `q_${lang.id}_1_${lessonIndex}_8`, type: 'fill-blank', prompt: `Complete: "... & ${vocab.water} (Book & water)"`, options: shuffleOptions([vocab.book, vocab.water, vocab.bread, vocab.please]), correctAnswer: vocab.book },
-        { id: `q_${lang.id}_1_${lessonIndex}_9`, type: 'multiple-choice', prompt: `How do you say "Goodbye" in ${langName}?`, options: shuffleOptions([vocab.goodbye, vocab.book, vocab.water, vocab.bread]), correctAnswer: vocab.goodbye },
-        { id: `q_${lang.id}_1_${lessonIndex}_10`, type: 'tap-pairs', prompt: 'Match objects', options: [vocab.book, 'Book', vocab.water, 'Water', vocab.bread, 'Bread', vocab.friend, 'Friend'], correctAnswer: `${vocab.book}:Book,${vocab.water}:Water,${vocab.bread}:Bread,${vocab.friend}:Friend` }
-      ];
-    } else if (categoryIndex === 5) {
-      return [
-        { id: `q_${lang.id}_1_${lessonIndex}_1`, type: 'multiple-choice', prompt: `How do you say "One" in ${langName}?`, options: shuffleOptions([vocab.one, vocab.two, vocab.three, vocab.red]), correctAnswer: vocab.one },
-        { id: `q_${lang.id}_1_${lessonIndex}_2`, type: 'translate', prompt: `Translate: "One"`, correctAnswer: 'One' },
-        { id: `q_${lang.id}_1_${lessonIndex}_3`, type: 'multiple-choice', prompt: `How do you say "Two" in ${langName}?`, options: shuffleOptions([vocab.two, vocab.one, vocab.three, vocab.blue]), correctAnswer: vocab.two },
-        { id: `q_${lang.id}_1_${lessonIndex}_4`, type: 'translate', prompt: `Translate: "Two"`, correctAnswer: 'Two' },
-        { id: `q_${lang.id}_1_${lessonIndex}_5`, type: 'fill-blank', prompt: `Complete: "${vocab.one}, ${vocab.two}, ... (One, two, three)"`, options: shuffleOptions([vocab.three, vocab.one, vocab.water, vocab.please]), correctAnswer: vocab.three },
-        { id: `q_${lang.id}_1_${lessonIndex}_6`, type: 'multiple-choice', prompt: `How do you say "Three" in ${langName}?`, options: shuffleOptions([vocab.three, vocab.one, vocab.two, vocab.green]), correctAnswer: vocab.three },
-        { id: `q_${lang.id}_1_${lessonIndex}_7`, type: 'translate', prompt: `Translate: "Three"`, correctAnswer: 'Three' },
-        { id: `q_${lang.id}_1_${lessonIndex}_8`, type: 'fill-blank', prompt: `Complete: "${vocab.one} & ... (One & two)"`, options: shuffleOptions([vocab.two, vocab.three, vocab.bread, vocab.hello]), correctAnswer: vocab.two },
-        { id: `q_${lang.id}_1_${lessonIndex}_9`, type: 'multiple-choice', prompt: `Translate: "Three books, please"`, options: shuffleOptions([`${vocab.three} ${vocab.book}, ${vocab.please}`, `${vocab.one} ${vocab.water}`, vocab.hello, vocab.goodbye]), correctAnswer: `${vocab.three} ${vocab.book}, ${vocab.please}` },
-        { id: `q_${lang.id}_1_${lessonIndex}_10`, type: 'tap-pairs', prompt: 'Match numbers', options: [vocab.one, 'One', vocab.two, 'Two', vocab.three, 'Three', vocab.book, 'Book'], correctAnswer: `${vocab.one}:One,${vocab.two}:Two,${vocab.three}:Three,${vocab.book}:Book` }
-      ];
-    } else {
-      return [
-        { id: `q_${lang.id}_1_${lessonIndex}_1`, type: 'multiple-choice', prompt: `How do you say "Red" in ${langName}?`, options: shuffleOptions([vocab.red, vocab.blue, vocab.green, vocab.one]), correctAnswer: vocab.red },
-        { id: `q_${lang.id}_1_${lessonIndex}_2`, type: 'translate', prompt: `Translate: "Red"`, correctAnswer: 'Red' },
-        { id: `q_${lang.id}_1_${lessonIndex}_3`, type: 'multiple-choice', prompt: `How do you say "Blue" in ${langName}?`, options: shuffleOptions([vocab.blue, vocab.red, vocab.green, vocab.two]), correctAnswer: vocab.blue },
-        { id: `q_${lang.id}_1_${lessonIndex}_4`, type: 'translate', prompt: `Translate: "Blue"`, correctAnswer: 'Blue' },
-        { id: `q_${lang.id}_1_${lessonIndex}_5`, type: 'fill-blank', prompt: `Complete: "${vocab.red}, ${vocab.blue}, ... (Red, blue, green)"`, options: shuffleOptions([vocab.green, vocab.one, vocab.water, vocab.goodbye]), correctAnswer: vocab.green },
-        { id: `q_${lang.id}_1_${lessonIndex}_6`, type: 'multiple-choice', prompt: `How do you say "Green" in ${langName}?`, options: shuffleOptions([vocab.green, vocab.red, vocab.blue, vocab.three]), correctAnswer: vocab.green },
-        { id: `q_${lang.id}_1_${lessonIndex}_7`, type: 'translate', prompt: `Translate: "Green"`, correctAnswer: 'Green' },
-        { id: `q_${lang.id}_1_${lessonIndex}_8`, type: 'fill-blank', prompt: `Complete: "${vocab.blue} & ... (Blue & green)"`, options: shuffleOptions([vocab.green, vocab.red, vocab.bread, vocab.hello]), correctAnswer: vocab.green },
-        { id: `q_${lang.id}_1_${lessonIndex}_9`, type: 'multiple-choice', prompt: `Translate: "Red book, please"`, options: shuffleOptions([`${vocab.red} ${vocab.book}, ${vocab.please}`, `${vocab.blue} ${vocab.water}`, vocab.hello, vocab.goodbye]), correctAnswer: `${vocab.red} ${vocab.book}, ${vocab.please}` },
-        { id: `q_${lang.id}_1_${lessonIndex}_10`, type: 'tap-pairs', prompt: 'Match colors', options: [vocab.red, 'Red', vocab.blue, 'Blue', vocab.green, 'Green', vocab.book, 'Book'], correctAnswer: `${vocab.red}:Red,${vocab.blue}:Blue,${vocab.green}:Green,${vocab.book}:Book` }
-      ];
-    }
+    const getTier1Phrase = (offset: number) => {
+      const idx = (categoryIndex * 3 + sectionIndex * 2 + offset) % TIER1_VOCAB_ITEMS.length;
+      const item = TIER1_VOCAB_ITEMS[idx];
+      return {
+        target: vocab[item.key] || item.english,
+        source: item.english
+      };
+    };
+
+    const p0 = getTier1Phrase(0);
+    const p1 = getTier1Phrase(1);
+    const p2 = getTier1Phrase(2);
+    const p3 = getTier1Phrase(3);
+
+    return [
+      { id: `q_${lang.id}_1_${lessonIndex}_1`, type: 'multiple-choice', prompt: `How do you say "${p0.source}" in ${langName}?`, options: shuffleOptions([p0.target, p1.target, p2.target, p3.target]), correctAnswer: p0.target },
+      { id: `q_${lang.id}_1_${lessonIndex}_2`, type: 'translate', prompt: `Translate: "${p1.target}"`, correctAnswer: p1.source },
+      { id: `q_${lang.id}_1_${lessonIndex}_3`, type: 'multiple-choice', prompt: `How do you say "${p2.source}" in ${langName}?`, options: shuffleOptions([p2.target, p0.target, p1.target, p3.target]), correctAnswer: p2.target },
+      { id: `q_${lang.id}_1_${lessonIndex}_4`, type: 'translate', prompt: `Translate: "${p3.target}"`, correctAnswer: p3.source },
+      { id: `q_${lang.id}_1_${lessonIndex}_5`, type: 'fill-blank', prompt: `Complete: "${p0.target} & ... (${p0.source} & ${p1.source})"`, options: shuffleOptions([p1.target, p2.target, p3.target, vocab.friend]), correctAnswer: p1.target },
+      { id: `q_${lang.id}_1_${lessonIndex}_6`, type: 'multiple-choice', prompt: `Translate: "${p0.source}, ${p1.source}"`, options: shuffleOptions([`${p0.target}, ${p1.target}`, `${p1.target}, ${p2.target}`, `${p2.target}, ${p3.target}`, vocab.friend]), correctAnswer: `${p0.target}, ${p1.target}` },
+      { id: `q_${lang.id}_1_${lessonIndex}_7`, type: 'translate', prompt: `Translate: "${p0.target}, ${p1.target}"`, correctAnswer: `${p0.source}, ${p1.source}` },
+      { id: `q_${lang.id}_1_${lessonIndex}_8`, type: 'fill-blank', prompt: `Complete: "${p2.target.substring(0, Math.max(1, Math.floor(p2.target.length / 2)))}..." (${p2.source})`, options: shuffleOptions([p2.target, p0.target, p1.target, p3.target]), correctAnswer: p2.target },
+      { id: `q_${lang.id}_1_${lessonIndex}_9`, type: 'multiple-choice', prompt: `How do you say "${p3.source}" in ${langName}?`, options: shuffleOptions([p3.target, p0.target, p1.target, p2.target]), correctAnswer: p3.target },
+      { id: `q_${lang.id}_1_${lessonIndex}_10`, type: 'tap-pairs', prompt: 'Match the terms', options: [p0.target, p0.source, p1.target, p1.source, p2.target, p2.source, p3.target, p3.source], correctAnswer: `${p0.target}:${p0.source},${p1.target}:${p1.source},${p2.target}:${p2.source},${p3.target}:${p3.source}` }
+    ];
   } else if (tier === 2) {
     const keys = Object.keys(INTERMEDIATE_VOCAB);
     
     const getPhrase = (keyIndex: number) => {
-      const k = keys[keyIndex % keys.length];
+      const k = keys[(keyIndex + sectionIndex * 2) % keys.length];
       const item = INTERMEDIATE_VOCAB[k];
       return {
         key: k,
@@ -281,7 +240,7 @@ export function generateQuestionsForLesson(lang: Language, tier: number, lessonI
     const keys = Object.keys(ADVANCED_VOCAB);
     
     const getPhrase = (keyIndex: number) => {
-      const k = keys[keyIndex % keys.length];
+      const k = keys[(keyIndex + sectionIndex * 2) % keys.length];
       const item = ADVANCED_VOCAB[k];
       return {
         key: k,
@@ -332,7 +291,7 @@ export async function seedDatabase(force = false): Promise<{ success: boolean; m
         if (checkSnap.exists()) {
           const lData = checkSnap.data();
           const firstQ = lData?.questions?.[0];
-          if (firstQ && firstQ.prompt && firstQ.prompt.includes('"Hello"')) {
+          if ((firstQ && firstQ.prompt && firstQ.prompt.includes('"Hello"')) || !lData?.version || lData.version < 3) {
             console.log('Old database seed detected. Forcing database upgrade...');
             shouldSeed = true;
           }
@@ -403,13 +362,14 @@ export async function seedDatabase(force = false): Promise<{ success: boolean; m
 
           const questions = generateQuestionsForLesson(lang, course.tier, lessonIndex, vocab);
 
-          const lesson: Lesson = {
+          const lesson: Lesson & { version?: number } = {
             id: `lesson_${course.id}_${lessonIndex}`,
             courseId: course.id,
             order: lessonIndex,
             title: lessonTitle,
             xpReward: course.tier * 10 + 10,
-            questions
+            questions,
+            version: 3
           };
 
           const lRef = doc(db, 'lessons', lesson.id);
