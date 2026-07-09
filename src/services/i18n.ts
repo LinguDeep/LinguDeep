@@ -90,10 +90,12 @@ export interface TranslationDictionary {
   xpBoosterDesc?: string;
   firstStepsName?: string;
   firstStepsDesc?: string;
-  streak3dayName?: string;
-  streak3dayDesc?: string;
-  xpMasterName?: string;
-  xpMasterDesc?: string;
+  xpWarriorName?: string;
+  xpWarriorDesc?: string;
+  streakNoviceName?: string;
+  streakNoviceDesc?: string;
+  linguistName?: string;
+  linguistDesc?: string;
   buy?: string;
   noShopItems?: string;
   noShopItemsDesc?: string;
@@ -210,11 +212,13 @@ export const TRANSLATIONS: Record<InterfaceLang, TranslationDictionary> = {
     xpBoosterName: 'XP Booster',
     xpBoosterDesc: 'Double all XP rewards earned from learning lessons for the next 30 minutes.',
     firstStepsName: 'First Steps',
-    firstStepsDesc: 'Complete your first ever learning lesson in LinguDeep.',
-    streak3dayName: 'Dedicated Learner',
-    streak3dayDesc: 'Reach and maintain a 3-day active learning streak.',
-    xpMasterName: 'Language Master',
-    xpMasterDesc: 'Gain a total of 500 Experience Points (XP) to reach language mastery.',
+    firstStepsDesc: 'Begin your language adventure by completing the placement test or first lesson.',
+    xpWarriorName: 'XP Warrior',
+    xpWarriorDesc: 'Gain a total of 150 Experience Points (XP) across your learning journey.',
+    streakNoviceName: 'Streak Novice',
+    streakNoviceDesc: 'Keep your brain active and maintain a 3-day learning streak.',
+    linguistName: 'Master Linguist',
+    linguistDesc: 'Gain a total of 500 Experience Points (XP) to reach language mastery.',
     buy: 'Buy',
     noShopItems: 'Bazaar is empty',
     noShopItemsDesc: 'No shop items defined in database.',
@@ -329,11 +333,13 @@ export const TRANSLATIONS: Record<InterfaceLang, TranslationDictionary> = {
     xpBoosterName: 'XP Artırıcı',
     xpBoosterDesc: 'Önümüzdeki 30 dakika boyunca tamamlanan derslerden iki kat XP kazanın.',
     firstStepsName: 'İlk Adımlar',
-    firstStepsDesc: 'LinguDeep\'teki ilk dersinizi tamamlayın.',
-    streak3dayName: 'Kararlı Öğrenci',
-    streak3dayDesc: '3 günlük aktif çalışma serisine ulaşın ve koruyun.',
-    xpMasterName: 'Dil Ustası',
-    xpMasterDesc: 'Dil hakimiyetine ulaşmak için toplam 500 Deneyim Puanı (XP) kazanın.',
+    firstStepsDesc: 'Seviye belirleme testini veya ilk dersi tamamlayarak dil maceranıza başlayın.',
+    xpWarriorName: 'XP Savaşçısı',
+    xpWarriorDesc: 'Öğrenme yolculuğunuz boyunca toplam 150 Deneyim Puanı (XP) kazanın.',
+    streakNoviceName: 'Seri Çaylağı',
+    streakNoviceDesc: 'Beyninizi aktif tutun ve 3 günlük çalışma serisini koruyun.',
+    linguistName: 'Usta Dilbilimci',
+    linguistDesc: 'Dil hakimiyetine ulaşmak için toplam 500 Deneyim Puanı (XP) kazanın.',
     buy: 'Satın Al',
     noShopItems: 'Pazar boş',
     noShopItemsDesc: 'Veritabanında mağaza ürünü tanımlanmamış.',
@@ -448,11 +454,13 @@ export const TRANSLATIONS: Record<InterfaceLang, TranslationDictionary> = {
     xpBoosterName: 'Potenciador de XP',
     xpBoosterDesc: 'Duplica todas las recompensas de XP de tus lecciones durante 30 minutos.',
     firstStepsName: 'Primeros Pasos',
-    firstStepsDesc: 'Completa tu primera lección de aprendizaje en LinguDeep.',
-    streak3dayName: 'Estudiante Dedicado',
-    streak3dayDesc: 'Alcanza y mantén una racha de aprendizaje activo de 3 días.',
-    xpMasterName: 'Maestro del Idioma',
-    xpMasterDesc: 'Gana un total de 500 puntos de experiencia (XP) para dominar el idioma.',
+    firstStepsDesc: 'Comienza tu aventura lingüística completando el test de nivelación o la primera lección.',
+    xpWarriorName: 'Guerrero de XP',
+    xpWarriorDesc: 'Consigue un total de 150 puntos de experiencia (XP) a lo largo de tu aprendizaje.',
+    streakNoviceName: 'Novato de Racha',
+    streakNoviceDesc: 'Mantén tu cerebro activo y mantén una racha de aprendizaje de 3 días.',
+    linguistName: 'Maestro Lingüista',
+    linguistDesc: 'Gana un total de 500 puntos de experiencia (XP) para dominar el idioma.',
     buy: 'Comprar',
     noShopItems: 'El bazar está vacío',
     noShopItemsDesc: 'No hay artículos definidos en la base de datos.',

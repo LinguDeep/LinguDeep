@@ -126,13 +126,13 @@ const Shop: React.FC = () => {
 
             const getNameKey = (id: string) => {
               if (id === 'streak_freeze') return 'streakFreezeName';
-              if (id === 'gems_booster') return 'doubleOrNothingName';
+              if (id === 'double_or_nothing') return 'doubleOrNothingName';
               if (id === 'xp_boost') return 'xpBoosterName';
               return '';
             };
             const getDescKey = (id: string) => {
               if (id === 'streak_freeze') return 'streakFreezeDesc';
-              if (id === 'gems_booster') return 'doubleOrNothingDesc';
+              if (id === 'double_or_nothing') return 'doubleOrNothingDesc';
               if (id === 'xp_boost') return 'xpBoosterDesc';
               return '';
             };

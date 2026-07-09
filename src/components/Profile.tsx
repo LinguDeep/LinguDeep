@@ -166,14 +166,16 @@ const Profile: React.FC = () => {
             
             const getBadgeNameKey = (id: string) => {
               if (id === 'first_steps') return 'firstStepsName';
-              if (id === 'streak_3day') return 'streak3dayName';
-              if (id === 'xp_master') return 'xpMasterName';
+              if (id === 'xp_warrior') return 'xpWarriorName';
+              if (id === 'streak_novice') return 'streakNoviceName';
+              if (id === 'linguist') return 'linguistName';
               return '';
             };
             const getBadgeDescKey = (id: string) => {
               if (id === 'first_steps') return 'firstStepsDesc';
-              if (id === 'streak_3day') return 'streak3dayDesc';
-              if (id === 'xp_master') return 'xpMasterDesc';
+              if (id === 'xp_warrior') return 'xpWarriorDesc';
+              if (id === 'streak_novice') return 'streakNoviceDesc';
+              if (id === 'linguist') return 'linguistDesc';
               return '';
             };
             
