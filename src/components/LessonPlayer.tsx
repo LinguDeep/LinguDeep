@@ -4,7 +4,7 @@ import { Lesson, Question } from '../services/db';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { X, Heart, ShieldAlert, CheckCircle2, Award, Coins, Flame } from 'lucide-react';
-import { localizePrompt } from '../services/i18n';
+import { localizePrompt, getTranslation } from '../services/i18n';
 import { audioEffects } from '../services/audio';
 
 interface LangVocab {
@@ -40,12 +40,12 @@ function generateQuestionsForLesson(lang: any, tier: number, lessonIndex: number
     if (categoryIndex === 0) {
       return [
         { id: `q_${lang.id}_1_${lessonIndex}_1`, type: 'multiple-choice', prompt: `How do you say "Hello" in ${langName}?`, options: [vocab.hello, vocab.goodbye, vocab.please, vocab.thankYou], correctAnswer: vocab.hello },
-        { id: `q_${lang.id}_1_${lessonIndex}_2`, type: 'translate', prompt: `Translate: "${vocab.hello}"`, correctAnswer: 'Hello' },
+        { id: `q_${lang.id}_1_${lessonIndex}_2`, type: 'translate', prompt: `Translate: "Hello"`, correctAnswer: vocab.hello },
         { id: `q_${lang.id}_1_${lessonIndex}_3`, type: 'multiple-choice', prompt: `How do you say "Goodbye" in ${langName}?`, options: [vocab.goodbye, vocab.hello, vocab.please, vocab.thankYou], correctAnswer: vocab.goodbye },
-        { id: `q_${lang.id}_1_${lessonIndex}_4`, type: 'translate', prompt: `Translate: "${vocab.goodbye}"`, correctAnswer: 'Goodbye' },
+        { id: `q_${lang.id}_1_${lessonIndex}_4`, type: 'translate', prompt: `Translate: "Goodbye"`, correctAnswer: vocab.goodbye },
         { id: `q_${lang.id}_1_${lessonIndex}_5`, type: 'fill-blank', prompt: `Complete: "Hello, ..." (Hello, goodbye)`, options: [vocab.goodbye, vocab.please, vocab.thankYou, vocab.friend], correctAnswer: vocab.goodbye },
-        { id: `q_${lang.id}_1_${lessonIndex}_6`, type: 'multiple-choice', prompt: `Translate: "Goodbye, hello"`, options: [`${vocab.goodbye}, ${vocab.hello}`, `${vocab.hello}, ${vocab.please}`, `${vocab.please}, ${vocab.thankYou}`, vocab.friend], correctAnswer: `${vocab.goodbye}, ${vocab.hello}` },
-        { id: `q_${lang.id}_1_${lessonIndex}_7`, type: 'translate', prompt: `Translate: "${vocab.hello}, ${vocab.goodbye}"`, correctAnswer: 'Hello, goodbye' },
+        { id: `q_${lang.id}_1_${lessonIndex}_6`, type: 'multiple-choice', prompt: `How do you say "Goodbye, hello" in ${langName}?`, options: [`${vocab.goodbye}, ${vocab.hello}`, `${vocab.hello}, ${vocab.please}`, `${vocab.please}, ${vocab.thankYou}`, vocab.friend], correctAnswer: `${vocab.goodbye}, ${vocab.hello}` },
+        { id: `q_${lang.id}_1_${lessonIndex}_7`, type: 'translate', prompt: `Translate: "Hello, goodbye"`, correctAnswer: `${vocab.hello}, ${vocab.goodbye}` },
         { id: `q_${lang.id}_1_${lessonIndex}_8`, type: 'fill-blank', prompt: `Complete the greeting: "${vocab.hello.substring(0, 2)}..." (Hello)`, options: [vocab.hello, vocab.goodbye, vocab.please, vocab.friend], correctAnswer: vocab.hello },
         { id: `q_${lang.id}_1_${lessonIndex}_9`, type: 'multiple-choice', prompt: `How do you say "Please" in ${langName}?`, options: [vocab.please, vocab.hello, vocab.goodbye, vocab.thankYou], correctAnswer: vocab.please },
         { id: `q_${lang.id}_1_${lessonIndex}_10`, type: 'tap-pairs', prompt: 'Match the greetings', options: [vocab.hello, 'Hello', vocab.goodbye, 'Goodbye', vocab.please, 'Please', vocab.thankYou, 'Thank you'], correctAnswer: `${vocab.hello}:Hello,${vocab.goodbye}:Goodbye,${vocab.please}:Please,${vocab.thankYou}:Thank you` }
@@ -53,12 +53,12 @@ function generateQuestionsForLesson(lang: any, tier: number, lessonIndex: number
     } else if (categoryIndex === 1) {
       return [
         { id: `q_${lang.id}_1_${lessonIndex}_1`, type: 'multiple-choice', prompt: `How do you say "Please" in ${langName}?`, options: [vocab.please, vocab.hello, vocab.goodbye, vocab.thankYou], correctAnswer: vocab.please },
-        { id: `q_${lang.id}_1_${lessonIndex}_2`, type: 'translate', prompt: `Translate: "${vocab.please}"`, correctAnswer: 'Please' },
+        { id: `q_${lang.id}_1_${lessonIndex}_2`, type: 'translate', prompt: `Translate: "Please"`, correctAnswer: vocab.please },
         { id: `q_${lang.id}_1_${lessonIndex}_3`, type: 'multiple-choice', prompt: `How do you say "Thank you" in ${langName}?`, options: [vocab.thankYou, vocab.please, vocab.goodbye, vocab.hello], correctAnswer: vocab.thankYou },
-        { id: `q_${lang.id}_1_${lessonIndex}_4`, type: 'translate', prompt: `Translate: "${vocab.thankYou}"`, correctAnswer: 'Thank you' },
+        { id: `q_${lang.id}_1_${lessonIndex}_4`, type: 'translate', prompt: `Translate: "Thank you"`, correctAnswer: vocab.thankYou },
         { id: `q_${lang.id}_1_${lessonIndex}_5`, type: 'fill-blank', prompt: `Complete: "Please, ..." (Please, thank you)`, options: [vocab.thankYou, vocab.hello, vocab.goodbye, vocab.friend], correctAnswer: vocab.thankYou },
-        { id: `q_${lang.id}_1_${lessonIndex}_6`, type: 'multiple-choice', prompt: `Translate: "Please, thank you"`, options: [`${vocab.please}, ${vocab.thankYou}`, `${vocab.hello}, ${vocab.goodbye}`, `${vocab.please}, ${vocab.goodbye}`, vocab.friend], correctAnswer: `${vocab.please}, ${vocab.thankYou}` },
-        { id: `q_${lang.id}_1_${lessonIndex}_7`, type: 'translate', prompt: `Translate: "${vocab.please}, ${vocab.thankYou}"`, correctAnswer: 'Please, thank you' },
+        { id: `q_${lang.id}_1_${lessonIndex}_6`, type: 'multiple-choice', prompt: `How do you say "Please, thank you" in ${langName}?`, options: [`${vocab.please}, ${vocab.thankYou}`, `${vocab.hello}, ${vocab.goodbye}`, `${vocab.please}, ${vocab.goodbye}`, vocab.friend], correctAnswer: `${vocab.please}, ${vocab.thankYou}` },
+        { id: `q_${lang.id}_1_${lessonIndex}_7`, type: 'translate', prompt: `Translate: "Please, thank you"`, correctAnswer: `${vocab.please}, ${vocab.thankYou}` },
         { id: `q_${lang.id}_1_${lessonIndex}_8`, type: 'fill-blank', prompt: `Complete: "Hello, please (... ${vocab.please})"`, options: [vocab.hello, vocab.goodbye, vocab.thankYou, vocab.friend], correctAnswer: vocab.hello },
         { id: `q_${lang.id}_1_${lessonIndex}_9`, type: 'multiple-choice', prompt: `How do you say "Hello" in ${langName}?`, options: [vocab.hello, vocab.please, vocab.goodbye, vocab.thankYou], correctAnswer: vocab.hello },
         { id: `q_${lang.id}_1_${lessonIndex}_10`, type: 'tap-pairs', prompt: 'Match the polite words', options: [vocab.please, 'Please', vocab.thankYou, 'Thank you', vocab.hello, 'Hello', vocab.goodbye, 'Goodbye'], correctAnswer: `${vocab.please}:Please,${vocab.thankYou}:Thank you,${vocab.hello}:Hello,${vocab.goodbye}:Goodbye` }
@@ -66,12 +66,12 @@ function generateQuestionsForLesson(lang: any, tier: number, lessonIndex: number
     } else if (categoryIndex === 2) {
       return [
         { id: `q_${lang.id}_1_${lessonIndex}_1`, type: 'multiple-choice', prompt: `How do you say "Friend" in ${langName}?`, options: [vocab.friend, vocab.mother, vocab.father, vocab.brother], correctAnswer: vocab.friend },
-        { id: `q_${lang.id}_1_${lessonIndex}_2`, type: 'translate', prompt: `Translate: "${vocab.friend}"`, correctAnswer: 'Friend' },
+        { id: `q_${lang.id}_1_${lessonIndex}_2`, type: 'translate', prompt: `Translate: "Friend"`, correctAnswer: vocab.friend },
         { id: `q_${lang.id}_1_${lessonIndex}_3`, type: 'multiple-choice', prompt: `How do you say "Hello friend" in ${langName}?`, options: [`${vocab.hello} ${vocab.friend}`, `${vocab.goodbye} ${vocab.friend}`, `${vocab.please} ${vocab.friend}`, vocab.friend], correctAnswer: `${vocab.hello} ${vocab.friend}` },
-        { id: `q_${lang.id}_1_${lessonIndex}_4`, type: 'translate', prompt: `Translate: "${vocab.hello} ${vocab.friend}"`, correctAnswer: 'Hello friend' },
+        { id: `q_${lang.id}_1_${lessonIndex}_4`, type: 'translate', prompt: `Translate: "Hello friend"`, correctAnswer: `${vocab.hello} ${vocab.friend}` },
         { id: `q_${lang.id}_1_${lessonIndex}_5`, type: 'fill-blank', prompt: `Complete: "Hello ..." (Hello friend)`, options: [vocab.friend, vocab.mother, vocab.father, vocab.please], correctAnswer: vocab.friend },
         { id: `q_${lang.id}_1_${lessonIndex}_6`, type: 'multiple-choice', prompt: `Translate: "Goodbye friend"`, options: [`${vocab.goodbye} ${vocab.friend}`, `${vocab.hello} ${vocab.friend}`, `${vocab.please} ${vocab.friend}`, vocab.friend], correctAnswer: `${vocab.goodbye} ${vocab.friend}` },
-        { id: `q_${lang.id}_1_${lessonIndex}_7`, type: 'translate', prompt: `Translate: "${vocab.goodbye} ${vocab.friend}"`, correctAnswer: 'Goodbye friend' },
+        { id: `q_${lang.id}_1_${lessonIndex}_7`, type: 'translate', prompt: `Translate: "Goodbye friend"`, correctAnswer: `${vocab.goodbye} ${vocab.friend}` },
         { id: `q_${lang.id}_1_${lessonIndex}_8`, type: 'fill-blank', prompt: `Complete: "Please, my ... " (Please, my friend)`, options: [vocab.friend, vocab.mother, vocab.father, vocab.hello], correctAnswer: vocab.friend },
         { id: `q_${lang.id}_1_${lessonIndex}_9`, type: 'multiple-choice', prompt: `How do you say "Please" in ${langName}?`, options: [vocab.please, vocab.friend, vocab.mother, vocab.father], correctAnswer: vocab.please },
         { id: `q_${lang.id}_1_${lessonIndex}_10`, type: 'tap-pairs', prompt: 'Match communication words', options: [vocab.friend, 'Friend', vocab.please, 'Please', vocab.thankYou, 'Thank you', vocab.hello, 'Hello'], correctAnswer: `${vocab.friend}:Friend,${vocab.please}:Please,${vocab.thankYou}:Thank you,${vocab.hello}:Hello` }
@@ -79,9 +79,9 @@ function generateQuestionsForLesson(lang: any, tier: number, lessonIndex: number
     } else if (categoryIndex === 3) {
       return [
         { id: `q_${lang.id}_1_${lessonIndex}_1`, type: 'multiple-choice', prompt: `How do you say "Water" in ${langName}?`, options: [vocab.water, vocab.bread, vocab.book, vocab.one], correctAnswer: vocab.water },
-        { id: `q_${lang.id}_1_${lessonIndex}_2`, type: 'translate', prompt: `Translate: "${vocab.water}"`, correctAnswer: 'Water' },
+        { id: `q_${lang.id}_1_${lessonIndex}_2`, type: 'translate', prompt: `Translate: "Water"`, correctAnswer: vocab.water },
         { id: `q_${lang.id}_1_${lessonIndex}_3`, type: 'multiple-choice', prompt: `How do you say "Bread" in ${langName}?`, options: [vocab.bread, vocab.water, vocab.book, vocab.two], correctAnswer: vocab.bread },
-        { id: `q_${lang.id}_1_${lessonIndex}_4`, type: 'translate', prompt: `Translate: "${vocab.bread}"`, correctAnswer: 'Bread' },
+        { id: `q_${lang.id}_1_${lessonIndex}_4`, type: 'translate', prompt: `Translate: "Bread"`, correctAnswer: vocab.bread },
         { id: `q_${lang.id}_1_${lessonIndex}_5`, type: 'fill-blank', prompt: `Complete: "Bread & ..." (Bread & water)`, options: [vocab.water, vocab.book, vocab.hello, vocab.friend], correctAnswer: vocab.water },
         { id: `q_${lang.id}_1_${lessonIndex}_6`, type: 'multiple-choice', prompt: `Translate: "Water, please"`, options: [`${vocab.water}, ${vocab.please}`, `${vocab.bread}, ${vocab.please}`, `${vocab.water}, ${vocab.thankYou}`, vocab.hello], correctAnswer: `${vocab.water}, ${vocab.please}` },
         { id: `q_${lang.id}_1_${lessonIndex}_7`, type: 'translate', prompt: `Translate: "${vocab.water}, ${vocab.please}"`, correctAnswer: 'Water, please' },
@@ -92,7 +92,7 @@ function generateQuestionsForLesson(lang: any, tier: number, lessonIndex: number
     } else if (categoryIndex === 4) {
       return [
         { id: `q_${lang.id}_1_${lessonIndex}_1`, type: 'multiple-choice', prompt: `How do you say "Book" in ${langName}?`, options: [vocab.book, vocab.water, vocab.bread, vocab.three], correctAnswer: vocab.book },
-        { id: `q_${lang.id}_1_${lessonIndex}_2`, type: 'translate', prompt: `Translate: "${vocab.book}"`, correctAnswer: 'Book' },
+        { id: `q_${lang.id}_1_${lessonIndex}_2`, type: 'translate', prompt: `Translate: "Book"`, correctAnswer: vocab.book },
         { id: `q_${lang.id}_1_${lessonIndex}_3`, type: 'multiple-choice', prompt: `Translate: "A book and water"`, options: [`${vocab.book} & ${vocab.water}`, `${vocab.bread} & ${vocab.water}`, `${vocab.book} & ${vocab.bread}`, vocab.one], correctAnswer: `${vocab.book} & ${vocab.water}` },
         { id: `q_${lang.id}_1_${lessonIndex}_4`, type: 'translate', prompt: `Translate: "${vocab.book} & ${vocab.water}"`, correctAnswer: 'Book & water' },
         { id: `q_${lang.id}_1_${lessonIndex}_5`, type: 'fill-blank', prompt: `Complete: "Read the ..." (Read the book)`, options: [vocab.book, vocab.water, vocab.bread, vocab.friend], correctAnswer: vocab.book },
@@ -118,12 +118,12 @@ function generateQuestionsForLesson(lang: any, tier: number, lessonIndex: number
     } else {
       return [
         { id: `q_${lang.id}_1_${lessonIndex}_1`, type: 'multiple-choice', prompt: `How do you say "Red" in ${langName}?`, options: [vocab.red, vocab.blue, vocab.green, vocab.one], correctAnswer: vocab.red },
-        { id: `q_${lang.id}_1_${lessonIndex}_2`, type: 'translate', prompt: `Translate: "${vocab.red}"`, correctAnswer: 'Red' },
+        { id: `q_${lang.id}_1_${lessonIndex}_2`, type: 'translate', prompt: `Translate: "Red"`, correctAnswer: vocab.red },
         { id: `q_${lang.id}_1_${lessonIndex}_3`, type: 'multiple-choice', prompt: `How do you say "Blue" in ${langName}?`, options: [vocab.blue, vocab.red, vocab.green, vocab.two], correctAnswer: vocab.blue },
-        { id: `q_${lang.id}_1_${lessonIndex}_4`, type: 'translate', prompt: `Translate: "${vocab.blue}"`, correctAnswer: 'Blue' },
+        { id: `q_${lang.id}_1_${lessonIndex}_4`, type: 'translate', prompt: `Translate: "Blue"`, correctAnswer: vocab.blue },
         { id: `q_${lang.id}_1_${lessonIndex}_5`, type: 'multiple-choice', prompt: `How do you say "Green" in ${langName}?`, options: [vocab.green, vocab.red, vocab.blue, vocab.three], correctAnswer: vocab.green },
-        { id: `q_${lang.id}_1_${lessonIndex}_6`, type: 'translate', prompt: `Translate: "${vocab.green}"`, correctAnswer: 'Green' },
-        { id: `q_${lang.id}_1_${lessonIndex}_7`, type: 'multiple-choice', prompt: `Translate: "Red, blue, green"`, options: [`${vocab.red}, ${vocab.blue}, ${vocab.green}`, `${vocab.green}, ${vocab.blue}, ${vocab.red}`, `${vocab.red}, ${vocab.one}, ${vocab.green}`, vocab.please], correctAnswer: `${vocab.red}, ${vocab.blue}, ${vocab.green}` },
+        { id: `q_${lang.id}_1_${lessonIndex}_6`, type: 'translate', prompt: `Translate: "Green"`, correctAnswer: vocab.green },
+        { id: `q_${lang.id}_1_${lessonIndex}_7`, type: 'multiple-choice', prompt: `How do you say "Red, blue, green" in ${langName}?`, options: [`${vocab.red}, ${vocab.blue}, ${vocab.green}`, `${vocab.green}, ${vocab.blue}, ${vocab.red}`, `${vocab.red}, ${vocab.one}, ${vocab.green}`, vocab.please], correctAnswer: `${vocab.red}, ${vocab.blue}, ${vocab.green}` },
         { id: `q_${lang.id}_1_${lessonIndex}_8`, type: 'translate', prompt: `Translate: "${vocab.red}, ${vocab.blue}, ${vocab.green}"`, correctAnswer: 'Red, blue, green' },
         { id: `q_${lang.id}_1_${lessonIndex}_9`, type: 'fill-blank', prompt: `Complete: "Red, blue, ..."`, options: [vocab.green, vocab.one, vocab.two, vocab.three], correctAnswer: vocab.green },
         { id: `q_${lang.id}_1_${lessonIndex}_10`, type: 'tap-pairs', prompt: 'Match colors', options: [vocab.red, 'Red', vocab.blue, 'Blue', vocab.green, 'Green', vocab.one, 'One'], correctAnswer: `${vocab.red}:Red,${vocab.blue}:Blue,${vocab.green}:Green,${vocab.one}:One` }
@@ -133,15 +133,15 @@ function generateQuestionsForLesson(lang: any, tier: number, lessonIndex: number
 
   // Tier 2 or 3 local fallbacks
   const list: Question[] = [
-    { id: `q_${lang.id}_${tier}_${lessonIndex}_1`, type: 'multiple-choice', prompt: `Translate: "${vocab.mother}"`, options: ['Mother', 'Father', 'Friend', 'Brother'], correctAnswer: 'Mother' },
-    { id: `q_${lang.id}_${tier}_${lessonIndex}_2`, type: 'translate', prompt: `Translate: "${vocab.father}"`, correctAnswer: 'Father' },
-    { id: `q_${lang.id}_${tier}_${lessonIndex}_3`, type: 'multiple-choice', prompt: `Translate: "${vocab.mother} & ${vocab.father}"`, options: ['Mother & Father', 'Brother & Sister', 'Friend & Mother', 'Father & Brother'], correctAnswer: 'Mother & Father' },
-    { id: `q_${lang.id}_${tier}_${lessonIndex}_4`, type: 'translate', prompt: `Translate: "${vocab.mother} & ${vocab.father}"`, correctAnswer: 'Mother & father' },
+    { id: `q_${lang.id}_${tier}_${lessonIndex}_1`, type: 'multiple-choice', prompt: `How do you say "Mother" in ${langName}?`, options: [vocab.mother, vocab.father, vocab.friend, vocab.brother], correctAnswer: vocab.mother },
+    { id: `q_${lang.id}_${tier}_${lessonIndex}_2`, type: 'translate', prompt: `Translate: "Father"`, correctAnswer: vocab.father },
+    { id: `q_${lang.id}_${tier}_${lessonIndex}_3`, type: 'multiple-choice', prompt: `How do you say "Mother & Father" in ${langName}?`, options: [`${vocab.mother} & ${vocab.father}`, `${vocab.brother} & ${vocab.sister}`, `${vocab.friend} & ${vocab.mother}`, `${vocab.father} & ${vocab.brother}`], correctAnswer: `${vocab.mother} & ${vocab.father}` },
+    { id: `q_${lang.id}_${tier}_${lessonIndex}_4`, type: 'translate', prompt: `Translate: "Mother & Father"`, correctAnswer: `${vocab.mother} & ${vocab.father}` },
     { id: `q_${lang.id}_${tier}_${lessonIndex}_5`, type: 'fill-blank', prompt: `Complete: "My ..." (My mother)`, options: [vocab.mother, vocab.father, vocab.friend, vocab.one], correctAnswer: vocab.mother },
-    { id: `q_${lang.id}_${tier}_${lessonIndex}_6`, type: 'multiple-choice', prompt: `Translate: "Brother, sister"`, options: [`${vocab.brother}, ${vocab.sister}`, `${vocab.father}, ${vocab.mother}`, `${vocab.brother}, ${vocab.mother}`, vocab.friend], correctAnswer: `${vocab.brother}, ${vocab.sister}` },
-    { id: `q_${lang.id}_${tier}_${lessonIndex}_7`, type: 'translate', prompt: `Translate: "${vocab.brother}, ${vocab.sister}"`, correctAnswer: 'Brother, sister' },
+    { id: `q_${lang.id}_${tier}_${lessonIndex}_6`, type: 'multiple-choice', prompt: `How do you say "Brother, sister" in ${langName}?`, options: [`${vocab.brother}, ${vocab.sister}`, `${vocab.father}, ${vocab.mother}`, `${vocab.brother}, ${vocab.mother}`, vocab.friend], correctAnswer: `${vocab.brother}, ${vocab.sister}` },
+    { id: `q_${lang.id}_${tier}_${lessonIndex}_7`, type: 'translate', prompt: `Translate: "Brother, sister"`, correctAnswer: `${vocab.brother}, ${vocab.sister}` },
     { id: `q_${lang.id}_${tier}_${lessonIndex}_8`, type: 'fill-blank', prompt: `Complete: "Father & sister (... & ${vocab.sister})"`, options: [vocab.father, vocab.mother, vocab.brother, vocab.friend], correctAnswer: vocab.father },
-    { id: `q_${lang.id}_${tier}_${lessonIndex}_9`, type: 'multiple-choice', prompt: `Translate: "Hello mother"`, options: [`${vocab.hello} ${vocab.mother}`, `${vocab.goodbye} ${vocab.mother}`, `${vocab.please} ${vocab.mother}`, vocab.friend], correctAnswer: `${vocab.hello} ${vocab.mother}` },
+    { id: `q_${lang.id}_${tier}_${lessonIndex}_9`, type: 'multiple-choice', prompt: `How do you say "Hello mother" in ${langName}?`, options: [`${vocab.hello} ${vocab.mother}`, `${vocab.goodbye} ${vocab.mother}`, `${vocab.please} ${vocab.mother}`, vocab.friend], correctAnswer: `${vocab.hello} ${vocab.mother}` },
     { id: `q_${lang.id}_${tier}_${lessonIndex}_10`, type: 'tap-pairs', prompt: 'Match relatives', options: [vocab.mother, 'Mother', vocab.father, 'Father', vocab.brother, 'Brother', vocab.sister, 'Sister'], correctAnswer: `${vocab.mother}:Mother,${vocab.father}:Father,${vocab.brother}:Brother,${vocab.sister}:Sister` }
   ];
   return list;
@@ -195,40 +195,32 @@ const localizeQuestionsForUser = (questions: Question[], _targetLang: string, na
   if (nativeLang === 'en') return questions;
   
   return questions.map(q => {
-    // Localize English learning prompts to native language
-    if (_targetLang === 'en' && nativeLang !== 'en') {
-      const mcMatch = q.prompt.match(/How do you say "([^"]+)" in English?/);
-      if (mcMatch) {
-        const nativeWord = translatePhrase(mcMatch[1], nativeLang);
-        q = { ...q, prompt: `How do you say "${nativeWord}" in English?` };
-      }
-      
-      const transMatch = q.prompt.match(/Translate: "([^"]+)"/);
-      if (transMatch) {
-        if (q.correctAnswer.toLowerCase() === transMatch[1].toLowerCase()) {
-          const nativeWord = translatePhrase(transMatch[1], nativeLang);
-          q = { ...q, prompt: `Translate: "${nativeWord}"` };
-        }
-      }
-    }
-
-    if (q.type === 'translate') {
-      if (q.prompt.startsWith('Translate: "')) {
-        const correctNative = translatePhrase(q.correctAnswer, nativeLang);
-        return {
-          ...q,
-          correctAnswer: correctNative
-        };
-      } else {
-        const englishText = q.prompt.match(/"([^"]+)"/)?.[1] || '';
-        const nativeText = translatePhrase(englishText, nativeLang);
-        return {
-          ...q,
-          prompt: `Translate: "${nativeText}"`
-        };
-      }
+    // For ALL learning (including English learning), translate the English word in the prompt to native language
+    // The prompt always has English word + target language name, so we translate the English word
+    const mcMatch = q.prompt.match(/How do you say "([^"]+)" in (.+)\?/);
+    if (mcMatch) {
+      const englishWord = mcMatch[1];
+      const langName = mcMatch[2];
+      const nativeWord = translatePhrase(englishWord, nativeLang);
+      const localizedLangName = localizePrompt(langName, nativeLang);
+      return {
+        ...q,
+        prompt: `How do you say "${nativeWord}" in ${localizedLangName}?`
+      };
     }
     
+    // For translate questions, translate the English word in the prompt to native language
+    const transMatch = q.prompt.match(/Translate: "([^"]+)"/);
+    if (transMatch) {
+      const englishWord = transMatch[1];
+      const nativeWord = translatePhrase(englishWord, nativeLang);
+      return {
+        ...q,
+        prompt: `Translate: "${nativeWord}"`
+      };
+    }
+    
+    // For fill-blank questions, translate the hint in parentheses
     if (q.type === 'fill-blank') {
       if (q.prompt.includes('(')) {
         const hint = q.prompt.match(/\(([^)]+)\)/)?.[1] || '';
@@ -241,6 +233,7 @@ const localizeQuestionsForUser = (questions: Question[], _targetLang: string, na
       }
     }
     
+    // For tap-pairs, translate the English side of the pairs to native language
     if (q.type === 'tap-pairs') {
       const localizedOptions = (q.options || []).map(opt => {
         const clean = opt.toLowerCase().trim();
@@ -598,7 +591,7 @@ const LessonPlayer: React.FC<LessonPlayerProps> = ({
           </div>
 
           <button onClick={onComplete} className="w-full btn-3d-green py-4 bg-emerald-600 border-emerald-800 text-white font-extrabold">
-            Continue
+            {getTranslation('continue', interfaceLang)}
           </button>
         </div>
         <div className="h-6"></div>
@@ -819,7 +812,7 @@ const LessonPlayer: React.FC<LessonPlayerProps> = ({
                     : 'btn-3d-blue bg-indigo-650 border-indigo-850 text-white'
                 }`}
               >
-                Check Answer
+                {getTranslation('checkAnswer', interfaceLang)}
               </button>
             </>
           ) : (
@@ -840,15 +833,15 @@ const LessonPlayer: React.FC<LessonPlayerProps> = ({
                 )}
                 <div className="text-left">
                   <div className={`text-sm font-black ${theme === 'dark' ? 'text-white' : 'text-slate-950'}`}>
-                    {isCorrect ? 'Excellent Job!' : 'Incorrect Answer'}
+                    {isCorrect ? getTranslation('excellentJob', interfaceLang) : getTranslation('incorrectAnswer', interfaceLang)}
                   </div>
                   <div className={`text-xs ${theme === 'dark' ? 'text-slate-400' : 'text-slate-500'}`}>
-                    {isCorrect ? 'You got it right! Keep rolling.' : `Correct: ${currentQuestion.correctAnswer}`}
+                    {isCorrect ? getTranslation('correctAnswerMsg', interfaceLang) : `${getTranslation('correctAnswerMsg', interfaceLang)}: ${currentQuestion.correctAnswer}`}
                   </div>
                 </div>
               </div>
               <button onClick={handleNext} className="w-full sm:w-auto px-10 py-4 btn-3d-green bg-emerald-600 border-emerald-800 text-white font-extrabold">
-                Continue
+                {getTranslation('continue', interfaceLang)}
               </button>
             </div>
           )}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { localizePrompt } from '../services/i18n';
+import { localizePrompt, getTranslation } from '../services/i18n';
 import { ArrowLeft, CheckCircle2, AlertTriangle, Sparkles } from 'lucide-react';
 import { audioEffects } from '../services/audio';
 
@@ -51,22 +51,48 @@ const getLanguageName = (id: string) => {
   return names[id] || 'Target Language';
 };
 
+// Fisher-Yates shuffle algorithm
+const shuffleArray = <T,>(array: T[]): T[] => {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+};
+
 const getDynamicQuestions = (langCode: string, nativeLang: string): Question[] => {
   const nativeVocab = LANGUAGE_VOCABULARY[nativeLang] || LANGUAGE_VOCABULARY.en;
   const targetVocab = LANGUAGE_VOCABULARY[langCode] || LANGUAGE_VOCABULARY.en;
   const targetName = getLanguageName(langCode);
   
-  return [
-    { id: 1, prompt: `How do you say "${nativeVocab.hello}" in ${targetName}?`, options: [targetVocab.hello, targetVocab.goodbye, targetVocab.please, targetVocab.thankYou], correctAnswer: targetVocab.hello },
-    { id: 2, prompt: `How do you say "${nativeVocab.goodbye}" in ${targetName}?`, options: [targetVocab.goodbye, targetVocab.hello, targetVocab.please, targetVocab.thankYou], correctAnswer: targetVocab.goodbye },
-    { id: 3, prompt: `How do you say "${nativeVocab.please}" in ${targetName}?`, options: [targetVocab.please, targetVocab.hello, targetVocab.goodbye, targetVocab.thankYou], correctAnswer: targetVocab.please },
-    { id: 4, prompt: `How do you say "${nativeVocab.thankYou}" in ${targetName}?`, options: [targetVocab.thankYou, targetVocab.please, targetVocab.goodbye, targetVocab.hello], correctAnswer: targetVocab.thankYou },
-    { id: 5, prompt: `How do you say "${nativeVocab.mother}" in ${targetName}?`, options: [targetVocab.mother, targetVocab.father, targetVocab.friend, targetVocab.one], correctAnswer: targetVocab.mother },
-    { id: 6, prompt: `How do you say "${nativeVocab.father}" in ${targetName}?`, options: [targetVocab.father, targetVocab.mother, targetVocab.friend, targetVocab.two], correctAnswer: targetVocab.father },
-    { id: 7, prompt: `How do you say "${nativeVocab.water}" in ${targetName}?`, options: [targetVocab.water, targetVocab.bread, targetVocab.book, targetVocab.three], correctAnswer: targetVocab.water },
-    { id: 8, prompt: `How do you say "${nativeVocab.bread}" in ${targetName}?`, options: [targetVocab.bread, targetVocab.water, targetVocab.book, targetVocab.one], correctAnswer: targetVocab.bread },
-    { id: 9, prompt: `How do you say "${nativeVocab.book}" in ${targetName}?`, options: [targetVocab.book, targetVocab.water, targetVocab.bread, targetVocab.two], correctAnswer: targetVocab.book },
-    { id: 10, prompt: `How do you say "${nativeVocab.one}" in ${targetName}?`, options: [targetVocab.one, targetVocab.two, targetVocab.three, targetVocab.water], correctAnswer: targetVocab.one }
+  // When learning English with non-English interface, ask for English translation of native words
+  if (langCode === 'en' && nativeLang !== 'en') {
+    return [
+      { id: 1, prompt: `How do you say "${nativeVocab.hello}" in English?`, options: shuffleArray([targetVocab.hello, targetVocab.goodbye, targetVocab.please, targetVocab.thankYou]), correctAnswer: targetVocab.hello },
+      { id: 2, prompt: `How do you say "${nativeVocab.goodbye}" in English?`, options: shuffleArray([targetVocab.goodbye, targetVocab.hello, targetVocab.please, targetVocab.thankYou]), correctAnswer: targetVocab.goodbye },
+      { id: 3, prompt: `How do you say "${nativeVocab.please}" in English?`, options: shuffleArray([targetVocab.please, targetVocab.hello, targetVocab.goodbye, targetVocab.thankYou]), correctAnswer: targetVocab.please },
+      { id: 4, prompt: `How do you say "${nativeVocab.thankYou}" in English?`, options: shuffleArray([targetVocab.thankYou, targetVocab.please, targetVocab.goodbye, targetVocab.hello]), correctAnswer: targetVocab.thankYou },
+      { id: 5, prompt: `How do you say "${nativeVocab.mother}" in English?`, options: shuffleArray([targetVocab.mother, targetVocab.father, targetVocab.friend, targetVocab.one]), correctAnswer: targetVocab.mother },
+      { id: 6, prompt: `How do you say "${nativeVocab.father}" in English?`, options: shuffleArray([targetVocab.father, targetVocab.mother, targetVocab.friend, targetVocab.two]), correctAnswer: targetVocab.father },
+      { id: 7, prompt: `How do you say "${nativeVocab.water}" in English?`, options: shuffleArray([targetVocab.water, targetVocab.bread, targetVocab.book, targetVocab.three]), correctAnswer: targetVocab.water },
+      { id: 8, prompt: `How do you say "${nativeVocab.bread}" in English?`, options: shuffleArray([targetVocab.bread, targetVocab.water, targetVocab.book, targetVocab.one]), correctAnswer: targetVocab.bread },
+      { id: 9, prompt: `How do you say "${nativeVocab.book}" in English?`, options: shuffleArray([targetVocab.book, targetVocab.water, targetVocab.bread, targetVocab.two]), correctAnswer: targetVocab.book },
+      { id: 10, prompt: `How do you say "${nativeVocab.one}" in English?`, options: shuffleArray([targetVocab.one, targetVocab.two, targetVocab.three, targetVocab.water]), correctAnswer: targetVocab.one }
+    ];
+  }
+  
+    return [
+    { id: 1, prompt: `How do you say "${nativeVocab.hello}" in ${targetName}?`, options: shuffleArray([targetVocab.hello, targetVocab.goodbye, targetVocab.please, targetVocab.thankYou]), correctAnswer: targetVocab.hello },
+    { id: 2, prompt: `How do you say "${nativeVocab.goodbye}" in ${targetName}?`, options: shuffleArray([targetVocab.goodbye, targetVocab.hello, targetVocab.please, targetVocab.thankYou]), correctAnswer: targetVocab.goodbye },
+    { id: 3, prompt: `How do you say "${nativeVocab.please}" in ${targetName}?`, options: shuffleArray([targetVocab.please, targetVocab.hello, targetVocab.goodbye, targetVocab.thankYou]), correctAnswer: targetVocab.please },
+    { id: 4, prompt: `How do you say "${nativeVocab.thankYou}" in ${targetName}?`, options: shuffleArray([targetVocab.thankYou, targetVocab.please, targetVocab.goodbye, targetVocab.hello]), correctAnswer: targetVocab.thankYou },
+    { id: 5, prompt: `How do you say "${nativeVocab.mother}" in ${targetName}?`, options: shuffleArray([targetVocab.mother, targetVocab.father, targetVocab.friend, targetVocab.one]), correctAnswer: targetVocab.mother },
+    { id: 6, prompt: `How do you say "${nativeVocab.father}" in ${targetName}?`, options: shuffleArray([targetVocab.father, targetVocab.mother, targetVocab.friend, targetVocab.two]), correctAnswer: targetVocab.father },
+    { id: 7, prompt: `How do you say "${nativeVocab.water}" in ${targetName}?`, options: shuffleArray([targetVocab.water, targetVocab.bread, targetVocab.book, targetVocab.three]), correctAnswer: targetVocab.water },
+    { id: 8, prompt: `How do you say "${nativeVocab.bread}" in ${targetName}?`, options: shuffleArray([targetVocab.bread, targetVocab.water, targetVocab.book, targetVocab.one]), correctAnswer: targetVocab.bread },
+    { id: 9, prompt: `How do you say "${nativeVocab.book}" in ${targetName}?`, options: shuffleArray([targetVocab.book, targetVocab.water, targetVocab.bread, targetVocab.two]), correctAnswer: targetVocab.book },
+    { id: 10, prompt: `How do you say "${nativeVocab.one}" in ${targetName}?`, options: shuffleArray([targetVocab.one, targetVocab.two, targetVocab.three, targetVocab.water]), correctAnswer: targetVocab.one }
   ];
 };
 
@@ -242,7 +268,7 @@ const PlacementTest: React.FC<PlacementTestProps> = ({
                 <div className={`hidden sm:block text-xs font-semibold ${
                   theme === 'dark' ? 'text-slate-500' : 'text-slate-450'
                 }`}>
-                  Select an answer and check
+                  {getTranslation('checkAnswer', interfaceLang)}
                 </div>
                 <button
                   onClick={handleCheckAnswer}
@@ -255,7 +281,7 @@ const PlacementTest: React.FC<PlacementTestProps> = ({
                       : 'btn-3d-blue bg-indigo-650 border-indigo-850 text-white'
                   }`}
                 >
-                  Check Answer
+                  {getTranslation('checkAnswer', interfaceLang)}
                 </button>
               </>
             ) : (
@@ -274,12 +300,12 @@ const PlacementTest: React.FC<PlacementTestProps> = ({
                   )}
                   <div className="text-left">
                     <div className={`text-sm font-black ${theme === 'dark' ? 'text-white' : 'text-slate-950'}`}>
-                      {selectedOption === currentQuestion.correctAnswer ? 'Correct!' : 'Incorrect'}
+                      {selectedOption === currentQuestion.correctAnswer ? getTranslation('correctAnswerMsg', interfaceLang) : getTranslation('incorrectAnswer', interfaceLang)}
                     </div>
                     <div className={`text-xs ${theme === 'dark' ? 'text-slate-450' : 'text-slate-500'}`}>
                       {selectedOption === currentQuestion.correctAnswer 
-                        ? 'Superb! Keep it going.' 
-                        : `Correct Answer: ${currentQuestion.correctAnswer}`
+                        ? getTranslation('excellentJob', interfaceLang) 
+                        : `${getTranslation('correctAnswerMsg', interfaceLang)}: ${currentQuestion.correctAnswer}`
                       }
                     </div>
                   </div>
@@ -288,7 +314,7 @@ const PlacementTest: React.FC<PlacementTestProps> = ({
                   onClick={handleNextQuestion} 
                   className="w-full sm:w-auto px-10 py-4 btn-3d-green bg-emerald-600 border-emerald-800 text-white font-extrabold"
                 >
-                  Continue
+                  {getTranslation('continue', interfaceLang)}
                 </button>
               </div>
             )}
