@@ -98,6 +98,17 @@ export interface TranslationDictionary {
   noShopItems?: string;
   noShopItemsDesc?: string;
   unlocked?: string;
+  signIn?: string;
+  welcomeBack?: string;
+  saveYourProgress?: string;
+  signInDesc?: string;
+  signInToAccount?: string;
+  claimProgress?: string;
+  or?: string;
+  continueWithGoogle?: string;
+  noAccountSignUp?: string;
+  haveAccountSignIn?: string;
+  placementResult?: string;
 }
 
 export const TRANSLATIONS: Record<InterfaceLang, TranslationDictionary> = {
@@ -199,6 +210,17 @@ export const TRANSLATIONS: Record<InterfaceLang, TranslationDictionary> = {
     noShopItems: 'Bazaar is empty',
     noShopItemsDesc: 'No shop items defined in database.',
     unlocked: 'Unlocked',
+    signIn: 'Sign In',
+    welcomeBack: 'Welcome Back!',
+    saveYourProgress: 'Save Your Progress',
+    signInDesc: 'Sign in to access your course path, leaderboard ranks, and gems.',
+    signInToAccount: 'Sign In to Account',
+    claimProgress: 'Claim Progress & XP',
+    or: 'or',
+    continueWithGoogle: 'Continue with Google',
+    noAccountSignUp: "Don't have an account? Sign Up",
+    haveAccountSignIn: 'Already have an account? Sign In',
+    placementResult: 'Placement Tier Result: ',
   },
   tr: {
     learn: 'Öğren',
@@ -298,6 +320,17 @@ export const TRANSLATIONS: Record<InterfaceLang, TranslationDictionary> = {
     noShopItems: 'Pazar boş',
     noShopItemsDesc: 'Veritabanında mağaza ürünü tanımlanmamış.',
     unlocked: 'Açıldı',
+    signIn: 'Giriş Yap',
+    welcomeBack: 'Tekrar Hoş Geldiniz!',
+    saveYourProgress: 'İlerlemeni Kaydet',
+    signInDesc: 'Kurs yolunuza, liderlik tablolarınıza ve mücevherlerinize erişmek için giriş yapın.',
+    signInToAccount: 'Hesaba Giriş Yap',
+    claimProgress: 'İlerlemeyi ve XP\'yi Al',
+    or: 'veya',
+    continueWithGoogle: 'Google ile Devam Et',
+    noAccountSignUp: 'Hesabınız yok mu? Kaydolun',
+    haveAccountSignIn: 'Zaten bir hesabınız var mı? Giriş yapın',
+    placementResult: 'Seviye Belirleme Sonucu: ',
   },
   es: {
     learn: 'Aprender',
@@ -397,6 +430,17 @@ export const TRANSLATIONS: Record<InterfaceLang, TranslationDictionary> = {
     noShopItems: 'El bazar está vacío',
     noShopItemsDesc: 'No hay artículos definidos en la base de datos.',
     unlocked: 'Desbloqueado',
+    signIn: 'Iniciar Sesión',
+    welcomeBack: '¡Bienvenido de Nuevo!',
+    saveYourProgress: 'Guarda tu Progreso',
+    signInDesc: 'Inicia sesión para acceder a tu ruta, clasificación y gemas.',
+    signInToAccount: 'Iniciar Sesión',
+    claimProgress: 'Reclamar Progreso y XP',
+    or: 'o',
+    continueWithGoogle: 'Continuar con Google',
+    noAccountSignUp: '¿No tienes una cuenta? Regístrate',
+    haveAccountSignIn: '¿Ya tienes una cuenta? Inicia sesión',
+    placementResult: 'Resultado de Nivel: ',
   },
   fr: {
     learn: 'Apprendre',
