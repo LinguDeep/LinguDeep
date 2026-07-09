@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
+@layer base {
+  /* No forced colors on body — theme is handled by React components */
+  body {
+    @apply font-inter m-0 p-0;
+  }
+  /* No forced text-white on headings — theme-aware components handle this */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-outfit font-bold;
+  }
+}
+
+@layer utilities {
+  /* 3D buttons */
+  .btn-3d-green {
+    @apply relative border-b-4 border-emerald-700 bg-emerald-600 text-white font-outfit font-bold text-base px-6 py-3 rounded-2xl active:border-b-0 active:translate-y-[4px] active:my-[2px] transition-all duration-75 select-none hover:bg-emerald-500 shadow-[0_4px_12px_rgba(16,185,129,0.2)];
+  }
+  .btn-3d-blue {
+    @apply relative border-b-4 border-indigo-700 bg-indigo-600 text-white font-outfit font-bold text-base px-6 py-3 rounded-2xl active:border-b-0 active:translate-y-[4px] active:my-[2px] transition-all duration-75 select-none hover:bg-indigo-500 shadow-[0_4px_12px_rgba(99,102,241,0.25)];
+  }
+  .btn-3d-yellow {
+    @apply relative border-b-4 border-amber-700 bg-amber-600 text-white font-outfit font-bold text-base px-6 py-3 rounded-2xl active:border-b-0 active:translate-y-[4px] active:my-[2px] transition-all duration-75 select-none hover:bg-amber-500;
+  }
+  .btn-3d-red {
+    @apply relative border-b-4 border-rose-800 bg-rose-600 text-white font-outfit font-bold text-base px-6 py-3 rounded-2xl active:border-b-0 active:translate-y-[4px] active:my-[2px] transition-all duration-75 select-none hover:bg-rose-500;
+  }
+  .btn-3d-gray {
+    @apply relative border-b-4 border-slate-700 bg-slate-800 text-slate-300 font-outfit font-bold text-base px-6 py-3 rounded-2xl active:border-b-0 active:translate-y-[4px] active:my-[2px] transition-all duration-75 select-none hover:bg-slate-700;
+  }
+  .btn-3d-white {
+    @apply relative border border-slate-300 border-b-4 bg-white text-slate-800 font-outfit font-bold text-base px-6 py-3 rounded-2xl active:border-b-[1px] active:translate-y-[3px] active:my-[1.5px] transition-all duration-75 select-none hover:bg-slate-50;
+  }
+  .btn-3d-purple {
+    @apply relative border-b-4 border-violet-800 bg-violet-600 text-white font-outfit font-bold text-base px-6 py-3 rounded-2xl active:border-b-0 active:translate-y-[4px] active:my-[2px] transition-all duration-75 select-none hover:bg-violet-500;
+  }
+
+  /* Map path lesson nodes — DARK THEME (solid colors, no gradients) */
+  .theme-dark .node-active {
+    @apply bg-indigo-600 border-2 border-indigo-400 shadow-[0_0_20px_rgba(99,102,241,0.5)] hover:brightness-110 active:scale-95;
+  }
+  .theme-dark .node-completed {
+    @apply bg-emerald-600 border-2 border-emerald-400 shadow-[0_0_14px_rgba(16,185,129,0.4)] hover:brightness-110 active:scale-95;
+  }
+  .theme-dark .node-locked {
+    @apply bg-slate-800/80 border-2 border-slate-700 text-slate-500 cursor-not-allowed opacity-50;
+  }
+
+  /* Map path lesson nodes — LIGHT THEME (solid colors, no gradients) */
+  .theme-light .node-active {
+    @apply bg-indigo-500 border-2 border-indigo-300 shadow-[0_0_18px_rgba(99,102,241,0.35)] hover:brightness-110 active:scale-95;
+  }
+  .theme-light .node-completed {
+    @apply bg-emerald-500 border-2 border-emerald-300 shadow-[0_0_12px_rgba(16,185,129,0.3)] hover:brightness-110 active:scale-95;
+  }
+  .theme-light .node-locked {
+    @apply bg-slate-200 border-2 border-slate-300 text-slate-400 cursor-not-allowed opacity-50;
+  }
+
+  /* Scrollbar utility */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+.animate-float { animation: float 4s ease-in-out infinite; }
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.6); }
+  70% { transform: scale(1); box-shadow: 0 0 0 12px rgba(99, 102, 241, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+}
+.animate-pulse-ring { animation: pulse-ring 2.2s infinite; }
+
+/* Theme-aware scrollbar */
+.theme-dark ::-webkit-scrollbar { width: 6px; height: 6px; }
+.theme-dark ::-webkit-scrollbar-track { background: #0f172a; }
+.theme-dark ::-webkit-scrollbar-thumb { background: #334155; border-radius: 99px; }
+.theme-dark ::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+.theme-light ::-webkit-scrollbar { width: 6px; height: 6px; }
+.theme-light ::-webkit-scrollbar-track { background: #f1f5f9; }
+.theme-light ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 99px; }
+.theme-light ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
