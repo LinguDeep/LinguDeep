@@ -80,7 +80,7 @@ const prepareQuestionsForPlay = (questions: Question[]): Question[] => {
   });
 };
 
-const localizeQuestionsForUser = (questions: Question[], _targetLang: string, nativeLang: string): Question[] => {
+const localizeQuestionsForUser = (questions: Question[], targetLang: string, nativeLang: string): Question[] => {
   if (nativeLang === 'en') return questions;
   
   return questions.map(q => {
@@ -98,15 +98,35 @@ const localizeQuestionsForUser = (questions: Question[], _targetLang: string, na
       };
     }
     
-    // For translate questions, translate the English word in the prompt to native language
+    // For translate questions
     const transMatch = q.prompt.match(/Translate: "([^"]+)"/);
     if (transMatch) {
-      const englishWord = transMatch[1];
-      const nativeWord = translatePhrase(englishWord, nativeLang);
-      return {
-        ...q,
-        prompt: `Translate: "${nativeWord}"`
-      };
+      const promptWord = transMatch[1];
+      if (q.type === 'translate') {
+        if (targetLang === 'en') {
+          // If learning English: translate nativePromptWord -> English
+          const nativeWord = translatePhrase(promptWord, nativeLang);
+          return {
+            ...q,
+            prompt: `Translate: "${nativeWord}"`
+          };
+        } else {
+          // If learning another language (e.g. Spanish): translate SpanishPromptWord -> nativeLang
+          // So correctAnswer is translated to nativeLang
+          const nativeAnswer = translatePhrase(q.correctAnswer, nativeLang);
+          return {
+            ...q,
+            correctAnswer: nativeAnswer
+          };
+        }
+      } else if (q.type === 'multiple-choice') {
+        // Translate the prompt from English to native language
+        const nativePromptWord = translatePhrase(promptWord, nativeLang);
+        return {
+          ...q,
+          prompt: `Translate: "${nativePromptWord}"`
+        };
+      }
     }
     
     // For fill-blank questions, translate the hint in parentheses
@@ -124,8 +144,13 @@ const localizeQuestionsForUser = (questions: Question[], _targetLang: string, na
     
     // For tap-pairs, translate the English side of the pairs to native language
     if (q.type === 'tap-pairs') {
-      const localizedOptions = (q.options || []).map(opt => {
-        const clean = opt.toLowerCase().trim();
+      const localizedOptions = (q.options || []).map((opt, idx) => {
+        // For even indices (0, 2, 4, 6), keep as target language (no translation)
+        if (idx % 2 === 0) {
+          return opt;
+        }
+        // For odd indices (1, 3, 5, 7), translate to native language
+        const clean = opt.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g, "").trim();
         if (VOCAB_MAP[clean]) {
           return translatePhrase(opt, nativeLang);
         }

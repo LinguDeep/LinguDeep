@@ -195,18 +195,38 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     
     const gemsGained = 15; // standard gems reward
     
+    // Check if we should unlock the next tier!
+    const parts = lessonId.split('_');
+    const currentTier = parseInt(parts[2] || '1', 10);
+    const langCode = parts[1] || userProfile.currentLanguage;
+    const completed = { ...(userProfile.completedLessons || {}), [lessonId]: true };
+    
+    const tierPrefix = `lesson_${langCode}_${currentTier}_`;
+    const completedInTier = Object.keys(completed).filter(id => id.startsWith(tierPrefix)).length;
+    
+    let newUnlockedTier = userProfile.unlockedTier || 1;
+    if (currentTier === 1 && completedInTier >= 5 && newUnlockedTier < 2) {
+      newUnlockedTier = 2;
+    } else if (currentTier === 2 && completedInTier >= 5 && newUnlockedTier < 3) {
+      newUnlockedTier = 3;
+    }
+
     // 1. Write update to Firestore (handles streak verification too)
     await completeLessonInCloud(user.uid, lessonId, xpReward, gemsGained);
+    
+    if (newUnlockedTier !== userProfile.unlockedTier) {
+      await updateUserProfile(user.uid, { unlockedTier: newUnlockedTier });
+    }
     
     // 2. Optimistic local state update
     setUserProfile((prev) => {
       if (!prev) return null;
-      const completed = { ...(prev.completedLessons || {}), [lessonId]: true };
       return {
         ...prev,
         totalXP: prev.totalXP + xpReward,
         gems: prev.gems + gemsGained,
         completedLessons: completed,
+        unlockedTier: newUnlockedTier,
       };
     });
   };
