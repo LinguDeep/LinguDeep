@@ -441,13 +441,13 @@ const LessonPlayer: React.FC<LessonPlayerProps> = ({
             <ShieldAlert size={48} />
           </div>
           <div>
-            <h2 className={`text-3xl font-extrabold font-outfit mb-2 ${theme === 'dark' ? 'text-white' : 'text-slate-950'}`}>No Lives Left</h2>
+            <h2 className={`text-3xl font-extrabold font-outfit mb-2 ${theme === 'dark' ? 'text-white' : 'text-slate-950'}`}>{getTranslation('noLivesLeft', interfaceLang)}</h2>
             <p className={`text-sm font-semibold leading-relaxed ${theme === 'dark' ? 'text-slate-400' : 'text-slate-500'}`}>
-              Don't worry! Review your vocab, recharge your hearts, and try again. Practice makes perfect!
+              {getTranslation('noLivesLeftDesc', interfaceLang)}
             </p>
           </div>
           <button onClick={onClose} className="w-full btn-3d-red py-4 bg-rose-600 border-rose-800">
-            Back to Dashboard
+            {getTranslation('backToDashboard', interfaceLang)}
           </button>
         </div>
       </div>
@@ -473,9 +473,9 @@ const LessonPlayer: React.FC<LessonPlayerProps> = ({
           </div>
           
           <div className="space-y-2">
-            <h2 className={`text-3xl font-black font-outfit ${theme === 'dark' ? 'text-white' : 'text-slate-950'}`}>Lesson Complete!</h2>
+            <h2 className={`text-3xl font-black font-outfit ${theme === 'dark' ? 'text-white' : 'text-slate-950'}`}>{getTranslation('lessonComplete', interfaceLang)}</h2>
             <p className={`text-sm font-semibold ${theme === 'dark' ? 'text-slate-400' : 'text-slate-500'}`}>
-              You are becoming a master speaker! Keep up the daily streak.
+              {getTranslation('lessonCompleteDesc', interfaceLang)}
             </p>
           </div>
 

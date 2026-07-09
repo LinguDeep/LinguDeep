@@ -120,6 +120,17 @@ export interface TranslationDictionary {
   streak?: string;
   resetConnection?: string;
   syncSeed?: string;
+  feature1Title?: string;
+  feature1Desc?: string;
+  feature2Title?: string;
+  feature2Desc?: string;
+  feature3Title?: string;
+  feature3Desc?: string;
+  mascotBubble?: string;
+  dbEmpty?: string;
+  initData?: string;
+  initializing?: string;
+  seedDbBtn?: string;
 }
 
 export const TRANSLATIONS: Record<InterfaceLang, TranslationDictionary> = {
@@ -243,6 +254,17 @@ export const TRANSLATIONS: Record<InterfaceLang, TranslationDictionary> = {
     streak: 'Streak',
     resetConnection: 'Reset Connection',
     syncSeed: 'Sync Seed',
+    dbEmpty: 'Database is Empty',
+    initData: 'Initialize sample data:',
+    initializing: 'Initializing...',
+    mascotBubble: 'Hoot! I am your language guide. Pick a language and let\'s begin!',
+    seedDbBtn: 'Seed Database',
+    feature1Desc: 'Interactive exercises that feel like a game.',
+    feature1Title: 'Bite-Sized Lessons',
+    feature2Desc: 'Take a quick test and jump to your level.',
+    feature2Title: 'Instant Placement',
+    feature3Desc: 'Earn XP, gems, and climb leaderboards.',
+    feature3Title: 'Rewards & Streaks',
   },
   tr: {
     learn: 'Öğren',
@@ -364,6 +386,17 @@ export const TRANSLATIONS: Record<InterfaceLang, TranslationDictionary> = {
     streak: 'Seri',
     resetConnection: 'Bağlantıyı Sıfırla',
     syncSeed: 'Verileri Eşitle',
+    dbEmpty: 'Veritabanı Boş',
+    initData: 'Örnek verileri başlat:',
+    initializing: 'Başlatılıyor...',
+    mascotBubble: 'Hoot! Ben senin dil rehberinim. Bir dil seç ve başlayalım!',
+    seedDbBtn: 'Veritabanını Doldur',
+    feature1Desc: 'Oyun gibi hissettiren etkileşimli alıştırmalar.',
+    feature1Title: 'Kısa Dersler',
+    feature2Desc: 'Hızlı bir test yapın ve seviyenize atlayın.',
+    feature2Title: 'Anında Seviye Belirleme',
+    feature3Desc: 'XP kazanın, taş toplayın ve sıralamalarda yükselin.',
+    feature3Title: 'Ödüller ve Seriler',
   },
   es: {
     learn: 'Aprender',
@@ -485,6 +518,17 @@ export const TRANSLATIONS: Record<InterfaceLang, TranslationDictionary> = {
     streak: 'Racha',
     resetConnection: 'Restablecer Conexión',
     syncSeed: 'Sincronizar Datos',
+    dbEmpty: 'La base de datos está vacía',
+    initData: 'Inicializar datos de ejemplo:',
+    initializing: 'Inicializando...',
+    mascotBubble: '¡Hoot! Soy tu guía de idiomas. Elige un idioma y empecemos.',
+    seedDbBtn: 'Llenar Base de Datos',
+    feature1Desc: 'Ejercicios interactivos que se sienten como un juego.',
+    feature1Title: 'Lecciones Cortas',
+    feature2Desc: 'Haz una prueba rápida y salta a tu nivel.',
+    feature2Title: 'Colocación Instantánea',
+    feature3Desc: 'Gana XP, gemas y escala en los rankings.',
+    feature3Title: 'Recompensas y Rachas',
   },
   fr: {
     learn: 'Apprendre',
@@ -606,6 +650,17 @@ export const TRANSLATIONS: Record<InterfaceLang, TranslationDictionary> = {
     streak: 'Série',
     resetConnection: 'Réinitialiser la Connexion',
     syncSeed: 'Synchroniser les Données',
+    dbEmpty: 'La base de données est vide',
+    initData: 'Initialiser les données exemple :',
+    initializing: 'Initialisation...',
+    mascotBubble: 'Hoot! Je suis ton guide linguistique. Choisis une langue et commençons.',
+    seedDbBtn: 'Remplir la Base de Données',
+    feature1Desc: 'Des exercices interactifs qui ressemblent à un jeu.',
+    feature1Title: 'Leçons Courtes',
+    feature2Desc: 'Faites un test rapide et passez à votre niveau.',
+    feature2Title: 'Placement Instantané',
+    feature3Desc: 'Gagnez de l\'XP, des gemmes et grimpez au classement.',
+    feature3Title: 'Récompenses et Séries',
   },
   de: {
     learn: 'Lernen',
@@ -727,6 +782,17 @@ export const TRANSLATIONS: Record<InterfaceLang, TranslationDictionary> = {
     streak: 'Streak',
     resetConnection: 'Verbindung Zurücksetzen',
     syncSeed: 'Daten Synchronisieren',
+    dbEmpty: 'Datenbank ist leer',
+    initData: 'Beispieldaten initialisieren:',
+    initializing: 'Initialisierung...',
+    mascotBubble: 'Hoot! Ich bin dein Sprachführer. Wähle eine Sprache und lass uns beginnen.',
+    seedDbBtn: 'Datenbank befüllen',
+    feature1Desc: 'Interaktive Übungen, die sich wie ein Spiel anfühlen.',
+    feature1Title: 'Kurze Lektionen',
+    feature2Desc: 'Mach einen schnellen Test und spring zu deinem Level.',
+    feature2Title: 'Sofortige Einstufung',
+    feature3Desc: 'Verdiene XP, Edelsteine und steige in den Ranglisten auf.',
+    feature3Title: 'Belohnungen und Serien',
   },
   pt: {
     learn: 'Aprender',
@@ -848,6 +914,17 @@ export const TRANSLATIONS: Record<InterfaceLang, TranslationDictionary> = {
     streak: 'Ofensiva',
     resetConnection: 'Redefinir Conexão',
     syncSeed: 'Sincronizar Dados',
+    dbEmpty: 'Banco de dados está vazio',
+    initData: 'Inicializar dados de exemplo:',
+    initializing: 'Inicializando...',
+    mascotBubble: 'Hoot! Eu sou seu guia de idiomas. Escolha um idioma e vamos começar.',
+    seedDbBtn: 'Preencher Banco de Dados',
+    feature1Desc: 'Exercícios interativos que parecem um jogo.',
+    feature1Title: 'Lições Curtas',
+    feature2Desc: 'Faça um teste rápido e pule para o seu nível.',
+    feature2Title: 'Colocação Instantânea',
+    feature3Desc: 'Ganhe XP, gemas e suba nos rankings.',
+    feature3Title: 'Recompensas e Sequências',
   },
   it: {
     learn: 'Impara',
@@ -969,6 +1046,17 @@ export const TRANSLATIONS: Record<InterfaceLang, TranslationDictionary> = {
     streak: 'Slancio',
     resetConnection: 'Ripristina Connessione',
     syncSeed: 'Sincronizza Dati',
+    dbEmpty: 'Il database è vuoto',
+    initData: 'Inizializza dati di esempio:',
+    initializing: 'Inizializzazione...',
+    mascotBubble: 'Hoot! Sono la tua guida linguistica. Scegli una lingua e iniziamo.',
+    seedDbBtn: 'Popola Database',
+    feature1Desc: 'Esercizi interattivi che sembrano un gioco.',
+    feature1Title: 'Lezioni Brevi',
+    feature2Desc: 'Fai un test veloce e salta al tuo livello.',
+    feature2Title: 'Posizionamento Istantaneo',
+    feature3Desc: 'Guadagna XP, gemme e scala le classifiche.',
+    feature3Title: 'Ricompense e Serie',
   },
   ru: {
     learn: 'Учить',
@@ -1090,6 +1178,17 @@ export const TRANSLATIONS: Record<InterfaceLang, TranslationDictionary> = {
     streak: 'Серия',
     resetConnection: 'Сбросить соединение',
     syncSeed: 'Синхронизировать данные',
+    dbEmpty: 'База данных пуста',
+    initData: 'Инициализировать пример данных:',
+    initializing: 'Инициализация...',
+    mascotBubble: 'Хут! Я твой языковой гид. Выбери язык и начнём!',
+    seedDbBtn: 'Заполнить Базу Данных',
+    feature1Desc: 'Интерактивные упражнения, которые кажутся игрой.',
+    feature1Title: 'Короткие Уроки',
+    feature2Desc: 'Пройдите быстрый тест и перейдите на свой уровень.',
+    feature2Title: 'Мгновенное Определение Уровня',
+    feature3Desc: 'Зарабатывайте XP, самоцветы и поднимайтесь в рейтинге.',
+    feature3Title: 'Награды и Серии',
   },
   zh: {
     learn: '学习',
@@ -1211,6 +1310,17 @@ export const TRANSLATIONS: Record<InterfaceLang, TranslationDictionary> = {
     streak: '连击',
     resetConnection: '重置连接',
     syncSeed: '同步数据',
+    dbEmpty: '数据库为空',
+    initData: '初始化示例数据：',
+    initializing: '初始化中...',
+    mascotBubble: '呼！我是你的语言向导。选择一种语言，我们开始吧！',
+    seedDbBtn: '填充数据库',
+    feature1Desc: '感觉像游戏的互动练习。',
+    feature1Title: '简短课程',
+    feature2Desc: '做一个快速测试并跳到您的级别。',
+    feature2Title: '即时分级',
+    feature3Desc: '赚取经验值、宝石并爬升排行榜。',
+    feature3Title: '奖励和连胜',
   },
   ja: {
     learn: '学ぶ',
@@ -1332,6 +1442,17 @@ export const TRANSLATIONS: Record<InterfaceLang, TranslationDictionary> = {
     streak: '継続日数',
     resetConnection: '接続のリセット',
     syncSeed: 'データを同期',
+    dbEmpty: 'データベースが空です',
+    initData: 'サンプルデータを初期化：',
+    initializing: '初期化中...',
+    mascotBubble: 'ホーッ！私はあなたの言語ガイドです。言語を選んで始めましょう！',
+    seedDbBtn: 'データベースを登録',
+    feature1Desc: 'ゲームのようなインタラクティブな演習。',
+    feature1Title: '短いレッスン',
+    feature2Desc: '簡単なテストを受けて、自分のレベルに飛びます。',
+    feature2Title: '即時レベル判定',
+    feature3Desc: 'XPとジェムを稼ぎ、ランキングを上げましょう。',
+    feature3Title: '報酬と連続記録',
   },
   ko: {
     learn: '학습하기',
@@ -1453,6 +1574,17 @@ export const TRANSLATIONS: Record<InterfaceLang, TranslationDictionary> = {
     streak: '연속',
     resetConnection: '연결 초기화',
     syncSeed: '데이터 동기화',
+    dbEmpty: '데이터베이스가 비어 있습니다',
+    initData: '샘플 데이터 초기화:',
+    initializing: '초기화 중...',
+    mascotBubble: '후우! 저는 당신의 언어 가이드입니다. 언어를 선택하고 시작하세요!',
+    seedDbBtn: '데이터베이스 채우기',
+    feature1Desc: '게임처럼 느껴지는 인터랙티브 연습.',
+    feature1Title: '짧은 레슨',
+    feature2Desc: '빠른 테스트를 하고 자신의 레벨로 뛰어올라요.',
+    feature2Title: '즉시 레벨 배치',
+    feature3Desc: 'XP와 보석을 획득하고 순위를 올리세요.',
+    feature3Title: '보상과 연속 기록',
   }
 };
 
@@ -1600,4 +1732,22 @@ export function localizePrompt(prompt: string, interfaceLang: string): string {
   }
 
   return localized;
+}
+
+export function getLanguageName(code: string, interfaceLang: string = 'en'): string {
+  const names: Record<string, Record<string, string>> = {
+    en: { en: 'English', tr: 'Turkish', es: 'Spanish', fr: 'French', de: 'German', ja: 'Japanese', it: 'Italian', zh: 'Chinese', ru: 'Russian', pt: 'Portuguese', ko: 'Korean', ar: 'Arabic', nl: 'Dutch', sv: 'Swedish', hi: 'Hindi' },
+    tr: { en: 'İngilizce', tr: 'Türkçe', es: 'İspanyolca', fr: 'Fransızca', de: 'Almanca', ja: 'Japonca', it: 'İtalyanca', zh: 'Çince', ru: 'Rusça', pt: 'Portekizce', ko: 'Korece', ar: 'Arapça', nl: 'Felemenkçe', sv: 'İsveççe', hi: 'Hintçe' },
+    es: { en: 'Inglés', tr: 'Turco', es: 'Español', fr: 'Francés', de: 'Alemán', ja: 'Japonés', it: 'Italiano', zh: 'Chino', ru: 'Ruso', pt: 'Portugués', ko: 'Coreano', ar: 'Árabe', nl: 'Neerlandés', sv: 'Sueco', hi: 'Hindi' },
+    fr: { en: 'Anglais', tr: 'Turc', es: 'Espagnol', fr: 'Français', de: 'Allemand', ja: 'Japonais', it: 'Italien', zh: 'Chinois', ru: 'Russe', pt: 'Portugais', ko: 'Coréen', ar: 'Arabe', nl: 'Néerlandais', sv: 'Suédois', hi: 'Hindi' },
+    de: { en: 'Englisch', tr: 'Türkisch', es: 'Spanisch', fr: 'Französisch', de: 'Deutsch', ja: 'Japanisch', it: 'Italienisch', zh: 'Chinesisch', ru: 'Russisch', pt: 'Portugiesisch', ko: 'Koreanisch', ar: 'Arabisch', nl: 'Niederländisch', sv: 'Schwedisch', hi: 'Hindi' },
+    pt: { en: 'Inglês', tr: 'Turco', es: 'Espanhol', fr: 'Francês', de: 'Alemão', ja: 'Japonês', it: 'Italiano', zh: 'Chinês', ru: 'Russo', pt: 'Português', ko: 'Coreano', ar: 'Árabe', nl: 'Holandês', sv: 'Sueco', hi: 'Hindi' },
+    it: { en: 'Inglese', tr: 'Turco', es: 'Spagnolo', fr: 'Francese', de: 'Tedesco', ja: 'Giapponese', it: 'Italiano', zh: 'Cinese', ru: 'Russo', pt: 'Portoghese', ko: 'Coreano', ar: 'Arabo', nl: 'Olandese', sv: 'Svedese', hi: 'Hindi' },
+    ru: { en: 'Английский', tr: 'Турецкий', es: 'Испанский', fr: 'Французский', de: 'Немецкий', ja: 'Японский', it: 'Итальянский', zh: 'Китайский', ru: 'Русский', pt: 'Португальский', ko: 'Корейский', ar: 'Арабский', nl: 'Голландский', sv: 'Шведский', hi: 'Хинди' },
+    zh: { en: '英语', tr: '土耳其语', es: '西班牙语', fr: '法语', de: '德语', ja: '日语', it: '意大利语', zh: '中文', ru: '俄语', pt: '葡萄牙语', ko: '韩语', ar: '阿拉伯语', nl: '荷兰语', sv: '瑞典语', hi: '印地语' },
+    ja: { en: '英語', tr: 'トルコ語', es: 'スペイン語', fr: 'フランス語', de: 'ドイツ語', ja: '日本語', it: 'イタリア語', zh: '中国語', ru: 'ロシア語', pt: 'ポルトガル語', ko: '韓国語', ar: 'アラビア語', nl: 'オランダ語', sv: 'スウェーデン語', hi: 'ヒンディー語' },
+    ko: { en: '영어', tr: '터키어', es: '스페인어', fr: '프랑스어', de: '독일어', ja: '일본어', it: '이탈리아어', zh: '중국어', ru: '러시아어', pt: '포르투갈어', ko: '한국어', ar: '아랍어', nl: '네덜란드어', sv: '스웨덴어', hi: '힌디어' },
+  };
+  const table = names[interfaceLang] || names.en;
+  return table[code] || code.toUpperCase();
 }

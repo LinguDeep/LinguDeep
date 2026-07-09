@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { getLanguages, Language } from '../services/db';
 import { seedDatabase } from '../services/dbInitializer';
-import { getTranslation } from '../services/i18n';
+import { getTranslation, getLanguageName } from '../services/i18n';
 import { Globe, Sparkles, BookOpen, Trophy, ShieldAlert, CheckCircle2, Sun, Moon } from 'lucide-react';
 import LinguDeepLogo from './LinguDeepLogo';
 
@@ -101,7 +101,7 @@ const LandingPage: React.FC<LandingPageProps> = ({
               ))}
             </select>
           </div>
-          <button onClick={onSignIn} className={`px-4 py-1.5 text-xs font-bold rounded-lg border ${inputBg} ${pageText} ${isDark ? 'hover:bg-gray-800' : 'hover:bg-gray-100'}`}>Sign In</button>
+          <button onClick={onSignIn} className={`px-4 py-1.5 text-xs font-bold rounded-lg border ${inputBg} ${pageText} ${isDark ? 'hover:bg-gray-800' : 'hover:bg-gray-100'}`}>{getTranslation('signIn', interfaceLang)}</button>
         </div>
       </header>
 
@@ -112,7 +112,7 @@ const LandingPage: React.FC<LandingPageProps> = ({
           <div className={`w-44 h-44 md:w-56 md:h-56 rounded-full flex items-center justify-center animate-float relative shadow-xl ${cardBg} border ${cardBorder}`}>
             <span className="text-[90px] md:text-[120px]">🦉</span>
             <div className={`absolute -top-14 left-1/2 -translate-x-1/2 border shadow-lg rounded-2xl p-3 w-52 text-center font-outfit text-sm font-bold z-10 ${cardBg} ${cardBorder} ${pageText}`}>
-              <span>Ready to master a new language? 🚀</span>
+              <span>{getTranslation('mascotBubble', interfaceLang)}</span>
               <div className={`absolute -bottom-2 left-1/2 -translate-x-1/2 w-3 h-3 rotate-45 border-r border-b ${cardBg} ${cardBorder}`} />
             </div>
           </div>
@@ -133,10 +133,10 @@ const LandingPage: React.FC<LandingPageProps> = ({
               <div className="flex items-start gap-3 text-sm">
                 <ShieldAlert className="w-6 h-6 text-amber-500 flex-shrink-0 mt-0.5" />
                 <div className="text-left">
-                  <p className="font-bold text-amber-600">Database is Empty</p>
-                  <p className={`text-xs mt-1 mb-3 ${muted}`}>Initialize sample data:</p>
+                  <p className="font-bold text-amber-600">{getTranslation('dbEmpty', interfaceLang)}</p>
+                  <p className={`text-xs mt-1 mb-3 ${muted}`}>{getTranslation('initData', interfaceLang)}</p>
                   <button onClick={handleSeed} disabled={seeding} className="btn-3d-yellow text-xs px-4 py-2 w-full">
-                    {seeding ? 'Initializing…' : 'Seed Database'}
+                    {seeding ? getTranslation('initializing', interfaceLang) : getTranslation('seedDbBtn', interfaceLang)}
                   </button>
                   {seedResult && (
                     <div className={`mt-3 text-xs p-2 rounded-lg flex items-center gap-1.5 font-bold ${seedResult.success ? 'bg-emerald-500/10 text-emerald-500' : 'bg-rose-500/10 text-rose-500'}`}>
@@ -169,7 +169,7 @@ const LandingPage: React.FC<LandingPageProps> = ({
               >
                 {languages.filter(l => l.id !== interfaceLang).map(lang => (
                   <option key={lang.id} value={lang.id} className={isDark ? 'bg-gray-900' : 'bg-white'}>
-                    {lang.flag} {lang.name}
+                    {lang.flag} {getLanguageName(lang.id, interfaceLang)}
                   </option>
                 ))}
               </select>
@@ -191,9 +191,9 @@ const LandingPage: React.FC<LandingPageProps> = ({
       <section className={`w-full border-t py-12 ${isDark ? 'bg-gray-900/40 border-gray-800' : 'bg-white border-gray-200'}`}>
         <div className="w-full max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
-            { icon: <BookOpen className="w-6 h-6" />, color: isDark ? 'bg-emerald-900/40 text-emerald-400' : 'bg-emerald-50 text-emerald-600', title: 'Bite-Sized Lessons', desc: 'Interactive exercises that feel like a game.' },
-            { icon: <Sparkles className="w-6 h-6" />, color: isDark ? 'bg-indigo-900/40 text-indigo-400' : 'bg-indigo-50 text-indigo-600', title: 'Instant Placement', desc: 'Take a quick test and jump to your level.' },
-            { icon: <Trophy className="w-6 h-6" />, color: isDark ? 'bg-amber-900/40 text-amber-400' : 'bg-amber-50 text-amber-600', title: 'Rewards & Streaks', desc: 'Earn XP, gems, and climb leaderboards.' },
+            { icon: <BookOpen className="w-6 h-6" />, color: isDark ? 'bg-emerald-900/40 text-emerald-400' : 'bg-emerald-50 text-emerald-600', title: getTranslation('feature1Title', interfaceLang), desc: getTranslation('feature1Desc', interfaceLang) },
+            { icon: <Sparkles className="w-6 h-6" />, color: isDark ? 'bg-indigo-900/40 text-indigo-400' : 'bg-indigo-50 text-indigo-600', title: getTranslation('feature2Title', interfaceLang), desc: getTranslation('feature2Desc', interfaceLang) },
+            { icon: <Trophy className="w-6 h-6" />, color: isDark ? 'bg-amber-900/40 text-amber-400' : 'bg-amber-50 text-amber-600', title: getTranslation('feature3Title', interfaceLang), desc: getTranslation('feature3Desc', interfaceLang) },
           ].map((f, i) => (
             <div key={i} className={`border p-6 rounded-2xl text-center flex flex-col items-center shadow-sm ${cardBg} ${cardBorder}`}>
               <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${f.color}`}>{f.icon}</div>
