@@ -18,13 +18,15 @@ import {
   UserProfile 
 } from '../services/db';
 
+import { InterfaceLang } from '../services/i18n';
+
 export interface AuthContextType {
   user: User | null;
   userProfile: UserProfile | null;
   loading: boolean;
   isConfigured: boolean;
-  interfaceLang: 'en' | 'tr' | 'es';
-  setInterfaceLang: (lang: 'en' | 'tr' | 'es') => void;
+  interfaceLang: InterfaceLang;
+  setInterfaceLang: (lang: InterfaceLang) => void;
   theme: 'dark' | 'light';
   toggleTheme: () => void;
   login: (email: string, password: string, selectedLanguage?: string, placementTier?: number) => Promise<void>;
@@ -42,14 +44,14 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
-  const [interfaceLang, setInterfaceLangState] = useState<'en' | 'tr' | 'es'>(() => {
+  const [interfaceLang, setInterfaceLangState] = useState<InterfaceLang>(() => {
     const saved = localStorage.getItem('lingudeep_interface_lang');
-    const val = (saved as 'en' | 'tr' | 'es') || 'en';
+    const val = (saved as InterfaceLang) || 'en';
     document.documentElement.lang = val;
     return val;
   });
 
-  const setInterfaceLang = (lang: 'en' | 'tr' | 'es') => {
+  const setInterfaceLang = (lang: InterfaceLang) => {
     setInterfaceLangState(lang);
     localStorage.setItem('lingudeep_interface_lang', lang);
     document.documentElement.lang = lang;
