@@ -1,4 +1,4 @@
-import { doc, getDocs, collection, writeBatch } from 'firebase/firestore';
+import { doc, getDoc, getDocs, collection, writeBatch } from 'firebase/firestore';
 import { db } from '../firebase';
 import { Language, Question, Lesson, ShopItem, Badge } from './db';
 
@@ -247,56 +247,66 @@ export function generateQuestionsForLesson(lang: Language, tier: number, lessonI
       ];
     }
   } else if (tier === 2) {
-    // Intermediate Tier - Dynamic Generation using actual intermediate phrases
-    const interKeys = Object.keys(INTERMEDIATE_VOCAB);
-    const key = interKeys[categoryIndex % interKeys.length];
-    const interVocab = INTERMEDIATE_VOCAB[key];
-    const targetPhrase = interVocab[lang.id] || interVocab.en;
-    const sourcePhrase = interVocab.en;
+    const keys = Object.keys(INTERMEDIATE_VOCAB);
+    
+    const getPhrase = (keyIndex: number) => {
+      const k = keys[keyIndex % keys.length];
+      const item = INTERMEDIATE_VOCAB[k];
+      return {
+        key: k,
+        target: item[lang.id] || item.en,
+        source: item.en
+      };
+    };
 
-    // Create incorrect options from other keys in intermediate dictionary
-    const otherKeys = interKeys.filter(k => k !== key);
-    const incorrect1 = INTERMEDIATE_VOCAB[otherKeys[0]][lang.id] || INTERMEDIATE_VOCAB[otherKeys[0]].en;
-    const incorrect2 = INTERMEDIATE_VOCAB[otherKeys[1]][lang.id] || INTERMEDIATE_VOCAB[otherKeys[1]].en;
-    const incorrect3 = INTERMEDIATE_VOCAB[otherKeys[2]][lang.id] || INTERMEDIATE_VOCAB[otherKeys[2]].en;
+    const p0 = getPhrase(categoryIndex);
+    const p1 = getPhrase(categoryIndex + 1);
+    const p2 = getPhrase(categoryIndex + 2);
+    const p3 = getPhrase(categoryIndex + 3);
+    const p4 = getPhrase(categoryIndex + 4);
 
     return [
-      { id: `q_${lang.id}_2_${lessonIndex}_1`, type: 'multiple-choice', prompt: `How do you say "${sourcePhrase}" in ${langName}?`, options: shuffleOptions([targetPhrase, incorrect1, incorrect2, incorrect3]), correctAnswer: targetPhrase },
-      { id: `q_${lang.id}_2_${lessonIndex}_2`, type: 'translate', prompt: `Translate: "${targetPhrase}"`, correctAnswer: sourcePhrase },
-      { id: `q_${lang.id}_2_${lessonIndex}_3`, type: 'multiple-choice', prompt: `Translate: "${sourcePhrase}"`, options: shuffleOptions([targetPhrase, incorrect1, incorrect2, incorrect3]), correctAnswer: targetPhrase },
-      { id: `q_${lang.id}_2_${lessonIndex}_4`, type: 'translate', prompt: `Translate: "${targetPhrase}"`, correctAnswer: sourcePhrase },
-      { id: `q_${lang.id}_2_${lessonIndex}_5`, type: 'fill-blank', prompt: `Complete: "${targetPhrase.split(' ').slice(0, -1).join(' ')} ..."`, options: shuffleOptions([targetPhrase.split(' ').pop() || '', incorrect1.split(' ').pop() || '', incorrect2.split(' ').pop() || '', incorrect3.split(' ').pop() || '']), correctAnswer: targetPhrase.split(' ').pop() || '' },
-      { id: `q_${lang.id}_2_${lessonIndex}_6`, type: 'multiple-choice', prompt: `Translate: "${sourcePhrase}"`, options: shuffleOptions([targetPhrase, incorrect1, incorrect2, incorrect3]), correctAnswer: targetPhrase },
-      { id: `q_${lang.id}_2_${lessonIndex}_7`, type: 'translate', prompt: `Translate: "${targetPhrase}"`, correctAnswer: sourcePhrase },
-      { id: `q_${lang.id}_2_${lessonIndex}_8`, type: 'fill-blank', prompt: `Complete: "... ${targetPhrase.split(' ').slice(1).join(' ')}"`, options: shuffleOptions([targetPhrase.split(' ')[0], incorrect1.split(' ')[0], incorrect2.split(' ')[0], incorrect3.split(' ')[0]]), correctAnswer: targetPhrase.split(' ')[0] },
-      { id: `q_${lang.id}_2_${lessonIndex}_9`, type: 'multiple-choice', prompt: `How do you say "${sourcePhrase}" in ${langName}?`, options: shuffleOptions([targetPhrase, incorrect1, incorrect2, incorrect3]), correctAnswer: targetPhrase },
-      { id: `q_${lang.id}_2_${lessonIndex}_10`, type: 'tap-pairs', prompt: 'Match intermediate terms', options: [targetPhrase, sourcePhrase, incorrect1, INTERMEDIATE_VOCAB[otherKeys[0]].en, incorrect2, INTERMEDIATE_VOCAB[otherKeys[1]].en, incorrect3, INTERMEDIATE_VOCAB[otherKeys[2]].en], correctAnswer: `${targetPhrase}:${sourcePhrase},${incorrect1}:${INTERMEDIATE_VOCAB[otherKeys[0]].en},${incorrect2}:${INTERMEDIATE_VOCAB[otherKeys[1]].en},${incorrect3}:${INTERMEDIATE_VOCAB[otherKeys[2]].en}` }
+      { id: `q_${lang.id}_2_${lessonIndex}_1`, type: 'multiple-choice', prompt: `How do you say "${p0.source}" in ${langName}?`, options: shuffleOptions([p0.target, p1.target, p2.target, p3.target]), correctAnswer: p0.target },
+      { id: `q_${lang.id}_2_${lessonIndex}_2`, type: 'translate', prompt: `Translate: "${p1.target}"`, correctAnswer: p1.source },
+      { id: `q_${lang.id}_2_${lessonIndex}_3`, type: 'multiple-choice', prompt: `Translate: "${p2.source}"`, options: shuffleOptions([p2.target, p0.target, p3.target, p4.target]), correctAnswer: p2.target },
+      { id: `q_${lang.id}_2_${lessonIndex}_4`, type: 'translate', prompt: `Translate: "${p3.target}"`, correctAnswer: p3.source },
+      { id: `q_${lang.id}_2_${lessonIndex}_5`, type: 'fill-blank', prompt: `Complete: "${p4.target.split(' ').slice(0, -1).join(' ')} ..."`, options: shuffleOptions([p4.target.split(' ').pop() || '', p0.target.split(' ').pop() || '', p1.target.split(' ').pop() || '', p2.target.split(' ').pop() || '']), correctAnswer: p4.target.split(' ').pop() || '' },
+      { id: `q_${lang.id}_2_${lessonIndex}_6`, type: 'translate', prompt: `Translate: "${p2.target}"`, correctAnswer: p2.source },
+      { id: `q_${lang.id}_2_${lessonIndex}_7`, type: 'fill-blank', prompt: `Complete: "... ${p0.target.split(' ').slice(1).join(' ')}"`, options: shuffleOptions([p0.target.split(' ')[0], p1.target.split(' ')[0], p2.target.split(' ')[0], p3.target.split(' ')[0]]), correctAnswer: p0.target.split(' ')[0] },
+      { id: `q_${lang.id}_2_${lessonIndex}_8`, type: 'multiple-choice', prompt: `How do you say "${p3.source}" in ${langName}?`, options: shuffleOptions([p3.target, p0.target, p1.target, p4.target]), correctAnswer: p3.target },
+      { id: `q_${lang.id}_2_${lessonIndex}_9`, type: 'translate', prompt: `Translate: "${p4.target}"`, correctAnswer: p4.source },
+      { id: `q_${lang.id}_2_${lessonIndex}_10`, type: 'tap-pairs', prompt: 'Match intermediate terms', options: [p0.target, p0.source, p1.target, p1.source, p2.target, p2.source, p3.target, p3.source], correctAnswer: `${p0.target}:${p0.source},${p1.target}:${p1.source},${p2.target}:${p2.source},${p3.target}:${p3.source}` }
     ];
   } else {
-    // Advanced Tier - Dynamic Generation using actual advanced phrases
-    const advKeys = Object.keys(ADVANCED_VOCAB);
-    const key = advKeys[categoryIndex % advKeys.length];
-    const advVocab = ADVANCED_VOCAB[key];
-    const targetPhrase = advVocab[lang.id] || advVocab.en;
-    const sourcePhrase = advVocab.en;
+    const keys = Object.keys(ADVANCED_VOCAB);
+    
+    const getPhrase = (keyIndex: number) => {
+      const k = keys[keyIndex % keys.length];
+      const item = ADVANCED_VOCAB[k];
+      return {
+        key: k,
+        target: item[lang.id] || item.en,
+        source: item.en
+      };
+    };
 
-    // Create incorrect options from other keys in advanced dictionary
-    const otherKeys = advKeys.filter(k => k !== key);
-    const incorrect1 = ADVANCED_VOCAB[otherKeys[0]][lang.id] || ADVANCED_VOCAB[otherKeys[0]].en;
-    const incorrect2 = ADVANCED_VOCAB[otherKeys[1]][lang.id] || ADVANCED_VOCAB[otherKeys[1]].en;
-    const incorrect3 = ADVANCED_VOCAB[otherKeys[2]][lang.id] || ADVANCED_VOCAB[otherKeys[2]].en;
+    const p0 = getPhrase(categoryIndex);
+    const p1 = getPhrase(categoryIndex + 1);
+    const p2 = getPhrase(categoryIndex + 2);
+    const p3 = getPhrase(categoryIndex + 3);
+    const p4 = getPhrase(categoryIndex + 4);
 
     return [
-      { id: `q_${lang.id}_3_${lessonIndex}_1`, type: 'multiple-choice', prompt: `How do you say "${sourcePhrase}" in ${langName}?`, options: shuffleOptions([targetPhrase, incorrect1, incorrect2, incorrect3]), correctAnswer: targetPhrase },
-      { id: `q_${lang.id}_3_${lessonIndex}_2`, type: 'translate', prompt: `Translate: "${targetPhrase}"`, correctAnswer: sourcePhrase },
-      { id: `q_${lang.id}_3_${lessonIndex}_3`, type: 'multiple-choice', prompt: `Translate: "${sourcePhrase}"`, options: shuffleOptions([targetPhrase, incorrect1, incorrect2, incorrect3]), correctAnswer: targetPhrase },
-      { id: `q_${lang.id}_3_${lessonIndex}_4`, type: 'translate', prompt: `Translate: "${targetPhrase}"`, correctAnswer: sourcePhrase },
-      { id: `q_${lang.id}_3_${lessonIndex}_5`, type: 'fill-blank', prompt: `Complete: "${targetPhrase.split(' ').slice(0, -1).join(' ')} ..."`, options: shuffleOptions([targetPhrase.split(' ').pop() || '', incorrect1.split(' ').pop() || '', incorrect2.split(' ').pop() || '', incorrect3.split(' ').pop() || '']), correctAnswer: targetPhrase.split(' ').pop() || '' },
-      { id: `q_${lang.id}_3_${lessonIndex}_6`, type: 'multiple-choice', prompt: `Translate: "${sourcePhrase}"`, options: shuffleOptions([targetPhrase, incorrect1, incorrect2, incorrect3]), correctAnswer: targetPhrase },
-      { id: `q_${lang.id}_3_${lessonIndex}_7`, type: 'translate', prompt: `Translate: "${targetPhrase}"`, correctAnswer: sourcePhrase },
-      { id: `q_${lang.id}_3_${lessonIndex}_8`, type: 'fill-blank', prompt: `Complete: "... ${targetPhrase.split(' ').slice(1).join(' ')}"`, options: shuffleOptions([targetPhrase.split(' ')[0], incorrect1.split(' ')[0], incorrect2.split(' ')[0], incorrect3.split(' ')[0]]), correctAnswer: targetPhrase.split(' ')[0] },
-      { id: `q_${lang.id}_3_${lessonIndex}_9`, type: 'multiple-choice', prompt: `How do you say "${sourcePhrase}" in ${langName}?`, options: shuffleOptions([targetPhrase, incorrect1, incorrect2, incorrect3]), correctAnswer: targetPhrase },
-      { id: `q_${lang.id}_3_${lessonIndex}_10`, type: 'tap-pairs', prompt: 'Match advanced terms', options: [targetPhrase, sourcePhrase, incorrect1, ADVANCED_VOCAB[otherKeys[0]].en, incorrect2, ADVANCED_VOCAB[otherKeys[1]].en, incorrect3, ADVANCED_VOCAB[otherKeys[2]].en], correctAnswer: `${targetPhrase}:${sourcePhrase},${incorrect1}:${ADVANCED_VOCAB[otherKeys[0]].en},${incorrect2}:${ADVANCED_VOCAB[otherKeys[1]].en},${incorrect3}:${ADVANCED_VOCAB[otherKeys[2]].en}` }
+      { id: `q_${lang.id}_3_${lessonIndex}_1`, type: 'multiple-choice', prompt: `How do you say "${p0.source}" in ${langName}?`, options: shuffleOptions([p0.target, p1.target, p2.target, p3.target]), correctAnswer: p0.target },
+      { id: `q_${lang.id}_3_${lessonIndex}_2`, type: 'translate', prompt: `Translate: "${p1.target}"`, correctAnswer: p1.source },
+      { id: `q_${lang.id}_3_${lessonIndex}_3`, type: 'multiple-choice', prompt: `Translate: "${p2.source}"`, options: shuffleOptions([p2.target, p0.target, p3.target, p4.target]), correctAnswer: p2.target },
+      { id: `q_${lang.id}_3_${lessonIndex}_4`, type: 'translate', prompt: `Translate: "${p3.target}"`, correctAnswer: p3.source },
+      { id: `q_${lang.id}_3_${lessonIndex}_5`, type: 'fill-blank', prompt: `Complete: "${p4.target.split(' ').slice(0, -1).join(' ')} ..."`, options: shuffleOptions([p4.target.split(' ').pop() || '', p0.target.split(' ').pop() || '', p1.target.split(' ').pop() || '', p2.target.split(' ').pop() || '']), correctAnswer: p4.target.split(' ').pop() || '' },
+      { id: `q_${lang.id}_3_${lessonIndex}_6`, type: 'translate', prompt: `Translate: "${p2.target}"`, correctAnswer: p2.source },
+      { id: `q_${lang.id}_3_${lessonIndex}_7`, type: 'fill-blank', prompt: `Complete: "... ${p0.target.split(' ').slice(1).join(' ')}"`, options: shuffleOptions([p0.target.split(' ')[0], p1.target.split(' ')[0], p2.target.split(' ')[0], p3.target.split(' ')[0]]), correctAnswer: p0.target.split(' ')[0] },
+      { id: `q_${lang.id}_3_${lessonIndex}_8`, type: 'multiple-choice', prompt: `How do you say "${p3.source}" in ${langName}?`, options: shuffleOptions([p3.target, p0.target, p1.target, p4.target]), correctAnswer: p3.target },
+      { id: `q_${lang.id}_3_${lessonIndex}_9`, type: 'translate', prompt: `Translate: "${p4.target}"`, correctAnswer: p4.source },
+      { id: `q_${lang.id}_3_${lessonIndex}_10`, type: 'tap-pairs', prompt: 'Match advanced terms', options: [p0.target, p0.source, p1.target, p1.source, p2.target, p2.source, p3.target, p3.source], correctAnswer: `${p0.target}:${p0.source},${p1.target}:${p1.source},${p2.target}:${p2.source},${p3.target}:${p3.source}` }
     ];
   }
 }
@@ -312,9 +322,29 @@ export async function seedDatabase(force = false): Promise<{ success: boolean; m
   }
 
   try {
-    // Check if languages already exist
     const langSnap = await getDocs(collection(db, 'languages'));
-    if (langSnap.size > 0 && !force) {
+    
+    let shouldSeed = langSnap.size === 0 || force;
+    if (!shouldSeed) {
+      try {
+        const checkRef = doc(db, 'lessons', 'lesson_en_3_1');
+        const checkSnap = await getDoc(checkRef);
+        if (checkSnap.exists()) {
+          const lData = checkSnap.data();
+          const firstQ = lData?.questions?.[0];
+          if (firstQ && firstQ.prompt && firstQ.prompt.includes('"Hello"')) {
+            console.log('Old database seed detected. Forcing database upgrade...');
+            shouldSeed = true;
+          }
+        } else {
+          shouldSeed = true;
+        }
+      } catch (e) {
+        console.warn('Error checking database seed age:', e);
+      }
+    }
+
+    if (!shouldSeed) {
       return { success: true, message: 'Database already has data. Skipping seed.' };
     }
 

@@ -38,6 +38,7 @@ const LandingPage: React.FC<LandingPageProps> = ({
     setLoading(true);
     setFetchError(null);
     try {
+      await seedDatabase();
       const data = await getLanguages();
       setLanguages(data);
       if (data.length > 0) {
