@@ -109,6 +109,15 @@ export interface TranslationDictionary {
   noAccountSignUp?: string;
   haveAccountSignIn?: string;
   placementResult?: string;
+  section?: string;
+  loading?: string;
+  loadingPlayer?: string;
+  noLessons?: string;
+  noLessonsDesc?: string;
+  requires?: string;
+  streak?: string;
+  resetConnection?: string;
+  syncSeed?: string;
 }
 
 export const TRANSLATIONS: Record<InterfaceLang, TranslationDictionary> = {
@@ -221,6 +230,15 @@ export const TRANSLATIONS: Record<InterfaceLang, TranslationDictionary> = {
     noAccountSignUp: "Don't have an account? Sign Up",
     haveAccountSignIn: 'Already have an account? Sign In',
     placementResult: 'Placement Tier Result: ',
+    section: 'Section',
+    loading: 'Loading…',
+    loadingPlayer: 'Loading Lesson Player...',
+    noLessons: 'No lessons available',
+    noLessonsDesc: 'Seed the database or switch tiers.',
+    requires: 'Requires: ',
+    streak: 'Streak',
+    resetConnection: 'Reset Connection',
+    syncSeed: 'Sync Seed',
   },
   tr: {
     learn: 'Öğren',
@@ -331,6 +349,15 @@ export const TRANSLATIONS: Record<InterfaceLang, TranslationDictionary> = {
     noAccountSignUp: 'Hesabınız yok mu? Kaydolun',
     haveAccountSignIn: 'Zaten bir hesabınız var mı? Giriş yapın',
     placementResult: 'Seviye Belirleme Sonucu: ',
+    section: 'Bölüm',
+    loading: 'Yükleniyor…',
+    loadingPlayer: 'Ders Oynatıcı Yükleniyor...',
+    noLessons: 'Ders bulunamadı',
+    noLessonsDesc: 'Veritabanını tohumlayın veya seviye değiştirin.',
+    requires: 'Gereksinim: ',
+    streak: 'Seri',
+    resetConnection: 'Bağlantıyı Sıfırla',
+    syncSeed: 'Verileri Eşitle',
   },
   es: {
     learn: 'Aprender',
@@ -441,6 +468,15 @@ export const TRANSLATIONS: Record<InterfaceLang, TranslationDictionary> = {
     noAccountSignUp: '¿No tienes una cuenta? Regístrate',
     haveAccountSignIn: '¿Ya tienes una cuenta? Inicia sesión',
     placementResult: 'Resultado de Nivel: ',
+    section: 'Sección',
+    loading: 'Cargando…',
+    loadingPlayer: 'Cargando Reproductor de Lecciones...',
+    noLessons: 'No hay lecciones disponibles',
+    noLessonsDesc: 'Siembre la base de datos o cambie de nivel.',
+    requires: 'Requiere: ',
+    streak: 'Racha',
+    resetConnection: 'Restablecer Conexión',
+    syncSeed: 'Sincronizar Datos',
   },
   fr: {
     learn: 'Apprendre',

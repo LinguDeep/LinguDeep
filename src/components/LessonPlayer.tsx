@@ -362,7 +362,7 @@ const LessonPlayer: React.FC<LessonPlayerProps> = ({
         <div className={`w-12 h-12 border-4 border-t-transparent rounded-full animate-spin ${
           theme === 'dark' ? 'border-indigo-500' : 'border-indigo-650'
         }`}></div>
-        <p className="mt-4 text-xs font-bold uppercase tracking-wider text-slate-500">Loading Lesson Player...</p>
+        <p className="mt-4 text-xs font-bold uppercase tracking-wider text-slate-500">{getTranslation('loadingPlayer', interfaceLang)}</p>
       </div>
     );
   }

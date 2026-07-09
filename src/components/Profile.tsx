@@ -216,9 +216,9 @@ const Profile: React.FC = () => {
                     <div className={`text-[10px] font-extrabold mt-1 ${
                       theme === 'dark' ? 'text-slate-500' : 'text-slate-400'
                     }`}>
-                      Requires: {badge.requirementXP > 0 ? `${badge.requirementXP} XP` : ''} 
+                      {getTranslation('requires', interfaceLang)}{badge.requirementXP > 0 ? `${badge.requirementXP} XP` : ''} 
                       {badge.requirementXP > 0 && badge.requirementStreak > 0 ? ' & ' : ''}
-                      {badge.requirementStreak > 0 ? `${badge.requirementStreak} Streak` : ''}
+                      {badge.requirementStreak > 0 ? `${badge.requirementStreak} ${getTranslation('streak', interfaceLang)}` : ''}
                     </div>
                   )}
                 </div>
@@ -252,7 +252,7 @@ const Profile: React.FC = () => {
             onClick={handleResetConfig}
             className="px-4 py-2.5 bg-rose-600 border-b-4 border-rose-800 hover:bg-rose-500 active:border-b-0 active:translate-y-[2px] rounded-xl text-xs font-outfit font-black text-white shrink-0"
           >
-            Reset Connection
+            {getTranslation('resetConnection', interfaceLang)}
           </button>
         </div>
 
@@ -276,7 +276,7 @@ const Profile: React.FC = () => {
             className="px-4 py-2.5 bg-emerald-600 border-b-4 border-emerald-800 hover:bg-emerald-500 active:border-b-0 active:translate-y-[2px] rounded-xl text-xs font-outfit font-black text-white shrink-0 flex items-center gap-2"
           >
             {seeding ? <Loader className="w-4 h-4 animate-spin" /> : <RefreshCw className="w-4 h-4" />}
-            <span>Sync Seed</span>
+            <span>{getTranslation('syncSeed', interfaceLang)}</span>
           </button>
         </div>
 

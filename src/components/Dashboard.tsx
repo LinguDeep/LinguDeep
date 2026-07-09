@@ -23,38 +23,40 @@ const translateTierLabel = (tier: number, interfaceLang: string): string => {
   return key ? getTranslation(key as any, interfaceLang) : String(tier);
 };
 
+const translateCategoryName = (categoryName: string, interfaceLang: string): string => {
+  const keyMap: Record<string, string> = {
+    'Greetings': 'greetings',
+    'Polite Words': 'politeWords',
+    'Daily Talk': 'dailyTalk',
+    'Food & Drink': 'foodDrink',
+    'Study': 'study',
+    'Numbers': 'numbers',
+    'Colors': 'colors',
+    'Family': 'family',
+    'Relatives': 'relatives',
+    'Social': 'social',
+    'Dining': 'dining',
+    'Media': 'media',
+    'Quantities': 'quantities',
+    'Environment': 'environment',
+    'Professional': 'professional',
+    'Dialogues': 'dialogues',
+    'Translation': 'translation',
+    'Cuisine': 'cuisine',
+    'Literature': 'literature',
+    'Review A': 'reviewA',
+    'Review B': 'reviewB'
+  };
+  const key = keyMap[categoryName];
+  return key ? getTranslation(key as any, interfaceLang) : categoryName;
+};
+
 const translateLessonTitle = (title: string, interfaceLang: string): string => {
   const parts = title.split(' #');
   if (parts.length === 2) {
     const categoryName = parts[0];
     const num = parts[1];
-    const keyMap: Record<string, string> = {
-      'Greetings': 'greetings',
-      'Polite Words': 'politeWords',
-      'Daily Talk': 'dailyTalk',
-      'Food & Drink': 'foodDrink',
-      'Study': 'study',
-      'Numbers': 'numbers',
-      'Colors': 'colors',
-      'Family': 'family',
-      'Relatives': 'relatives',
-      'Social': 'social',
-      'Dining': 'dining',
-      'Media': 'media',
-      'Quantities': 'quantities',
-      'Environment': 'environment',
-      'Professional': 'professional',
-      'Dialogues': 'dialogues',
-      'Translation': 'translation',
-      'Cuisine': 'cuisine',
-      'Literature': 'literature',
-      'Review A': 'reviewA',
-      'Review B': 'reviewB'
-    };
-    const key = keyMap[categoryName];
-    if (key) {
-      return `${getTranslation(key as any, interfaceLang)} #${num}`;
-    }
+    return `${translateCategoryName(categoryName, interfaceLang)} #${num}`;
   }
   return title;
 };
@@ -256,13 +258,13 @@ const Dashboard: React.FC<DashboardProps> = ({ activeTab, setActiveTab, onStartL
           <div className={`w-10 h-10 border-4 border-t-transparent rounded-full animate-spin ${
             theme === 'dark' ? 'border-indigo-500' : 'border-indigo-600'
           }`} />
-          <p className={`mt-3 text-sm font-semibold ${c.muted}`}>Loading…</p>
+          <p className={`mt-3 text-sm font-semibold ${c.muted}`}>{getTranslation('loading', interfaceLang)}</p>
         </div>
       ) : lessons.length === 0 ? (
         <div className={`text-center py-16 border border-dashed rounded-2xl ${c.cardBorder} ${c.cardBg}`}>
           <span className="text-3xl block mb-2">📭</span>
-          <p className={`font-outfit font-bold ${c.pageText}`}>No lessons available</p>
-          <p className={`text-sm ${c.muted}`}>Seed the database or switch tiers.</p>
+          <p className={`font-outfit font-bold ${c.pageText}`}>{getTranslation('noLessons', interfaceLang)}</p>
+          <p className={`text-sm ${c.muted}`}>{getTranslation('noLessonsDesc', interfaceLang)}</p>
         </div>
       ) : (
         <div className="relative flex flex-col items-center">
@@ -292,9 +294,9 @@ const Dashboard: React.FC<DashboardProps> = ({ activeTab, setActiveTab, onStartL
                       </div>
                       {/* Title — truncated to never overflow */}
                       <div className="flex-1 min-w-0 text-center">
-                        <p className="text-[9px] font-bold text-indigo-500 uppercase tracking-widest">Section {Math.floor(idx / 7) + 1}</p>
+                        <p className="text-[9px] font-bold text-indigo-500 uppercase tracking-widest">{getTranslation('section', interfaceLang)} {Math.floor(idx / 7) + 1}</p>
                         <p className={`font-outfit font-black text-xs truncate ${c.pageText}`}>
-                          {(SECTION_TITLES[tier] || SECTION_TITLES[1])[cat]}
+                          {translateCategoryName((SECTION_TITLES[tier] || SECTION_TITLES[1])[cat], interfaceLang)}
                         </p>
                       </div>
                       {/* Right icon */}
