@@ -41,8 +41,19 @@ const LandingPage: React.FC<LandingPageProps> = ({
       const data = await getLanguages();
       setLanguages(data);
       if (data.length > 0) {
-        const initialTarget = data.find(l => l.id !== interfaceLang) || data[0];
-        setSelectedLanguage(initialTarget.id);
+        const guessTarget = () => {
+          if (interfaceLang === 'tr') {
+            const enLang = data.find(l => l.id === 'en');
+            if (enLang) return enLang.id;
+          }
+          if (interfaceLang === 'en') {
+            const esLang = data.find(l => l.id === 'es');
+            if (esLang) return esLang.id;
+          }
+          const fallback = data.find(l => l.id !== interfaceLang);
+          return fallback ? fallback.id : data[0].id;
+        };
+        setSelectedLanguage(guessTarget());
       }
     } catch (e: any) {
       console.error('Error fetching languages', e);

@@ -18,7 +18,13 @@ const AppContent: React.FC = () => {
   const [dashboardTab, setDashboardTab] = useState<DashboardTab>('learn');
   
   // Temporary storage during user flow
-  const [selectedLanguage, setSelectedLanguage] = useState<string>('es');
+  const guessInitialLanguage = () => {
+    const locale = (navigator.language || 'en').toLowerCase().split('-')[0];
+    if (locale === 'tr') return 'en';
+    if (locale === 'es') return 'en';
+    return 'es';
+  };
+  const [selectedLanguage, setSelectedLanguage] = useState<string>(guessInitialLanguage);
   const [placementTier, setPlacementTier] = useState<number>(1);
   const [activeLessonId, setActiveLessonId] = useState<string | null>(null);
 
