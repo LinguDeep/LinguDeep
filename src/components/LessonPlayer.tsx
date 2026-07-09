@@ -195,6 +195,23 @@ const localizeQuestionsForUser = (questions: Question[], _targetLang: string, na
   if (nativeLang === 'en') return questions;
   
   return questions.map(q => {
+    // Localize English learning prompts to native language
+    if (_targetLang === 'en' && nativeLang !== 'en') {
+      const mcMatch = q.prompt.match(/How do you say "([^"]+)" in English?/);
+      if (mcMatch) {
+        const nativeWord = translatePhrase(mcMatch[1], nativeLang);
+        q = { ...q, prompt: `How do you say "${nativeWord}" in English?` };
+      }
+      
+      const transMatch = q.prompt.match(/Translate: "([^"]+)"/);
+      if (transMatch) {
+        if (q.correctAnswer.toLowerCase() === transMatch[1].toLowerCase()) {
+          const nativeWord = translatePhrase(transMatch[1], nativeLang);
+          q = { ...q, prompt: `Translate: "${nativeWord}"` };
+        }
+      }
+    }
+
     if (q.type === 'translate') {
       if (q.prompt.startsWith('Translate: "')) {
         const correctNative = translatePhrase(q.correctAnswer, nativeLang);

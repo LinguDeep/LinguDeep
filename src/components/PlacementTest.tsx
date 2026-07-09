@@ -36,69 +36,6 @@ const LANGUAGE_VOCABULARY: Record<string, LangVocab> = {
   en: { hello: 'Hello', goodbye: 'Goodbye', please: 'Please', thankYou: 'Thank you', mother: 'Mother', father: 'Father', friend: 'Friend', brother: 'Brother', sister: 'Sister', water: 'Water', bread: 'Bread', book: 'Book', one: 'One', two: 'Two', three: 'Three', red: 'Red', blue: 'Blue', green: 'Green', sun: 'Sun', rain: 'Rain', wind: 'Wind' }
 };
 
-const PLACEMENT_QUESTIONS: Record<string, Question[]> = {
-  es: [
-    { id: 1, prompt: 'How do you say "Good morning" in Spanish?', options: ['Buenos días', 'Buenas noches', 'Hola', 'Gracias'], correctAnswer: 'Buenos días' },
-    { id: 2, prompt: 'What does "El gato come pescado" mean?', options: ['The dog eats fish', 'The cat eats fish', 'The cat drinks milk', 'The bird eats seeds'], correctAnswer: 'The cat eats fish' },
-    { id: 3, prompt: 'Choose the correct plural form of "el libro":', options: ['los libros', 'las libros', 'el libros', 'un libros'], correctAnswer: 'los libros' },
-    { id: 4, prompt: 'Which word completes the sentence: "Yo ______ español" (I speak Spanish)?', options: ['hablo', 'habla', 'hablan', 'hablas'], correctAnswer: 'hablo' },
-    { id: 5, prompt: 'Translate: "The train station is near the park."', options: ['La estación de tren está cerca del parque.', 'El aeropuerto está lejos del parque.', 'La estación de tren está detrás de la casa.', 'El hotel está cerca de la estación.'], correctAnswer: 'La estación de tren está cerca del parque.' },
-    { id: 6, prompt: 'Which verb form goes in: "Ayer nosotros ______ football" (Yesterday we played soccer)?', options: ['jugamos', 'jugaron', 'juegan', 'jugaban'], correctAnswer: 'jugamos' },
-    { id: 7, prompt: 'What is the opposite of "rápido" (fast)?', options: ['lento', 'fácil', 'alto', 'triste'], correctAnswer: 'lento' },
-    { id: 8, prompt: 'Complete: "Si tuviera más dinero, ______ un coche nuevo."', options: ['compraría', 'compraré', 'compraba', 'compro'], correctAnswer: 'compraría' },
-    { id: 9, prompt: 'Identify the correct subjunctive form: "Espero que tú ______ al examen."', options: ['vengas', 'vienes', 'viniste', 'venir'], correctAnswer: 'vengas' },
-    { id: 10, prompt: 'What does the idiom "Estar en las nubes" mean?', options: ['To be day-dreaming / distracted', 'To be flying high', 'To be angry', 'To be raining heavily'], correctAnswer: 'To be day-dreaming / distracted' }
-  ],
-  fr: [
-    { id: 1, prompt: 'How do you say "Thank you very much" in French?', options: ['Merci beaucoup', 'S\'il vous plaît', 'Bonjour', 'De rien'], correctAnswer: 'Merci beaucoup' },
-    { id: 2, prompt: 'What does "Le chien mange du pain" mean?', options: ['The dog eats bread', 'The cat drinks milk', 'The bird eats seeds', 'The dog eats meat'], correctAnswer: 'The dog eats bread' },
-    { id: 3, prompt: 'Which article goes with "voiture" (car)?', options: ['la', 'le', 'un', 'les'], correctAnswer: 'la' },
-    { id: 4, prompt: 'Complete: "J\'______ un stylo" (I have a pen).', options: ['ai', 'es', 'a', 'avez'], correctAnswer: 'ai' },
-    { id: 5, prompt: 'Translate: "Where is the bakery?"', options: ['Où est la boulangerie ?', 'Où est l\'hôtel ?', 'Quand part le train ?', 'Combien ça coûte ?'], correctAnswer: 'Où est la boulangerie ?' },
-    { id: 6, prompt: 'What is the past participle of the verb "prendre" (to take)?', options: ['pris', 'prendre', 'prendu', 'prené'], correctAnswer: 'pris' },
-    { id: 7, prompt: 'What is the opposite of "petit" (small)?', options: ['grand', 'froid', 'rapide', 'jeune'], correctAnswer: 'grand' },
-    { id: 8, prompt: 'Complete: "Si j\'avais le temps, je ______ avec toi."', options: ['partirais', 'partirai', 'pars', 'partais'], correctAnswer: 'partirais' },
-    { id: 9, prompt: 'Select the correct subjunctive form: "Il faut que tu ______ tes devoirs."', options: ['fasses', 'fais', 'fait', 'faire'], correctAnswer: 'fasses' },
-    { id: 10, prompt: 'What does the idiom "Avoir le cafard" mean?', options: ['To feel depressed / blue', 'To have a cockroach', 'To be energetic', 'To be hungry'], correctAnswer: 'To feel depressed / blue' }
-  ],
-  de: [
-    { id: 1, prompt: 'How do you say "Welcome" in German?', options: ['Willkommen', 'Guten Morgen', 'Auf Wiedersehen', 'Danke schön'], correctAnswer: 'Willkommen' },
-    { id: 2, prompt: 'What is the gender of "Mädchen" (girl)?', options: ['Neutrum (das)', 'Femininum (die)', 'Maskulinum (der)', 'Plural (die)'], correctAnswer: 'Neutrum (das)' },
-    { id: 3, prompt: 'What does "Ich trinke Wasser" mean?', options: ['I drink water', 'I eat bread', 'I like juice', 'He drinks water'], correctAnswer: 'Ich trinke Wasser' },
-    { id: 4, prompt: 'Complete the sentence: "Wir ______ Deutsch lernen."', options: ['wollen', 'will', 'wollt', 'willst'], correctAnswer: 'wollen' },
-    { id: 5, prompt: 'Translate: "Where is the train station?"', options: ['Wo ist der Bahnhof?', 'Wo ist der Flughafen?', 'Wie viel kostet das?', 'Wann kommt der Zug?'], correctAnswer: 'Wo ist der Bahnhof?' },
-    { id: 6, prompt: 'What is the past tense of "gehen" (to go)?', options: ['ging', 'gegangen', 'geht', 'gingen'], correctAnswer: 'ging' },
-    { id: 7, prompt: 'Choose the correct preposition: "Ich fahre ______ Berlin."', options: ['nach', 'zu', 'in', 'bei'], correctAnswer: 'nach' },
-    { id: 8, prompt: 'Complete: "Wenn ich Zeit hätte, ______ ich kommen."', options: ['würde', 'werde', 'wollte', 'hätte'], correctAnswer: 'würde' },
-    { id: 9, prompt: 'Which case is triggered by the preposition "mit" (with)?', options: ['Dativ', 'Akkusativ', 'Genitiv', 'Nominativ'], correctAnswer: 'Dativ' },
-    { id: 10, prompt: 'What does "Kulleraugen" refer to?', options: ['Big round eyes', 'Rolling dice', 'Round glasses', 'Sweet candies'], correctAnswer: 'Big round eyes' }
-  ],
-  en: [
-    { id: 1, prompt: 'How do you say "Hello" in English?', options: ['Hello', 'Goodbye', 'Please', 'Thank you'], correctAnswer: 'Hello' },
-    { id: 2, prompt: 'What does "The cat drinks milk" mean?', options: ['The cat drinks milk', 'The dog plays', 'The cat sleeps', 'The bird sings'], correctAnswer: 'The cat drinks milk' },
-    { id: 3, prompt: 'Choose the correct plural form of "child":', options: ['children', 'childs', 'childrens', 'childes'], correctAnswer: 'children' },
-    { id: 4, prompt: 'Which word completes the sentence: "She ______ to school every day"?', options: ['goes', 'go', 'going', 'went'], correctAnswer: 'goes' },
-    { id: 5, prompt: 'Translate: "The library is near the park."', options: ['The library is near the park.', 'The store is far away.', 'The train is fast.', 'The hotel is close.'], correctAnswer: 'The library is near the park.' },
-    { id: 6, prompt: 'Which verb form goes in: "Yesterday they ______ a movie"?', options: ['watched', 'watch', 'watching', 'watches'], correctAnswer: 'watched' },
-    { id: 7, prompt: 'What is the opposite of "heavy" (heavy)?', options: ['light', 'dark', 'small', 'soft'], correctAnswer: 'light' },
-    { id: 8, prompt: 'Complete: "If I had more time, I ______ learn another language."', options: ['would', 'will', 'am', 'did'], correctAnswer: 'would' },
-    { id: 9, prompt: 'Identify the correct passive voice: "The book ______ by John."', options: ['was written', 'wrote', 'was writing', 'written'], correctAnswer: 'was written' },
-    { id: 10, prompt: 'What does the idiom "Break a leg" mean?', options: ['Good luck', 'To get injured', 'To start running', 'To be angry'], correctAnswer: 'Good luck' }
-  ],
-  tr: [
-    { id: 1, prompt: 'How do you say "Merhaba" in Turkish?', options: ['Merhaba', 'Hoşça kal', 'Lütfen', 'Teşekkürler'], correctAnswer: 'Merhaba' },
-    { id: 2, prompt: 'What does "Kedi süt içer" mean?', options: ['The cat drinks milk', 'The dog eats meat', 'The bird flies', 'The horse runs'], correctAnswer: 'The cat drinks milk' },
-    { id: 3, prompt: 'Choose the correct plural form of "ev" (house):', options: ['evler', 'evlar', 'evlerler', 'evlerimiz'], correctAnswer: 'evler' },
-    { id: 4, prompt: 'Which word completes the sentence: "Bugün hava çok ______"?', options: ['güzel', 'güzeller', 'güzelce', 'güzelleş'], correctAnswer: 'güzel' },
-    { id: 5, prompt: 'Translate: "The weather is very hot."', options: ['Hava çok sıcak.', 'Hava çok soğuk.', 'Yağmur yağıyor.', 'Rüzgar esiyor.'], correctAnswer: 'Hava çok sıcak.' },
-    { id: 6, prompt: 'Which verb form goes in: "Dün sinemaya ______" (Yesterday we went to the cinema)?', options: ['gittik', 'gidiyoruz', 'gideceğiz', 'gitmek'], correctAnswer: 'gittik' },
-    { id: 7, prompt: 'What is the opposite of "büyük" (big)?', options: ['küçük', 'uzun', 'geniş', 'temiz'], correctAnswer: 'küçük' },
-    { id: 8, prompt: 'Complete: "Eğer vaktim olsaydı, seninle ______."', options: ['gelirdim', 'gelirim', 'geleceğim', 'gelmek'], correctAnswer: 'gelirdim' },
-    { id: 9, prompt: 'Identify the correct form: "Kitap onun tarafından ______" (The book was read by him).', options: ['okundu', 'okudu', 'okuyor', 'okumak'], correctAnswer: 'okundu' },
-    { id: 10, prompt: 'What does the idiom "Kulak misafiri olmak" mean?', options: ['To eavesdrop / overhear', 'To be a guest', 'To have big ears', 'To listen carefully'], correctAnswer: 'To eavesdrop / overhear' }
-  ]
-};
-
 interface PlacementTestProps {
   languageCode: string;
   onBack: () => void;
@@ -114,26 +51,22 @@ const getLanguageName = (id: string) => {
   return names[id] || 'Target Language';
 };
 
-const getDynamicQuestions = (langCode: string): Question[] => {
-  if (PLACEMENT_QUESTIONS[langCode]) {
-    return PLACEMENT_QUESTIONS[langCode];
-  }
-  
-  // Dynamic generation from vocabulary
-  const vocab = LANGUAGE_VOCABULARY[langCode] || LANGUAGE_VOCABULARY.en;
-  const langName = getLanguageName(langCode);
+const getDynamicQuestions = (langCode: string, nativeLang: string): Question[] => {
+  const nativeVocab = LANGUAGE_VOCABULARY[nativeLang] || LANGUAGE_VOCABULARY.en;
+  const targetVocab = LANGUAGE_VOCABULARY[langCode] || LANGUAGE_VOCABULARY.en;
+  const targetName = getLanguageName(langCode);
   
   return [
-    { id: 1, prompt: `How do you say "Hello" in ${langName}?`, options: [vocab.hello, vocab.goodbye, vocab.please, vocab.thankYou], correctAnswer: vocab.hello },
-    { id: 2, prompt: `How do you say "Goodbye" in ${langName}?`, options: [vocab.goodbye, vocab.hello, vocab.please, vocab.thankYou], correctAnswer: vocab.goodbye },
-    { id: 3, prompt: `How do you say "Please" in ${langName}?`, options: [vocab.please, vocab.hello, vocab.goodbye, vocab.thankYou], correctAnswer: vocab.please },
-    { id: 4, prompt: `How do you say "Thank you" in ${langName}?`, options: [vocab.thankYou, vocab.please, vocab.goodbye, vocab.hello], correctAnswer: vocab.thankYou },
-    { id: 5, prompt: `How do you say "Mother" in ${langName}?`, options: [vocab.mother, vocab.father, vocab.friend, vocab.one], correctAnswer: vocab.mother },
-    { id: 6, prompt: `How do you say "Father" in ${langName}?`, options: [vocab.father, vocab.mother, vocab.friend, vocab.two], correctAnswer: vocab.father },
-    { id: 7, prompt: `How do you say "Water" in ${langName}?`, options: [vocab.water, vocab.bread, vocab.book, vocab.three], correctAnswer: vocab.water },
-    { id: 8, prompt: `How do you say "Bread" in ${langName}?`, options: [vocab.bread, vocab.water, vocab.book, vocab.one], correctAnswer: vocab.bread },
-    { id: 9, prompt: `How do you say "Book" in ${langName}?`, options: [vocab.book, vocab.water, vocab.bread, vocab.two], correctAnswer: vocab.book },
-    { id: 10, prompt: `How do you say "One" in ${langName}?`, options: [vocab.one, vocab.two, vocab.three, vocab.water], correctAnswer: vocab.one }
+    { id: 1, prompt: `How do you say "${nativeVocab.hello}" in ${targetName}?`, options: [targetVocab.hello, targetVocab.goodbye, targetVocab.please, targetVocab.thankYou], correctAnswer: targetVocab.hello },
+    { id: 2, prompt: `How do you say "${nativeVocab.goodbye}" in ${targetName}?`, options: [targetVocab.goodbye, targetVocab.hello, targetVocab.please, targetVocab.thankYou], correctAnswer: targetVocab.goodbye },
+    { id: 3, prompt: `How do you say "${nativeVocab.please}" in ${targetName}?`, options: [targetVocab.please, targetVocab.hello, targetVocab.goodbye, targetVocab.thankYou], correctAnswer: targetVocab.please },
+    { id: 4, prompt: `How do you say "${nativeVocab.thankYou}" in ${targetName}?`, options: [targetVocab.thankYou, targetVocab.please, targetVocab.goodbye, targetVocab.hello], correctAnswer: targetVocab.thankYou },
+    { id: 5, prompt: `How do you say "${nativeVocab.mother}" in ${targetName}?`, options: [targetVocab.mother, targetVocab.father, targetVocab.friend, targetVocab.one], correctAnswer: targetVocab.mother },
+    { id: 6, prompt: `How do you say "${nativeVocab.father}" in ${targetName}?`, options: [targetVocab.father, targetVocab.mother, targetVocab.friend, targetVocab.two], correctAnswer: targetVocab.father },
+    { id: 7, prompt: `How do you say "${nativeVocab.water}" in ${targetName}?`, options: [targetVocab.water, targetVocab.bread, targetVocab.book, targetVocab.three], correctAnswer: targetVocab.water },
+    { id: 8, prompt: `How do you say "${nativeVocab.bread}" in ${targetName}?`, options: [targetVocab.bread, targetVocab.water, targetVocab.book, targetVocab.one], correctAnswer: targetVocab.bread },
+    { id: 9, prompt: `How do you say "${nativeVocab.book}" in ${targetName}?`, options: [targetVocab.book, targetVocab.water, targetVocab.bread, targetVocab.two], correctAnswer: targetVocab.book },
+    { id: 10, prompt: `How do you say "${nativeVocab.one}" in ${targetName}?`, options: [targetVocab.one, targetVocab.two, targetVocab.three, targetVocab.water], correctAnswer: targetVocab.one }
   ];
 };
 
@@ -143,7 +76,7 @@ const PlacementTest: React.FC<PlacementTestProps> = ({
   onComplete,
 }) => {
   const { interfaceLang, theme } = useAuth();
-  const questions = getDynamicQuestions(languageCode);
+  const questions = getDynamicQuestions(languageCode, interfaceLang);
 
   // Placement States
   const [step, setStep] = useState<'playing' | 'result'>('playing');
@@ -331,7 +264,7 @@ const PlacementTest: React.FC<PlacementTestProps> = ({
               }`}>
                 <div className="flex items-center gap-3">
                   {selectedOption === currentQuestion.correctAnswer ? (
-                    <div className="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-450 flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-455 flex items-center justify-center">
                       <CheckCircle2 size={28} />
                     </div>
                   ) : (
