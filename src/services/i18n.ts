@@ -718,9 +718,10 @@ export function localizePrompt(prompt: string, interfaceLang: string): string {
 
   // Helpers to get localized version
   const getLangName = (l: string) => (langNames[interfaceLang] || langNames.en)[l] || l;
+  const cleanEnglish = (str: string) => str.toLowerCase().replace(/ı/g, 'i').replace(/İ/g, 'i');
   const getVocabWord = (w: string) => {
     const table = vocabWords[interfaceLang] || {};
-    const key = Object.keys(table).find(k => k.toLowerCase() === w.toLowerCase());
+    const key = Object.keys(table).find(k => cleanEnglish(k) === cleanEnglish(w));
     return key ? table[key] : w;
   };
 

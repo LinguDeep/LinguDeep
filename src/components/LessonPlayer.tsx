@@ -42,6 +42,13 @@ const VOCAB_MAP: Record<string, Record<string, string>> = {
   'i look forward to meeting you': { en: "I look forward to meeting you.", tr: "Sizinle tanışmayı dört gözle bekliyorum.", es: "Espero conocerte pronto.", fr: "J'ai hâte de vous rencontrer.", de: "Ich freue mich darauf, Sie kennenzulernen.", it: "Non vedo l'ora di conoscerti.", pt: "Estou ansioso para conhecer você.", ru: "Я с нетерпением жду встречи с вами.", zh: "我期待与您见面。", ja: "お会いできるのを楽しみにしています。", ko: "만나 뵙기를 기대합니다.", ar: "أتطلع للقائك.", nl: "Ik verheug me erop u te ontmoeten.", sv: "Jag ser fram emot att träffa dig.", hi: "मुझे आपसे मिलने का इंतजार है।" },
 };
 
+const englishLowerCase = (str: string): string => {
+  return str
+    .toLowerCase()
+    .replace(/ı/g, 'i')
+    .replace(/İ/g, 'i');
+};
+
 const translatePhrase = (phrase: string, toLang: string): string => {
   if (phrase.includes(', ')) {
     return phrase.split(', ').map(p => translatePhrase(p, toLang)).join(', ');
@@ -53,7 +60,7 @@ const translatePhrase = (phrase: string, toLang: string): string => {
     return phrase.split(' and ').map(p => translatePhrase(p, toLang)).join(' and ');
   }
 
-  const clean = phrase.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g, "").trim();
+  const clean = englishLowerCase(phrase).replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g, "").trim();
   
   if (VOCAB_MAP[clean]?.[toLang]) {
     return VOCAB_MAP[clean][toLang];
@@ -150,7 +157,7 @@ const localizeQuestionsForUser = (questions: Question[], targetLang: string, nat
           return opt;
         }
         // For odd indices (1, 3, 5, 7), translate to native language
-        const clean = opt.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g, "").trim();
+        const clean = englishLowerCase(opt).replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g, "").trim();
         if (VOCAB_MAP[clean]) {
           return translatePhrase(opt, nativeLang);
         }
@@ -362,9 +369,7 @@ const LessonPlayer: React.FC<LessonPlayerProps> = ({
 
   // Normalization logic for Turkish İ combiners
   const cleanStringForCompare = (str: string) => {
-    return str
-      .trim()
-      .toLowerCase()
+    return englishLowerCase(str.trim())
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "")
       .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g, "")
