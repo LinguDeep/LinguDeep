@@ -276,7 +276,7 @@ const Dashboard: React.FC<DashboardProps> = ({ activeTab, setActiveTab, onStartL
               const done = !!userProfile?.completedLessons?.[lesson.id];
               const next = !done && (idx === 0 || !!userProfile?.completedLessons?.[lessons[idx - 1].id]);
               const locked = !done && !next;
-              const cat = idx % 7;
+              const cat = Math.floor(idx / 7) % 7;
               const tier = selectedCourse?.tier || 1;
 
               // Zigzag offset

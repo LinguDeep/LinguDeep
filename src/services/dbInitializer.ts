@@ -140,29 +140,54 @@ const ADVANCED_VOCAB: Record<string, Record<string, string>> = {
   meet: { en: "I look forward to meeting you.", tr: "Sizinle tanışmayı dört gözle bekliyorum.", es: "Espero conocerte pronto.", fr: "J'ai hâte de vous rencontrer.", de: "Ich freue mich darauf, Sie kennenzulernen.", it: "Non vedo l'ora di conoscerti.", pt: "Estou ansioso para conhecer você.", ru: "Я с нетерпением жду встречи с вами.", zh: "我期待与您见面。", ja: "お会いできるのを楽しみにしています。", ko: "만나 뵙기를 기대합니다.", ar: "أتطلع للقائك.", nl: "Ik verheug me erop u te ontmoeten.", sv: "Jag ser fram emot att träffa dig.", hi: "मुझे आपसे मिलने का इंतजार है。" }
 };
 
-const TIER1_VOCAB_ITEMS: { key: keyof LangVocab; english: string }[] = [
-  { key: 'hello', english: 'Hello' },
-  { key: 'goodbye', english: 'Goodbye' },
-  { key: 'please', english: 'Please' },
-  { key: 'thankYou', english: 'Thank you' },
-  { key: 'mother', english: 'Mother' },
-  { key: 'father', english: 'Father' },
-  { key: 'friend', english: 'Friend' },
-  { key: 'brother', english: 'Brother' },
-  { key: 'sister', english: 'Sister' },
-  { key: 'water', english: 'Water' },
-  { key: 'bread', english: 'Bread' },
-  { key: 'book', english: 'Book' },
-  { key: 'one', english: 'One' },
-  { key: 'two', english: 'Two' },
-  { key: 'three', english: 'Three' },
-  { key: 'red', english: 'Red' },
-  { key: 'blue', english: 'Blue' },
-  { key: 'green', english: 'Green' },
-  { key: 'sun', english: 'Sun' },
-  { key: 'rain', english: 'Rain' },
-  { key: 'wind', english: 'Wind' },
-];
+
+
+const TIER1_CATEGORY_VOCAB: Record<number, { key: keyof LangVocab; english: string }[]> = {
+  0: [
+    { key: 'hello', english: 'Hello' },
+    { key: 'goodbye', english: 'Goodbye' },
+    { key: 'sun', english: 'Sun' },
+    { key: 'rain', english: 'Rain' },
+    { key: 'wind', english: 'Wind' }
+  ],
+  1: [
+    { key: 'please', english: 'Please' },
+    { key: 'thankYou', english: 'Thank you' },
+    { key: 'hello', english: 'Hello' },
+    { key: 'goodbye', english: 'Goodbye' }
+  ],
+  2: [
+    { key: 'mother', english: 'Mother' },
+    { key: 'father', english: 'Father' },
+    { key: 'friend', english: 'Friend' },
+    { key: 'brother', english: 'Brother' },
+    { key: 'sister', english: 'Sister' }
+  ],
+  3: [
+    { key: 'water', english: 'Water' },
+    { key: 'bread', english: 'Bread' },
+    { key: 'please', english: 'Please' },
+    { key: 'thankYou', english: 'Thank you' }
+  ],
+  4: [
+    { key: 'book', english: 'Book' },
+    { key: 'please', english: 'Please' },
+    { key: 'thankYou', english: 'Thank you' },
+    { key: 'friend', english: 'Friend' }
+  ],
+  5: [
+    { key: 'one', english: 'One' },
+    { key: 'two', english: 'Two' },
+    { key: 'three', english: 'Three' },
+    { key: 'book', english: 'Book' }
+  ],
+  6: [
+    { key: 'red', english: 'Red' },
+    { key: 'blue', english: 'Blue' },
+    { key: 'green', english: 'Green' },
+    { key: 'sun', english: 'Sun' }
+  ]
+};
 
 function shuffleOptions(options: string[]): string[] {
   const arr = [...options];
@@ -175,13 +200,14 @@ function shuffleOptions(options: string[]): string[] {
 
 export function generateQuestionsForLesson(lang: Language, tier: number, lessonIndex: number, vocab: LangVocab): Question[] {
   const langName = lang.name;
-  const categoryIndex = (lessonIndex - 1) % 7;
-  const sectionIndex = Math.floor((lessonIndex - 1) / 7);
+  const categoryIndex = Math.floor((lessonIndex - 1) / 7) % 7;
+  const subLessonIndex = (lessonIndex - 1) % 7;
 
   if (tier === 1) {
+    const vocabList = TIER1_CATEGORY_VOCAB[categoryIndex] || TIER1_CATEGORY_VOCAB[0];
     const getTier1Phrase = (offset: number) => {
-      const idx = (categoryIndex * 3 + sectionIndex * 2 + offset) % TIER1_VOCAB_ITEMS.length;
-      const item = TIER1_VOCAB_ITEMS[idx];
+      const idx = (subLessonIndex * 2 + offset) % vocabList.length;
+      const item = vocabList[idx];
       return {
         target: vocab[item.key] || item.english,
         source: item.english
@@ -208,8 +234,8 @@ export function generateQuestionsForLesson(lang: Language, tier: number, lessonI
   } else if (tier === 2) {
     const keys = Object.keys(INTERMEDIATE_VOCAB);
     
-    const getPhrase = (keyIndex: number) => {
-      const k = keys[(keyIndex + sectionIndex * 2) % keys.length];
+    const getPhrase = (offset: number) => {
+      const k = keys[(categoryIndex + subLessonIndex * 2 + offset) % keys.length];
       const item = INTERMEDIATE_VOCAB[k];
       return {
         key: k,
@@ -218,11 +244,11 @@ export function generateQuestionsForLesson(lang: Language, tier: number, lessonI
       };
     };
 
-    const p0 = getPhrase(categoryIndex);
-    const p1 = getPhrase(categoryIndex + 1);
-    const p2 = getPhrase(categoryIndex + 2);
-    const p3 = getPhrase(categoryIndex + 3);
-    const p4 = getPhrase(categoryIndex + 4);
+    const p0 = getPhrase(0);
+    const p1 = getPhrase(1);
+    const p2 = getPhrase(2);
+    const p3 = getPhrase(3);
+    const p4 = getPhrase(4);
 
     return [
       { id: `q_${lang.id}_2_${lessonIndex}_1`, type: 'multiple-choice', prompt: `How do you say "${p0.source}" in ${langName}?`, options: shuffleOptions([p0.target, p1.target, p2.target, p3.target]), correctAnswer: p0.target },
@@ -239,8 +265,8 @@ export function generateQuestionsForLesson(lang: Language, tier: number, lessonI
   } else {
     const keys = Object.keys(ADVANCED_VOCAB);
     
-    const getPhrase = (keyIndex: number) => {
-      const k = keys[(keyIndex + sectionIndex * 2) % keys.length];
+    const getPhrase = (offset: number) => {
+      const k = keys[(categoryIndex + subLessonIndex * 2 + offset) % keys.length];
       const item = ADVANCED_VOCAB[k];
       return {
         key: k,
@@ -249,11 +275,11 @@ export function generateQuestionsForLesson(lang: Language, tier: number, lessonI
       };
     };
 
-    const p0 = getPhrase(categoryIndex);
-    const p1 = getPhrase(categoryIndex + 1);
-    const p2 = getPhrase(categoryIndex + 2);
-    const p3 = getPhrase(categoryIndex + 3);
-    const p4 = getPhrase(categoryIndex + 4);
+    const p0 = getPhrase(0);
+    const p1 = getPhrase(1);
+    const p2 = getPhrase(2);
+    const p3 = getPhrase(3);
+    const p4 = getPhrase(4);
 
     return [
       { id: `q_${lang.id}_3_${lessonIndex}_1`, type: 'multiple-choice', prompt: `How do you say "${p0.source}" in ${langName}?`, options: shuffleOptions([p0.target, p1.target, p2.target, p3.target]), correctAnswer: p0.target },
@@ -291,7 +317,7 @@ export async function seedDatabase(force = false): Promise<{ success: boolean; m
         if (checkSnap.exists()) {
           const lData = checkSnap.data();
           const firstQ = lData?.questions?.[0];
-          if ((firstQ && firstQ.prompt && firstQ.prompt.includes('"Hello"')) || !lData?.version || lData.version < 3) {
+          if ((firstQ && firstQ.prompt && firstQ.prompt.includes('"Hello"')) || !lData?.version || lData.version < 4) {
             console.log('Old database seed detected. Forcing database upgrade...');
             shouldSeed = true;
           }
@@ -344,20 +370,20 @@ export async function seedDatabase(force = false): Promise<{ success: boolean; m
         // 3. Generate 35 distinct lessons per course
         for (let lessonIndex = 1; lessonIndex <= 35; lessonIndex++) {
           let lessonTitle = '';
-          const categoryIndex = (lessonIndex - 1) % 7;
+          const categoryIndex = Math.floor((lessonIndex - 1) / 7) % 7;
           
           if (course.tier === 1) {
             const titles = ['Greetings & Basics', 'Polite Expressions', 'Everyday Communication', 'Food & Everyday Items', 'Books & Study Items', 'Numbers Course', 'Colors Course'];
             const activeTitle = titles[categoryIndex] || 'Basics Lesson';
-            lessonTitle = `${activeTitle} #${Math.ceil(lessonIndex / 7)}`;
+            lessonTitle = `${activeTitle} #${(lessonIndex - 1) % 7 + 1}`;
           } else if (course.tier === 2) {
             const titles = ['Family & Friends', 'Parents & Relatives', 'Social Conversations', 'Parents & Bread/Water', 'Books & Relatives', 'Numbers & Friends', 'Colors & Home'];
             const activeTitle = titles[categoryIndex] || 'Intermediate Lesson';
-            lessonTitle = `${activeTitle} #${Math.ceil(lessonIndex / 7)}`;
+            lessonTitle = `${activeTitle} #${(lessonIndex - 1) % 7 + 1}`;
           } else {
             const titles = ['Professional Discussions', 'Complex Dialogues', 'Advanced Translation', 'Advanced Water & Bread', 'Advanced Book & Study', 'Advanced Review A', 'Advanced Review B'];
             const activeTitle = titles[categoryIndex] || 'Advanced Lesson';
-            lessonTitle = `${activeTitle} #${Math.ceil(lessonIndex / 7)}`;
+            lessonTitle = `${activeTitle} #${(lessonIndex - 1) % 7 + 1}`;
           }
 
           const questions = generateQuestionsForLesson(lang, course.tier, lessonIndex, vocab);
@@ -369,7 +395,7 @@ export async function seedDatabase(force = false): Promise<{ success: boolean; m
             title: lessonTitle,
             xpReward: course.tier * 10 + 10,
             questions,
-            version: 3
+            version: 4
           };
 
           const lRef = doc(db, 'lessons', lesson.id);
