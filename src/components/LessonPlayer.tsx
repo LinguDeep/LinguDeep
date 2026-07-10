@@ -1,46 +1,71 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { Lesson, Question } from '../services/db';
-import { LANGUAGE_VOCABULARY, generateQuestionsForLesson } from '../services/dbInitializer';
+import { LANGUAGE_VOCABULARY, generateQuestionsForLesson, INTERMEDIATE_VOCAB, ADVANCED_VOCAB } from '../services/dbInitializer';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { X, Heart, ShieldAlert, CheckCircle2, Award, Coins, Flame } from 'lucide-react';
 import { localizePrompt, getTranslation } from '../services/i18n';
 import { audioEffects } from '../services/audio';
 
-const VOCAB_MAP: Record<string, Record<string, string>> = {
-  'hello': { en: 'Hello', tr: 'Merhaba', es: 'Hola', fr: 'Bonjour', de: 'Hallo', ja: 'こんにちは', it: 'Ciao', zh: '你好', pt: 'Olá', ru: 'Привет', ko: '안녕하세요' },
-  'goodbye': { en: 'Goodbye', tr: 'Hoşça kal', es: 'Adiós', fr: 'Au revoir', de: 'Tschüss', ja: 'さようなら', it: 'Arrivederci', zh: '再见', pt: 'Adeus', ru: 'До свидания', ko: '안녕' },
-  'please': { en: 'Please', tr: 'Lütfen', es: 'Por favor', fr: 'S\'il vous plaît', de: 'Bitte', ja: 'お願いします', it: 'Per favor', zh: '请', pt: 'Por favor', ru: 'Пожалуйста', ko: '부탁합니다' },
-  'thank you': { en: 'Thank you', tr: 'Teşekkürler', es: 'Gracias', fr: 'Merci', de: 'Danke', ja: 'ありがとう', it: 'Grazie', zh: '谢谢', pt: 'Obrigado', ru: 'Спасибо', ko: '감사합니다' },
-  'friend': { en: 'Friend', tr: 'Arkadaş', es: 'El amigo', fr: 'L\'ami', de: 'Der Freund', ja: '友達', it: 'L\'amico', zh: '朋友', pt: 'O amigo', ru: 'Друг', ko: '친구' },
-  'mother': { en: 'Mother', tr: 'Anne', es: 'La madre', fr: 'La mère', de: 'Die Mutter', ja: '母', it: 'La madre', zh: '母亲', pt: 'A mãe', ru: 'Мать', ko: '어머니' },
-  'father': { en: 'Father', tr: 'Baba', es: 'El padre', fr: 'Le père', de: 'Der Vater', ja: '父', it: 'Il padre', zh: '父亲', pt: 'O pai', ru: 'Отец', ko: '아버지' },
-  'brother': { en: 'Brother', tr: 'Erkek kardeş', es: 'El hermano', fr: 'Le frère', de: 'Der Bruder', ja: '兄', it: 'Il fratello', zh: '兄弟', pt: 'O irmão', ru: 'Брат', ko: '형제' },
-  'sister': { en: 'Sister', tr: 'Kız kardeş', es: 'La hermana', fr: 'La sœur', de: 'Die Schwester', ja: '姉', it: 'La sorella', zh: '자매', pt: 'A irmã', ru: 'Сестра', ko: '자매' },
-  'water': { en: 'Water', tr: 'Su', es: 'El agua', fr: 'L\'eau', de: 'Das Wasser', ja: '水', it: 'L\'acqua', zh: '水', pt: 'A água', ru: 'Вода', ko: '물' },
-  'bread': { en: 'Bread', tr: 'Ekmek', es: 'El pan', fr: 'Le pain', de: 'Das Brot', ja: 'パン', it: 'Il pane', zh: '面包', pt: 'O pão', ru: 'Хлеб', ko: '빵' },
-  'book': { en: 'Book', tr: 'Kitap', es: 'El libro', fr: 'Le livre', de: 'Das Buch', ja: '本', it: 'Il libro', zh: '书', pt: 'O livro', ru: 'Книга', ko: '책' },
-  'one': { en: 'One', tr: 'Bir', es: 'Uno', fr: 'Un', de: 'Eins', ja: '一', it: 'Uno', zh: '一', pt: 'Um', ru: 'Один', ko: '일' },
-  'two': { en: 'Two', tr: 'İki', es: 'Dos', fr: 'Deux', de: 'Zwei', ja: '二', it: 'Due', zh: '二', pt: 'Dois', ru: 'Два', ko: '이' },
-  'three': { en: 'Three', tr: 'Üç', es: 'Tres', fr: 'Trois', de: 'Drei', ja: '三', it: 'Tre', zh: '三', pt: 'Três', ru: 'Tri', ko: '삼' },
-  'red': { en: 'Red', tr: 'Kırmızı', es: 'Rojo', fr: 'Rouge', de: 'Rot', ja: '赤', it: 'Rosso', zh: '红', pt: 'Vermelho', ru: 'Красный', ko: '빨간색' },
-  'blue': { en: 'Blue', tr: 'Mavi', es: 'Azul', fr: 'Bleu', de: 'Blau', ja: '青', it: 'Blu', zh: '蓝', pt: 'Azul', ru: 'Синий', ko: '파aran색' },
-  'green': { en: 'Green', tr: 'Yeşil', es: 'Verde', fr: 'Vert', de: 'Grün', ja: '緑', it: 'Verde', zh: '绿', pt: 'Verde', ru: 'Зеленый', ko: '초록색' },
-  'sun': { en: 'Sun', tr: 'Güneş', es: 'El sol', fill: 'sol', fr: 'Le soleil', de: 'Die Sonne', ja: '太陽', it: 'Il sole', zh: '太阳', pt: 'O sol', ru: 'Солнце', ko: '태양' },
-  'rain': { en: 'Rain', tr: 'Yağmur', es: 'La lluvia', fr: 'La pluie', de: 'Der Regen', ja: '雨', it: 'La pioggia', zh: '雨', pt: 'A chuva', ru: 'Дождь', ko: '비' },
-  'wind': { en: 'Wind', tr: 'Rüzgar', es: 'El viento', fr: 'Le vent', de: 'Der Wind', ja: '風', it: 'Il vento', zh: '风', pt: 'O vento', ru: 'Ветер', ko: '바람' },
-  'where is the station': { en: "Where is the station?", tr: "İstasyon nerede?", es: "¿Dónde está la estación?", fr: "Où est la gare ?", de: "Wo ist der Bahnhof?", it: "Dov'è la stazione?", pt: "Onde fica a estação?", ru: "Где находится станция?", zh: "车站在哪里？", ja: "駅はどこですか？", ko: "역이 어디인가요?", ar: "أين المحطة؟", nl: "Waar is het station?", sv: "Var ligger stationen?", hi: "स्टेशन कहाँ है?" },
-  'how much is this': { en: "How much is this?", tr: "Bu ne kadar?", es: "¿Cuánto cuesta esto?", fr: "Combien ça coûte ?", de: "Wie viel kostet das?", it: "Quanto costa questo?", pt: "Quanto custa isto?", ru: "Сколько это стоит?", zh: "这个多少钱？", ja: "これはいくらですか？", ko: "이것은 얼마인가요?", ar: "بكم هذا؟", nl: "Hoeveel kost dit?", sv: "Hur mycket kostar den här?", hi: "यह कितने का है?" },
-  'i love my family': { en: "I love my family.", tr: "Ailemi seviyorum.", es: "Amo a mi familia.", fr: "J'aime ma famille.", de: "Ich liebe meine Familie.", it: "Amo la mia famiglia.", pt: "Eu amo a minha família.", ru: "Я люблю свою семью.", zh: "我爱我的家庭。", ja: "家族を愛しています。", ko: "가족을 사랑합니다.", ar: "أنا أحب عائلتي.", nl: "Ik hou van mijn familie.", sv: "Jag älskar min familj.", hi: "मैं अपने परिवार से प्यार करता हूँ।" },
-  'what is your name': { en: "What is your name?", tr: "Adınız nedir?", es: "¿Cómo te llamas?", fr: "Comment vous appelez-vous ?", de: "Wie heißen Sie?", it: "Come ti chiami?", pt: "Qual é o seu nome?", ru: "Как вас зовут?", zh: "你叫什么名字？", ja: "お名前は何ですか？", ko: "이름이 무엇인가요?", ar: "ما اسمك؟", nl: "Wat is je naam?", sv: "Vad heter du?", hi: "आपका नाम क्या है?" },
-  'i speak some english': { en: "I speak some English.", tr: "Biraz İngilizce konuşuyorum.", es: "Hablo un poco de inglés.", fr: "Je parle un peu anglais.", de: "Ich spreche ein wenig Englisch.", it: "Parlo un po' di inglese.", pt: "Eu falo um pouco de inglês.", ru: "Я немного говорю по-английски.", zh: "我会说一点英语。", ja: "英語が少し話せます。", ko: "영어를 조금 할 줄 압니다.", ar: "أتحدث القليل من الإنجليزية.", nl: "Ik spreek een beetje Engels.", sv: "Jag talar lite engelska.", hi: "मैं थोड़ी अंग्रेजी बोलता हूँ।" },
-  'if i had money, i would travel': { en: "If I had money, I would travel.", tr: "Param olsaydı seyahat ederdim.", es: "Si tuviera dinero, viajaría.", fr: "Si j'avais de l'argent, je voyagerais.", de: "Wenn ich Geld hätte, würde ich reisen.", it: "Se avessi soldi, viaggerei.", pt: "Se eu tivesse dinheiro, viajaria.", ru: "Если бы у меня были деньги, я бы путешествовал.", zh: "如果我有钱，我就会去旅行。", ja: "お金があれば旅行するのに。", ko: "돈이 있다면 여행을 갈 텐데요.", ar: "لو كان لدي مال لسافرت.", nl: "Als ik geld had, zou ik reizen.", sv: "Om jag hade pengar skulle jag resa.", hi: "अगर मेरे पास पैसे होते, तो я यात्रा करता।" },
-  'please explain this to me': { en: "Please explain this to me.", tr: "Lütfen bunu bana açıklayın.", es: "Por favor explécame esto.", fr: "S'il vous plaît expliquez-moi cela.", de: "Bitte erklären Sie mir das.", it: "Per favore spiegami questo.", pt: "Por favor, explique-me isto.", ru: "Пожалуйста, объясните мне это.", zh: "请向我解释一下这个。", ja: "これを説明してください。", ko: "이것을 설명해 주세요.", ar: "يرجى شرح هذا لي.", nl: "Leg dit me alstublieft uit.", sv: "Förklara detta för mig, tack.", hi: "कृपया मुझे यह समझाएं।" },
-  'actions speak louder than words': { en: "Actions speak louder than words.", tr: "Lafla peynir gemisi yürümez.", es: "Las palabras se las lleva el viento.", fr: "Les actes parlent plus que les mots.", de: "Taten sagen mehr als Worte.", it: "Le azioni contano più delle parole.", pt: "Ações valem mais que palavras.", ru: "Дела говорят громче слов.", zh: "事实胜于雄辩。", ja: "論より証拠。", ko: "말보다 행동이 중요하다.", ar: "الأفعال أبلغ من الأقوال.", nl: "Geen woorden maar daden.", sv: "Handlingar talar högre än ord.", hi: "कथनी से करनी भली।" },
-  'it is raining heavily today': { en: "It is raining heavily today.", tr: "Bugün çok şiddetli yağmur yağıyor.", es: "Hoy está lloviendo fuertemente.", fr: "Il pleut à verse aujourd'hui.", de: "Heute regnet es in Strömen.", it: "Oggi sta piovendo forte.", pt: "Hoje está chovendo muito.", ru: "Сегодня идет сильный дождь.", zh: "今天雨下得很大。", ja: "今日は大雨 gが降っています。", ko: "오늘 비가 많이 내립니다.", ar: "إنها تمطر بغزارة اليوم.", nl: "Het regent hard vandaag.", sv: "Det regnar kraftigt idag.", hi: "आज बहुत तेज बारिश ho रही है।" },
-  'i look forward to meeting you': { en: "I look forward to meeting you.", tr: "Sizinle tanışmayı dört gözle bekliyorum.", es: "Espero conocerte pronto.", fr: "J'ai hâte de vous rencontrer.", de: "Ich freue mich darauf, Sie kennenzulernen.", it: "Non vedo l'ora di conoscerti.", pt: "Estou ansioso para conhecer você.", ru: "Я с нетерпением жду встречи с вами.", zh: "我期待与您见面。", ja: "お会いできるのを楽しみにしています。", ko: "만나 뵙기를 기대합니다.", ar: "أتطلع للقائك.", nl: "Ik verheug me erop u te ontmoeten.", sv: "Jag ser fram emot att träffa dig.", hi: "मुझे आपसे मिलने का इंतजार है।" },
+const buildVocabMap = (): Record<string, Record<string, string>> => {
+  const map: Record<string, Record<string, string>> = {};
+  const languages = Object.keys(LANGUAGE_VOCABULARY);
+  const enBase = LANGUAGE_VOCABULARY.en || {};
+  
+  for (const lang of languages) {
+    const vocab = LANGUAGE_VOCABULARY[lang];
+    if (vocab) {
+      for (const key of Object.keys(vocab) as (keyof typeof vocab)[]) {
+        const enVal = enBase[key];
+        const langVal = vocab[key];
+        if (enVal && langVal) {
+          const cleanEn = enVal.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g, "").trim();
+          if (!map[cleanEn]) {
+            map[cleanEn] = {};
+          }
+          map[cleanEn][lang] = langVal;
+        }
+      }
+    }
+  }
+  
+  for (const langMap of Object.values(INTERMEDIATE_VOCAB)) {
+    const enVal = langMap.en;
+    if (enVal) {
+      const cleanEn = enVal.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g, "").trim();
+      if (!map[cleanEn]) {
+        map[cleanEn] = {};
+      }
+      for (const lang of languages) {
+        const langVal = langMap[lang] || langMap.en;
+        if (langVal) {
+          map[cleanEn][lang] = langVal;
+        }
+      }
+    }
+  }
+  
+  for (const langMap of Object.values(ADVANCED_VOCAB)) {
+    const enVal = langMap.en;
+    if (enVal) {
+      const cleanEn = enVal.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g, "").trim();
+      if (!map[cleanEn]) {
+        map[cleanEn] = {};
+      }
+      for (const lang of languages) {
+        const langVal = langMap[lang] || langMap.en;
+        if (langVal) {
+          map[cleanEn][lang] = langVal;
+        }
+      }
+    }
+  }
+  
+  return map;
 };
+
+const VOCAB_MAP = buildVocabMap();
 
 const englishLowerCase = (str: string): string => {
   return str
@@ -549,10 +574,10 @@ const LessonPlayer: React.FC<LessonPlayerProps> = ({
 
       {/* Question Main Panel */}
       <div className="flex-1 w-full max-w-2xl mx-auto flex flex-col justify-center my-2 overflow-y-auto">
-        <span className={`text-xs font-bold uppercase tracking-widest mb-1 block ${
+        <span className={`text-xs font-bold tracking-widest mb-1 block ${
           theme === 'dark' ? 'text-slate-500' : 'text-slate-400'
         }`}>
-          {currentQuestion.type === 'tap-pairs' ? 'Matching Pairs' : 'Question Prompt'}
+          {currentQuestion.type === 'tap-pairs' ? 'MATCHING PAIRS' : 'QUESTION PROMPT'}
         </span>
         <h3 className={`text-xl md:text-2xl font-outfit font-extrabold mb-6 leading-snug ${
           theme === 'dark' ? 'text-white' : 'text-slate-950'
