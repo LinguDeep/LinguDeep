@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { getBadges, Badge, updateUserProfile } from '../services/db';
+import { getBadges, Badge } from '../services/db';
 import { seedDatabase } from '../services/dbInitializer';
 import { clearFirebaseConfig } from '../firebase';
 import { getTranslation } from '../services/i18n';
@@ -10,23 +10,11 @@ import {
 } from 'lucide-react';
 
 const Profile: React.FC = () => {
-  const { user, userProfile, refreshProfile, logout, interfaceLang, theme } = useAuth();
+  const { userProfile, logout, interfaceLang, theme } = useAuth();
   const [badges, setBadges] = useState<Badge[]>([]);
   const [loadingBadges, setLoadingBadges] = useState(true);
   const [seeding, setSeeding] = useState(false);
   const [seedMsg, setSeedMsg] = useState('');
-
-  const handleToggleAdmin = async () => {
-    if (!user || !userProfile) return;
-    try {
-      const newAdminStatus = !userProfile.isAdmin;
-      await updateUserProfile(user.uid, { isAdmin: newAdminStatus });
-      await refreshProfile();
-      setSeedMsg(`Admin status successfully ${newAdminStatus ? 'granted' : 'revoked'}!`);
-    } catch (e) {
-      setSeedMsg(`Error updating admin status: ${(e as Error).message}`);
-    }
-  };
 
   useEffect(() => {
     const fetchBadges = async () => {
@@ -291,31 +279,6 @@ const Profile: React.FC = () => {
           >
             {seeding ? <Loader className="w-4 h-4 animate-spin" /> : <RefreshCw className="w-4 h-4" />}
             <span>{getTranslation('syncSeed', interfaceLang)}</span>
-          </button>
-        </div>
-        <div className={`border-t pt-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 ${
-          theme === 'dark' ? 'border-slate-800' : 'border-slate-200'
-        }`}>
-          <div className="space-y-1">
-            <h4 className="font-outfit font-black text-sm flex items-center gap-2">
-              <ShieldAlert className="w-4 h-4 text-amber-500" />
-              <span>Admin Privileges</span>
-            </h4>
-            <p className={`text-xs font-semibold leading-relaxed max-w-sm ${
-              theme === 'dark' ? 'text-slate-400' : 'text-slate-500'
-            }`}>
-              Toggle administrator permissions on your account to enable user deletion on the leaderboard.
-            </p>
-          </div>
-          <button
-            onClick={handleToggleAdmin}
-            className={`px-4 py-2.5 border-b-4 rounded-xl text-xs font-outfit font-black text-white shrink-0 flex items-center gap-2 ${
-              userProfile?.isAdmin
-                ? 'bg-rose-600 border-rose-800 hover:bg-rose-500 active:border-b-0 active:translate-y-[2px]'
-                : 'bg-indigo-650 border-indigo-850 hover:bg-indigo-505 active:border-b-0 active:translate-y-[2px]'
-            }`}
-          >
-            <span>{userProfile?.isAdmin ? 'Revoke Admin' : 'Grant Admin'}</span>
           </button>
         </div>
 
