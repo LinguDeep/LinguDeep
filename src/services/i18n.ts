@@ -119,6 +119,7 @@ export interface TranslationDictionary {
   noLessonsDesc?: string;
   requires?: string;
   streak?: string;
+  days?: string;
   resetConnection?: string;
   syncSeed?: string;
   feature1Title?: string;
@@ -253,6 +254,7 @@ export const TRANSLATIONS: Record<InterfaceLang, TranslationDictionary> = {
     noLessonsDesc: 'Seed the database or switch tiers.',
     requires: 'Requires: ',
     streak: 'Streak',
+    days: 'days',
     resetConnection: 'Reset Connection',
     syncSeed: 'Sync Seed',
     dbEmpty: 'Database is Empty',
@@ -385,6 +387,7 @@ export const TRANSLATIONS: Record<InterfaceLang, TranslationDictionary> = {
     noLessonsDesc: 'Veritabanını tohumlayın veya seviye değiştirin.',
     requires: 'Gereksinim: ',
     streak: 'Seri',
+    days: 'gün',
     resetConnection: 'Bağlantıyı Sıfırla',
     syncSeed: 'Verileri Eşitle',
     dbEmpty: 'Veritabanı Boş',
@@ -517,6 +520,7 @@ export const TRANSLATIONS: Record<InterfaceLang, TranslationDictionary> = {
     noLessonsDesc: 'Siembre la base de datos o cambie de nivel.',
     requires: 'Requiere: ',
     streak: 'Racha',
+    days: 'días',
     resetConnection: 'Restablecer Conexión',
     syncSeed: 'Sincronizar Datos',
     dbEmpty: 'La base de datos está vacía',
@@ -649,6 +653,7 @@ export const TRANSLATIONS: Record<InterfaceLang, TranslationDictionary> = {
     noLessonsDesc: 'Initialisez la base de données ou changez de niveau.',
     requires: 'Requiert : ',
     streak: 'Série',
+    days: 'jours',
     resetConnection: 'Réinitialiser la Connexion',
     syncSeed: 'Synchroniser les Données',
     dbEmpty: 'La base de données est vide',
@@ -781,6 +786,7 @@ export const TRANSLATIONS: Record<InterfaceLang, TranslationDictionary> = {
     noLessonsDesc: 'Datenbank initialisieren oder Stufe wechseln.',
     requires: 'Benötigt: ',
     streak: 'Streak',
+    days: 'Tage',
     resetConnection: 'Verbindung Zurücksetzen',
     syncSeed: 'Daten Synchronisieren',
     dbEmpty: 'Datenbank ist leer',
@@ -913,6 +919,7 @@ export const TRANSLATIONS: Record<InterfaceLang, TranslationDictionary> = {
     noLessonsDesc: 'Semeie o banco de dados ou mude de nível.',
     requires: 'Requer: ',
     streak: 'Ofensiva',
+    days: 'dias',
     resetConnection: 'Redefinir Conexão',
     syncSeed: 'Sincronizar Dados',
     dbEmpty: 'Banco de dados está vazio',
@@ -1045,6 +1052,7 @@ export const TRANSLATIONS: Record<InterfaceLang, TranslationDictionary> = {
     noLessonsDesc: 'Inizializza il database o cambia livello.',
     requires: 'Richiede: ',
     streak: 'Slancio',
+    days: 'giorni',
     resetConnection: 'Ripristina Connessione',
     syncSeed: 'Sincronizza Dati',
     dbEmpty: 'Il database è vuoto',
@@ -1177,6 +1185,7 @@ export const TRANSLATIONS: Record<InterfaceLang, TranslationDictionary> = {
     noLessonsDesc: 'Заполните базу данных или смените уровень.',
     requires: 'Требуется: ',
     streak: 'Серия',
+    days: 'дней',
     resetConnection: 'Сбросить соединение',
     syncSeed: 'Синхронизировать данные',
     dbEmpty: 'База данных пуста',
@@ -1309,6 +1318,7 @@ export const TRANSLATIONS: Record<InterfaceLang, TranslationDictionary> = {
     noLessonsDesc: '填充数据库或切换阶段。',
     requires: '要求：',
     streak: '连击',
+    days: '天',
     resetConnection: '重置连接',
     syncSeed: '同步数据',
     dbEmpty: '数据库为空',
@@ -1441,6 +1451,7 @@ export const TRANSLATIONS: Record<InterfaceLang, TranslationDictionary> = {
     noLessonsDesc: 'データベースにシードを追加するか、ステージを切り替えてください。',
     requires: '必要条件：',
     streak: '継続日数',
+    days: '日',
     resetConnection: '接続のリセット',
     syncSeed: 'データを同期',
     dbEmpty: 'データベースが空です',
@@ -1573,6 +1584,7 @@ export const TRANSLATIONS: Record<InterfaceLang, TranslationDictionary> = {
     noLessonsDesc: '데이터베이스 시드를 생성하거나 단계를 전환하세요.',
     requires: '필요 조건: ',
     streak: '연속',
+    days: '일',
     resetConnection: '연결 초기화',
     syncSeed: '데이터 동기화',
     dbEmpty: '데이터베이스가 비어 있습니다',

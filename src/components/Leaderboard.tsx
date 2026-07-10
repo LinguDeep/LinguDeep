@@ -136,7 +136,7 @@ const Leaderboard: React.FC = () => {
                       <div className={`text-[10px] font-bold ${
                         theme === 'dark' ? 'text-slate-500' : 'text-slate-400'
                       }`}>
-                        Streak: {leader.streak || 0} days
+                        {getTranslation('streak', interfaceLang)}: {leader.streak || 0} {getTranslation('days', interfaceLang)}
                       </div>
                     </div>
                   </div>
