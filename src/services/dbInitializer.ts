@@ -189,6 +189,14 @@ const SAMPLE_BADGES: Badge[] = [
 ];
 
 export const INTERMEDIATE_VOCAB: Record<string, Record<string, string>> = {
+  drink_milk: { en: "I drink milk.", tr: "Süt içerim.", es: "Bebo leche.", fr: "Je bois du lait.", de: "Ich trinke Milch.", ja: "私は牛乳を飲みます。", it: "Bevo latte.", zh: "我喝牛奶。", ru: "Я пью молоко.", pt: "Eu bebo leite.", ko: "저는 우유를 마십니다.", ar: "أنا أشرب الحليب.", nl: "Ik drink melk.", sv: "Jag dricker mjölk.", hi: "मैं दूध पीता हूँ。" },
+  eat_apple: { en: "I eat an apple.", tr: "Elma yerim.", es: "Como una manzana.", fr: "Je mange une pomme.", de: "Ich esse einen Apfel.", ja: "私はリンゴを食べます。", it: "Mangio una mela.", zh: "我吃苹果。", ru: "Я ем яبلوко.", pt: "Eu como uma maçã.", ko: "저는 사과를 먹습니다.", ar: "أنا آكل تفاحة.", nl: "Ik eet een appel.", sv: "Jag äter ett äpple.", hi: "मैं एक सेब खाता हूँ。" },
+  drink_tea: { en: "I drink tea.", tr: "Çay içerim.", es: "Bebo té.", fr: "Je bois du thé.", de: "Ich trinke Tee.", ja: "私はお茶を飲みます。", it: "Bevo tè.", zh: "我喝茶。", ru: "Я пью чай.", pt: "Eu bebo chá.", ko: "저는 차를 마십니다.", ar: "أنا أشرب الشاي.", nl: "Ik drink thee.", sv: "Jag dricker te.", hi: "मैं चाय पीता हूँ।" },
+  write_paper: { en: "I write on paper.", tr: "Kağıda yazarım.", es: "Escribo en papel.", fr: "J'écris sur du papier.", de: "Ich schreibe auf Papier.", ja: "私は紙に書きます。", it: "Scrivo su carta.", zh: "我在纸上写字。", ru: "Я пишу на бумаге.", pt: "Eu escrevo no papel.", ko: "종이에 글을 씁니다.", ar: "أكتب على الورق.", nl: "Ik schrijf op papier.", sv: "Jag skriver på papper.", hi: "मैं कागज पर लिखता हूँ।" },
+  use_pen: { en: "I use a pen.", tr: "Kalem kullanırım.", es: "Uso un bolígrafo.", fr: "J'utilise un stylo.", de: "Ich benutze einen Stift.", ja: "私はペンを使います。", it: "Uso una penna.", zh: "我用一支笔。", ru: "Я использую ручку.", pt: "Eu uso uma caneta.", ko: "저는 펜을 사용합니다.", ar: "أستخدم قلماً.", nl: "Ik gebruik een pen.", sv: "Jag använder en penna.", hi: "मैं एक पेन का उपयोग करता हूँ।" },
+  count_three_four: { en: "I count three and four.", tr: "Üç ve dört diye sayarım.", es: "Cuento tres y cuatro.", fr: "Je compte trois et quatre.", de: "Ich zähle drei und vier.", ja: "三と四を数えます。", it: "Conto tre e quattro.", zh: "我数三和四。", ru: "Я считаю три и четыре.", pt: "Eu conto três e quatro.", ko: "삼과 사를 셉니다.", ar: "أنا أعد ثلاثة وأربعة.", nl: "Ik tel drie en vier.", sv: "Jag räknar tre och fyra.", hi: "मैं तीन और चार गिनता हूँ।" },
+  count_to_five: { en: "I count to five.", tr: "Beşe kadar sayarım.", es: "Cuento hasta cinco.", fr: "Je compte jusqu'à cinq.", de: "Ich zähle bis fünf.", ja: "五まで数えます。", it: "Conto fino a cinque.", zh: "我数到五。", ru: "Я считаю до пяти.", pt: "Eu conto até cinco.", ko: "다섯까지 셉니다.", ar: "أنا أعد إلى خمسة.", nl: "Ik tel tot vyf.", sv: "Jag räknar till fem.", hi: "मैं पाँच तक गिनता हूँ।" },
+  weather_nice: { en: "The weather is nice.", tr: "Hava güzel.", es: "El clima está agradable.", fr: "Le temps est beau.", de: "Das Wetter ist schön.", ja: "天気が良いです。", it: "Il tempo è bello.", zh: "天气很好。", ru: "Погода хорошая.", pt: "O tempo está bom.", ko: "날씨가 좋습니다.", ar: "الطقس جميل.", nl: "Het weer is mooi.", sv: "Vädret är fint.", hi: "मौसम अच्छा है।" },
   station: { en: "Where is the station?", tr: "İstasyon nerede?", es: "¿Dónde está la estación?", fr: "Où est la gare ?", de: "Wo ist der Bahnhof?", it: "Dov'è la stazione?", pt: "Onde fica a estação?", ru: "Где находится станция?", zh: "车站在哪里？", ja: "駅はどこですか？", ko: "역이 어디인가요?", ar: "أين المحطة؟", nl: "Waar is het station?", sv: "Var ligger stationen?", hi: "स्टेशन कहाँ है?" },
   cost: { en: "How much is this?", tr: "Bu ne kadar?", es: "¿Cuánto cuesta esto?", fr: "Combien ça coûte ?", de: "Wie viel kostet das?", it: "Quanto costa questo?", pt: "Quanto custa isto?", ru: "Сколько это стоит?", zh: "这个多少钱？", ja: "これはいくらですか？", ko: "이것은 얼마인가요?", ar: "بكم هذا؟", nl: "Hoeveel kost dit?", sv: "Hur mycket kostar den här?", hi: "यह कितने का है?" },
   family: { en: "I love my family.", tr: "Ailemi seviyorum.", es: "Amo a mi familia.", fr: "J'aime ma famille.", de: "Ich liebe meine Familie.", it: "Amo la mia famiglia.", pt: "Eu amo a minha família.", ru: "Я люблю свою семью.", zh: "我爱我的家庭。", ja: "家族を愛しています。", ko: "가족을 사랑합니다.", ar: "أنا أحب عائلتي.", nl: "Ik hou van mijn familie.", sv: "Jag älskar min familj.", hi: "मैं अपने pfरिवार से प्यार करता हूँ。" }, // tr: Ailemi seviyorum.
@@ -210,6 +218,11 @@ export const INTERMEDIATE_VOCAB: Record<string, Record<string, string>> = {
 };
 
 export const ADVANCED_VOCAB: Record<string, Record<string, string>> = {
+  favorite_dish: { en: "My favorite dish is delicious.", tr: "En sevdiğim yemek lezzetlidir.", es: "Mi plato favorito es delicioso.", fr: "Mon plat préféré est délicieux.", de: "Mein Lieblingsgericht ist lecker.", ja: "私の好物は美味しいです。", it: "Il mio piatto preferito è delizioso.", zh: "我最喜欢的菜很好吃。", ru: "Мое любимое блюдо вкусное.", pt: "O meu prato favorito é delicioso.", ko: "내가 가장 좋아하는 음식은 맛있습니다.", ar: "طبقي المفضل لذيذ.", nl: "Mijn favoriete gerecht is heerlijk.", sv: "Min favoriträtt är god.", hi: "मेरा पसंदीदा व्यंजन स्वादिष्ट है।" },
+  drink_hot_coffee: { en: "I drink hot coffee.", tr: "Sıcak kahve içerim.", es: "Bebo café caliente.", fr: "Je bois du café chaud.", de: "Ich trinke heißen Kaffee.", ja: "私は温かいコーヒーを飲みます。", it: "Bevo caffè caldo.", zh: "我喝热咖啡。", ru: "Я пью горячий кофе.", pt: "Eu bebo café quente.", ko: "저는 뜨거운 커피를 마십니다.", ar: "أنا أشرب القهوة الساخنة.", nl: "Ik drink hete koffie.", sv: "Jag dricker varmt kaffe.", hi: "मैं गर्म कॉफी पीता हूँ।" },
+  delicious_dinner: { en: "We had a delicious dinner.", tr: "Lezzetli bir akşam yemeği yedik.", es: "Tuvimos una cena deliciosa.", fr: "Nous avons eu un dîner délicieux.", de: "Wir hatten ein leckeres Abendessen.", ja: "私たちは美味しい夕食を食べました。", it: "Abbiamo fatto una cena deliziosa.", zh: "我们吃了一顿美味的晚餐。", ru: "У нас был вкусный ужин.", pt: "Tivemos um jantar delicioso.", ko: "우리는 맛있는 저녁 식사를 했습니다.", ar: "تناولنا عشاءً لذيذاً.", nl: "We hadden een heerlijk diner.", sv: "Vi åt en god middag.", hi: "हमने एक स्वादिष्ट रात्रिभوز किया।" },
+  write_essay: { en: "Students write academic essays.", tr: "Öğrenciler akademik makaleler yazar.", es: "Los estudiantes escriben ensayos académicos.", fr: "Les étudiants écrivent des dissertations académiques.", de: "Studenten schreiben akademische Aufsätze.", ja: "学生はアカデミックなエッセイを書きます。", it: "Gli studenti scrivono saggi accademici.", zh: "学生们写学术论文。", ru: "Студенты пишут академические эссе.", pt: "Os estudantes escrevem ensaios académicos.", ko: "학생들은 학술 에세이를 씁니다.", ar: "يكتب الطلاب مقالات أكاديمية.", nl: "Studenten schrijven essays.", sv: "Studenter skriver uppsatser.", hi: "छात्र शैक्षणिक निबंध लिखते हैं।" },
+  read_novel: { en: "I love reading novels.", tr: "Roman okumayı severim.", es: "Me encanta leer novelas.", fr: "J'adore lire des romans.", de: "Ich liebe es, Romane zu lesen.", ja: "私は小説を読むのが大好きです。", it: "Adoro leggere romanzi.", zh: "我喜欢读小说。", ru: "Я люблю читать романы.", pt: "Adoro ler romances.", ko: "저는 소설 읽는 것을 좋아합니다.", ar: "أحب قراءة الروايات.", nl: "Ik hou van romans.", sv: "Jag älskar att läsa romaner.", hi: "मुझे उपन्यास पढ़ना बहुत पसंद है।" },
   travel: { en: "If I had money, I would travel.", tr: "Param olsaydı seyahat ederdim.", es: "Si tuviera dinero, viajaría.", fr: "Si j'avais de l'argent, je voyagerais.", de: "Wenn ich Geld hätte, würde ich reisen.", it: "Se avessi soldi, viaggerei.", pt: "Se eu tivesse dinheiro, viajaria.", ru: "Если бы у меня были деньги, я бы путешествовал.", zh: "如果我有钱，我就会去旅行。", ja: "お金があれば旅行するのに。", ko: "돈이 있다면 여행을 갈 텐데요.", ar: "لو كان لدي مال لسافرت.", nl: "Als ik geld had, zou ik reizen.", sv: "Om jag hade pengar skulle jag resa.", hi: "अगर मेरे पास पैसे होते, तो मैं यात्रा करता।" },
   explain: { en: "Please explain this to me.", tr: "Lütfen bunu bana açıklayın.", es: "Por favor explécame esto.", fr: "S'il vous plaît expliquez-moi cela.", de: "Bitte erklären Sie mir das.", it: "Per favore spiegami questo.", pt: "Por favor, explique-me isto.", ru: "Пожалуйста, объясните мне это.", zh: "请向我解释一下这个。", ja: "これを説明してください。", ko: "이것을 설명해 주세요.", ar: "يرجى شرح هذا لي.", nl: "Leg dit me alstublieft uit.", sv: "Förklara detta för mig, tack.", hi: "कृपया मुझे यह समझाएं।" },
   actions: { en: "Actions speak louder than words.", tr: "Lafla peynir gemisi yürümez.", es: "Las palabras se las lleva el viento.", fr: "Les actes parlent plus que les mots.", de: "Taten sagen mehr als Worte.", it: "Le azioni contano più delle parole.", pt: "Ações valem mais que palavras.", ru: "Дела говорят громче слов.", zh: "事实胜于雄辩。", ja: "論より証拠。", ko: "말보다 행동이 중요하다.", ar: "الأفعال أبلغ من الأقوال.", nl: "Geen woorden maar daden.", sv: "Handlingar talar högre än ord.", hi: "कथनी से करनी भली।" },
@@ -286,21 +299,21 @@ const TIER1_CATEGORY_VOCAB: Record<number, { key: keyof LangVocab; english: stri
 };
 
 const TIER2_CATEGORY_VOCAB: Record<number, string[]> = {
-  0: ['family', 'name', 'speak', 'have_friend', 'good_day'],
-  1: ['my_parent', 'have_brother', 'have_sister', 'family', 'name'],
-  2: ['station', 'cost', 'speak', 'where_live', 'good_day'],
-  3: ['my_parent', 'eat_bread', 'drink_water', 'family', 'cost'],
-  4: ['read_book', 'school_study', 'have_brother', 'have_sister', 'my_parent'],
-  5: ['count_one_two', 'have_friend', 'speak', 'name', 'good_day'],
-  6: ['my_house', 'like_colors', 'station', 'cost', 'where_live']
+  0: ['family', 'have_friend', 'my_parent', 'have_brother', 'have_sister'],
+  1: ['my_parent', 'have_brother', 'have_sister', 'family', 'have_friend'],
+  2: ['name', 'speak', 'good_day', 'where_live', 'cost'],
+  3: ['drink_water', 'eat_bread', 'drink_milk', 'eat_apple', 'drink_tea'],
+  4: ['read_book', 'school_study', 'write_paper', 'use_pen', 'read_book'],
+  5: ['count_one_two', 'count_three_four', 'count_to_five', 'cost', 'count_one_two'],
+  6: ['my_house', 'like_colors', 'station', 'where_live', 'weather_nice']
 };
 
 const TIER3_CATEGORY_VOCAB: Record<number, string[]> = {
   0: ['work_office', 'business_meeting', 'professional_goal', 'meet', 'explain'],
   1: ['complex_topic', 'complex_dialogue', 'explain', 'actions', 'meet'],
   2: ['different_language', 'explain', 'travel', 'actions', 'meet'],
-  3: ['drink_pure_water', 'warm_bread', 'explain', 'travel', 'actions'],
-  4: ['read_scientific_book', 'advanced_study', 'scientific_research', 'explain', 'travel'],
+  3: ['drink_pure_water', 'warm_bread', 'favorite_dish', 'drink_hot_coffee', 'delicious_dinner'],
+  4: ['read_scientific_book', 'advanced_study', 'scientific_research', 'write_essay', 'read_novel'],
   5: ['work_office', 'business_meeting', 'complex_topic', 'different_language', 'drink_pure_water'],
   6: ['warm_bread', 'read_scientific_book', 'advanced_study', 'weather_report', 'professional_goal']
 };
@@ -433,7 +446,7 @@ export async function seedDatabase(force = false): Promise<{ success: boolean; m
         if (checkSnap.exists()) {
           const lData = checkSnap.data();
           const firstQ = lData?.questions?.[0];
-          if ((firstQ && firstQ.prompt && firstQ.prompt.includes('"Hello"')) || !lData?.version || lData.version < 6) {
+          if ((firstQ && firstQ.prompt && firstQ.prompt.includes('"Hello"')) || !lData?.version || lData.version < 7) {
             console.log('Old database seed detected. Forcing database upgrade...');
             shouldSeed = true;
           }
@@ -489,16 +502,16 @@ export async function seedDatabase(force = false): Promise<{ success: boolean; m
           const categoryIndex = Math.floor((lessonIndex - 1) / 7) % 7;
           
           if (course.tier === 1) {
-            const titles = ['Greetings & Basics', 'Polite Expressions', 'Everyday Communication', 'Food & Everyday Items', 'Books & Study Items', 'Numbers Course', 'Colors Course'];
-            const activeTitle = titles[categoryIndex] || 'Basics Lesson';
+            const titles = ['Greetings', 'Polite Words', 'Daily Talk', 'Food & Drink', 'Study', 'Numbers', 'Colors'];
+            const activeTitle = titles[categoryIndex] || 'Greetings';
             lessonTitle = `${activeTitle} #${(lessonIndex - 1) % 7 + 1}`;
           } else if (course.tier === 2) {
-            const titles = ['Family & Friends', 'Parents & Relatives', 'Social Conversations', 'Parents & Bread/Water', 'Books & Relatives', 'Numbers & Friends', 'Colors & Home'];
-            const activeTitle = titles[categoryIndex] || 'Intermediate Lesson';
+            const titles = ['Family', 'Relatives', 'Social', 'Dining', 'Media', 'Quantities', 'Environment'];
+            const activeTitle = titles[categoryIndex] || 'Family';
             lessonTitle = `${activeTitle} #${(lessonIndex - 1) % 7 + 1}`;
           } else {
-            const titles = ['Professional Discussions', 'Complex Dialogues', 'Advanced Translation', 'Advanced Water & Bread', 'Advanced Book & Study', 'Advanced Review A', 'Advanced Review B'];
-            const activeTitle = titles[categoryIndex] || 'Advanced Lesson';
+            const titles = ['Professional', 'Dialogues', 'Translation', 'Cuisine', 'Literature', 'Review A', 'Review B'];
+            const activeTitle = titles[categoryIndex] || 'Professional';
             lessonTitle = `${activeTitle} #${(lessonIndex - 1) % 7 + 1}`;
           }
 
@@ -511,7 +524,7 @@ export async function seedDatabase(force = false): Promise<{ success: boolean; m
             title: lessonTitle,
             xpReward: course.tier * 10 + 10,
             questions,
-            version: 6
+            version: 7
           };
 
           const lRef = doc(db, 'lessons', lesson.id);
