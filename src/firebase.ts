@@ -12,14 +12,14 @@ interface FirebaseConfig {
 }
 
 // 1. Try to load from Vite environment variables first
-const envConfig: Partial<FirebaseConfig> = {
+const envConfig: Partial<FirebaseConfig> = typeof import.meta !== 'undefined' && import.meta.env ? {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
   projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
   storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
-};
+} : {};
 
 const hasEnvConfig = !!envConfig.apiKey && !!envConfig.projectId;
 

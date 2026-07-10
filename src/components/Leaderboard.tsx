@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { getLeaderboard, UserProfile } from '../services/db';
+import { getLeaderboard, UserProfile, deleteUserProfile } from '../services/db';
 import { getTranslation } from '../services/i18n';
-import { Trophy, Zap, ShieldAlert } from 'lucide-react';
+import { Trophy, Zap, ShieldAlert, Trash2 } from 'lucide-react';
 
 const Leaderboard: React.FC = () => {
-  const { user, interfaceLang, theme } = useAuth();
+  const { user, userProfile, interfaceLang, theme } = useAuth();
   const [leaders, setLeaders] = useState<UserProfile[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -142,11 +142,37 @@ const Leaderboard: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-1.5 font-outfit font-black text-sm text-indigo-500">
-                  <Zap className="w-4 h-4 fill-current" />
-                  <span>{leader.totalXP} <span className={`text-[9px] font-normal uppercase ${
-                    theme === 'dark' ? 'text-slate-500' : 'text-slate-400'
-                  }`}>XP</span></span>
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-1.5 font-outfit font-black text-sm text-indigo-500">
+                    <Zap className="w-4 h-4 fill-current" />
+                    <span>{leader.totalXP} <span className={`text-[9px] font-normal uppercase ${
+                      theme === 'dark' ? 'text-slate-500' : 'text-slate-400'
+                    }`}>XP</span></span>
+                  </div>
+
+                  {!isSelf && userProfile?.isAdmin && (
+                    <button
+                      onClick={async (e) => {
+                        e.stopPropagation();
+                        if (confirm(`Are you sure you want to delete ${leader.displayName || 'this user'} from the database?`)) {
+                          try {
+                            await deleteUserProfile(leader.uid);
+                            setLeaders(prev => prev.filter(l => l.uid !== leader.uid));
+                          } catch (err) {
+                            alert("Failed to delete user: " + (err as Error).message);
+                          }
+                        }
+                      }}
+                      className={`p-1.5 rounded-lg transition-colors ${
+                        theme === 'dark' 
+                          ? 'text-rose-500 hover:bg-rose-500/10' 
+                          : 'text-rose-600 hover:bg-rose-50'
+                      }`}
+                      title="Delete user from database"
+                    >
+                      <Trash2 size={16} />
+                    </button>
+                  )}
                 </div>
               </div>
             );

@@ -11,7 +11,8 @@ import {
   limit, 
   serverTimestamp,
   increment,
-  arrayUnion
+  arrayUnion,
+  deleteDoc
 } from 'firebase/firestore';
 import { db } from '../firebase';
 
@@ -27,6 +28,7 @@ export interface UserProfile {
   unlockedTier: number;
   completedLessons?: Record<string, boolean>;
   purchasedItems?: string[];
+  isAdmin?: boolean;
 }
 
 export interface Language {
@@ -258,4 +260,10 @@ export async function getBadges(): Promise<Badge[]> {
     badges.push({ id: doc.id, ...doc.data() } as Badge);
   });
   return badges;
+}
+
+export async function deleteUserProfile(uid: string): Promise<void> {
+  const firestore = getDatabase();
+  const userRef = doc(firestore, 'users', uid);
+  await deleteDoc(userRef);
 }

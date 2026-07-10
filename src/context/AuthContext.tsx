@@ -19,6 +19,7 @@ import {
 } from '../services/db';
 
 import { InterfaceLang } from '../services/i18n';
+import { seedDatabase } from '../services/dbInitializer';
 
 export interface AuthContextType {
   user: User | null;
@@ -89,6 +90,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         try {
           const profile = await getUserProfile(firebaseUser.uid);
           setUserProfile(profile);
+          // Safe background seed to guarantee latest curriculum content is available
+          seedDatabase().catch((err) => console.warn('Background database seeding failed:', err));
         } catch (e) {
           console.error('Error fetching user profile', e);
         }
