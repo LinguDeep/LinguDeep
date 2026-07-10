@@ -43,24 +43,88 @@ export interface LangVocab {
   sun: string;
   rain: string;
   wind: string;
+  yes?: string;
+  no?: string;
+  welcome?: string;
+  howAreYou?: string;
+  fine?: string;
+  sorry?: string;
+  excuseMe?: string;
+  youAreWelcome?: string;
+  milk?: string;
+  apple?: string;
+  tea?: string;
+  pen?: string;
+  paper?: string;
+  school?: string;
+  four?: string;
+  five?: string;
+  yellow?: string;
+  black?: string;
+  white?: string;
 }
 
 export const LANGUAGE_VOCABULARY: Record<string, LangVocab> = {
-  es: { hello: 'Hola', goodbye: 'Adiós', please: 'Por favor', thankYou: 'Gracias', mother: 'La madre', father: 'El padre', friend: 'El amigo', brother: 'El hermano', sister: 'La hermana', water: 'El agua', bread: 'El pan', book: 'El libro', one: 'Uno', two: 'Dos', three: 'Tres', red: 'Rojo', blue: 'Azul', green: 'Verde', sun: 'El sol', rain: 'La lluvia', wind: 'El viento' },
-  fr: { hello: 'Bonjour', goodbye: 'Au revoir', please: 'S\'il vous plaît', thankYou: 'Merci', mother: 'La mère', father: 'Le père', friend: 'L\'ami', brother: 'Le frère', sister: 'La sœur', water: 'L\'eau', bread: 'Le pain', book: 'Le livre', one: 'Un', two: 'Deux', three: 'Trois', red: 'Rouge', blue: 'Bleu', green: 'Vert', sun: 'Le soleil', rain: 'La pluie', wind: 'Le vent' },
-  de: { hello: 'Hallo', goodbye: 'Tschüss', please: 'Bitte', thankYou: 'Danke', mother: 'Die Mutter', father: 'Der Vater', friend: 'Der Freund', brother: 'Der Bruder', sister: 'Die Schwester', water: 'Das Wasser', bread: 'Das Brot', book: 'Das Buch', one: 'Eins', two: 'Zwei', three: 'Drei', red: 'Rot', blue: 'Blau', green: 'Grün', sun: 'Die Sonne', rain: 'Der Regen', wind: 'Der Wind' },
-  ja: { hello: 'こんにちは', goodbye: 'さようなら', please: 'お願いします', thankYou: 'ありがとう', mother: '母', father: '父', friend: '友達', brother: '兄', sister: '姉', water: '水', bread: 'パン', book: '本', one: '一', two: '二', three: '三', red: '赤', blue: '青', green: '緑', sun: '太陽', rain: '雨', wind: '風' },
-  it: { hello: 'Ciao', goodbye: 'Arrivederci', please: 'Per favore', thankYou: 'Grazie', mother: 'La madre', father: 'Il padre', friend: 'L\'amico', brother: 'Il fratello', sister: 'La sorella', water: 'L\'acqua', bread: 'Il pane', book: 'Il libro', one: 'Uno', two: 'Due', three: 'Tre', red: 'Rosso', blue: 'Blu', green: 'Verde', sun: 'Il sole', rain: 'La pioggia', wind: 'Il vento' },
-  zh: { hello: '你好', goodbye: '再见', please: '请', thankYou: '谢谢', mother: '母亲', father: '父亲', friend: '朋友', brother: '哥哥', sister: '姐姐', water: '水', bread: '面包', book: '书', one: '一', two: '二', three: '三', red: '红', blue: '蓝', green: '绿', sun: '太阳', rain: '雨', wind: '风' },
-  ru: { hello: 'Привет', goodbye: 'Пока', please: 'Пожалуйста', thankYou: 'Спасибо', mother: 'Мать', father: 'Отец', friend: 'Друг', brother: 'Брат', sister: 'Сестра', water: 'Вода', bread: 'Хлеб', book: 'Книга', one: 'Один', two: 'Два', three: 'Три', red: 'Красный', blue: 'Синий', green: 'Зеленый', sun: 'Солнце', rain: 'Дождь', wind: 'Ветер' },
-  pt: { hello: 'Olá', goodbye: 'Adeus', please: 'Por favor', thankYou: 'Obrigado', mother: 'A mãe', father: 'O pai', friend: 'O amigo', brother: 'O irmão', sister: 'A irmã', water: 'A água', bread: 'O pão', book: 'O livro', one: 'Um', two: 'Dois', three: 'Três', red: 'Vermelho', blue: 'Azul', green: 'Verde', sun: 'O sol', rain: 'A chuva', wind: 'O vento' },
-  ko: { hello: '안녕하세요', goodbye: '안녕히 가세요', please: '부탁합니다', thankYou: '감사합니다', mother: '어머니', father: '아버지', friend: '친구', brother: '형', sister: '누나', water: '물', bread: '빵', book: '책', one: '일', two: '이', three: '삼', red: '빨간색', blue: '파란색', green: '초록색', sun: '태양', rain: '비', wind: '바람' },
-  tr: { hello: 'Merhaba', goodbye: 'Hoşça kal', please: 'Lütfen', thankYou: 'Teşekkürler', mother: 'Anne', father: 'Baba', friend: 'Arkadaş', brother: 'Erkek kardeş', sister: 'Kız kardeş', water: 'Su', bread: 'Ekmek', book: 'Kitap', one: 'Bir', two: 'İki', three: 'Üç', red: 'Kırmızı', blue: 'Mavi', green: 'Yeşil', sun: 'Güneş', rain: 'Yağmur', wind: 'Rüzgar' },
-  ar: { hello: 'مرحبا', goodbye: 'وداعا', please: 'من فضلك', thankYou: 'شكرا', mother: 'الأم', father: 'الأب', friend: 'الصديق', brother: 'أخ', sister: 'أخت', water: 'الماء', bread: 'الخبز', book: 'الكتاب', one: 'واحد', two: 'اثنين', three: 'ثلاثة', red: 'أحمر', blue: 'أزرق', green: 'أخضر', sun: 'شمس', rain: 'مطر', wind: 'ريح' },
-  nl: { hello: 'Hallo', goodbye: 'Tot ziens', please: 'Alsjeblieft', thankYou: 'Bedankt', mother: 'De moeder', father: 'De vader', friend: 'De vriend', brother: 'De broer', sister: 'De zus', water: 'Het water', bread: 'Het brood', book: 'Het boek', one: 'Een', two: 'Twee', three: 'Drie', red: 'Rood', blue: 'Blauw', green: 'Groen', sun: 'De zon', rain: 'De regen', wind: 'De wind' },
-  sv: { hello: 'Hallå', goodbye: 'Hejdå', please: 'Snälla', thankYou: 'Tack', mother: 'Mamman', father: 'Pappan', friend: 'Vännen', brother: 'Brodern', sister: 'Systern', water: 'Vatten', bread: 'Bröd', book: 'Boken', one: 'En', two: 'Två', three: 'Tre', red: 'Röd', blue: 'Blå', green: 'Grön', sun: 'Solen', rain: 'Regn', wind: 'Vind' },
-  hi: { hello: 'नमस्ते', goodbye: 'अलविदा', please: 'कृपया', thankYou: 'धन्यवाद', mother: 'माता', father: 'पिता', friend: 'मित्र', brother: 'भाई', sister: 'बहन', water: 'पानी', bread: 'रोटी', book: 'पुस्तक', one: 'एक', two: 'दो', three: 'तीन', red: 'लाल', blue: 'नीला', green: 'हरा', sun: 'सूर्य', rain: 'वर्षा', wind: 'हवा' },
-  en: { hello: 'Hello', goodbye: 'Goodbye', please: 'Please', thankYou: 'Thank you', mother: 'Mother', father: 'Father', friend: 'Friend', brother: 'Brother', sister: 'Sister', water: 'Water', bread: 'Bread', book: 'Book', one: 'One', two: 'Two', three: 'Three', red: 'Red', blue: 'Blue', green: 'Green', sun: 'Sun', rain: 'Rain', wind: 'Wind' }
+  es: { 
+    hello: 'Hola', goodbye: 'Adiós', please: 'Por favor', thankYou: 'Gracias', mother: 'La madre', father: 'El padre', friend: 'El amigo', brother: 'El hermano', sister: 'La hermana', water: 'El agua', bread: 'El pan', book: 'El libro', one: 'Uno', two: 'Dos', three: 'Tres', red: 'Rojo', blue: 'Azul', green: 'Verde', sun: 'El sol', rain: 'La lluvia', wind: 'El viento',
+    yes: 'Sí', no: 'No', welcome: 'Bienvenido', howAreYou: '¿Cómo estás?', fine: 'Bien', sorry: 'Lo siento', excuseMe: 'Disculpe', youAreWelcome: 'De nada', milk: 'La leche', apple: 'La manzana', tea: 'El té', pen: 'El bolígrafo', paper: 'El papel', school: 'La escuela', four: 'Cuatro', five: 'Cinco', yellow: 'Amarillo', black: 'Negro', white: 'Blanco'
+  },
+  fr: { 
+    hello: 'Bonjour', goodbye: 'Au revoir', please: 'S\'il vous plaît', thankYou: 'Merci', mother: 'La mère', father: 'Le père', friend: 'L\'ami', brother: 'Le frère', sister: 'La sœur', water: 'L\'eau', bread: 'Le pain', book: 'Le livre', one: 'Un', two: 'Deux', three: 'Trois', red: 'Rouge', blue: 'Bleu', green: 'Vert', sun: 'Le soleil', rain: 'La pluie', wind: 'Le vent',
+    yes: 'Oui', no: 'Non', welcome: 'Bienvenue', howAreYou: 'Comment ça va ?', fine: 'Bien', sorry: 'Désolé', excuseMe: 'Excusez-moi', youAreWelcome: 'De rien', milk: 'Le lait', apple: 'La pomme', tea: 'Le thé', pen: 'Le stylo', paper: 'Le papier', school: 'L\'école', four: 'Quatre', five: 'Cinq', yellow: 'Jaune', black: 'Noir', white: 'Blanc'
+  },
+  de: { 
+    hello: 'Hallo', goodbye: 'Tschüss', please: 'Bitte', thankYou: 'Danke', mother: 'Die Mutter', father: 'Der Vater', friend: 'Der Freund', brother: 'Der Bruder', sister: 'Die Schwester', water: 'Das Wasser', bread: 'Das Brot', book: 'Das Buch', one: 'Eins', two: 'Zwei', three: 'Drei', red: 'Rot', blue: 'Blau', green: 'Grün', sun: 'Die Sonne', rain: 'Der Regen', wind: 'Der Wind',
+    yes: 'Ja', no: 'Nein', welcome: 'Willkommen', howAreYou: 'Wie geht es dir?', fine: 'Gut', sorry: 'Entschuldigung', excuseMe: 'Entschuldigung', youAreWelcome: 'Bitte sehr', milk: 'Die Milch', apple: 'Der Apfel', tea: 'Der Tee', pen: 'Der Stift', paper: 'Das Papier', school: 'Die Schule', four: 'Vier', five: 'Fünf', yellow: 'Gelb', black: 'Schwarz', white: 'Weiß'
+  },
+  ja: { 
+    hello: 'こんにちは', goodbye: 'さようなら', please: 'お願いします', thankYou: 'ありがとう', mother: '母', father: '父', friend: '友達', brother: '兄', sister: '姉', water: '水', bread: 'パン', book: '本', one: '一', two: '二', three: '三', red: '赤', blue: '青', green: '緑', sun: '太陽', rain: '雨', wind: '風',
+    yes: 'はい', no: 'いいえ', welcome: 'ようこそ', howAreYou: 'お元気ですか？', fine: '元気です', sorry: 'ごめんなさい', excuseMe: 'すみません', youAreWelcome: 'どういたしまして', milk: '牛乳', apple: 'りんご', tea: 'お茶', pen: 'ペン', paper: '紙', school: '学校', four: '四', five: '五', yellow: '黄色', black: '黒', white: '白'
+  },
+  it: { 
+    hello: 'Ciao', goodbye: 'Arrivederci', please: 'Per favore', thankYou: 'Grazie', mother: 'La madre', father: 'Il padre', friend: 'L\'amico', brother: 'Il fratello', sister: 'La sorella', water: 'L\'acqua', bread: 'Il pane', book: 'Il libro', one: 'Uno', two: 'Due', three: 'Tre', red: 'Rosso', blue: 'Blu', green: 'Verde', sun: 'Il sole', rain: 'La pioggia', wind: 'Il vento',
+    yes: 'Sì', no: 'No', welcome: 'Benvenuto', howAreYou: 'Come stai?', fine: 'Bene', sorry: 'Scusa', excuseMe: 'Mi scusi', youAreWelcome: 'Prego', milk: 'Il latte', apple: 'La mela', tea: 'Tè', pen: 'La penna', paper: 'La carta', school: 'La scuola', four: 'Quattro', five: 'Cinque', yellow: 'Giallo', black: 'Nero', white: 'Bianco'
+  },
+  zh: { 
+    hello: '你好', goodbye: '再见', please: '请', thankYou: '谢谢', mother: '母亲', father: '父亲', friend: '朋友', brother: '哥哥', sister: '姐姐', water: '水', bread: '面包', book: '书', one: '一', two: '二', three: '三', red: '红', blue: '蓝', green: '绿', sun: '太阳', rain: '雨', wind: '风',
+    yes: '是', no: '不', welcome: '欢迎', howAreYou: '你好吗？', fine: '很好', sorry: '对不起', excuseMe: '打扰一下', youAreWelcome: '不客气', milk: '牛奶', apple: '苹果', tea: '茶', pen: '笔', paper: '纸', school: '学校', four: '四', five: '五', yellow: '黄色', black: '黑色', white: '白色'
+  },
+  ru: { 
+    hello: 'Привет', goodbye: 'Пока', please: 'Пожалуйста', thankYou: 'Спасибо', mother: 'Мать', father: 'Отец', friend: 'Друг', brother: 'Брат', sister: 'Сестра', water: 'Вода', bread: 'Хлеб', book: 'Книга', one: 'Один', two: 'Два', three: 'Три', red: 'Красный', blue: 'Синий', green: 'Зеленый', sun: 'Солнце', rain: 'Дождь', wind: 'Ветер',
+    yes: 'Да', no: 'Нет', welcome: 'Добро пожаловать', howAreYou: 'Как дела?', fine: 'Хорошо', sorry: 'Извините', excuseMe: 'Простите', youAreWelcome: 'Не за что', milk: 'Молоко', apple: 'Яблоко', tea: 'Чай', pen: 'Ручка', paper: 'Бумага', school: 'Школа', four: 'Четыре', five: 'Пять', yellow: 'Желтый', black: 'Черный', white: 'Белый'
+  },
+  pt: { 
+    hello: 'Olá', goodbye: 'Adeus', please: 'Por favor', thankYou: 'Obrigado', mother: 'A mãe', father: 'O pai', friend: 'O amigo', brother: 'O irmão', sister: 'A irmã', water: 'A água', bread: 'O pão', book: 'O livro', one: 'Um', two: 'Dois', three: 'Três', red: 'Vermelho', blue: 'Azul', green: 'Verde', sun: 'O sol', rain: 'A chuva', wind: 'O vento',
+    yes: 'Sim', no: 'Não', welcome: 'Bem-vindo', howAreYou: 'Como vai?', fine: 'Bem', sorry: 'Desculpe', excuseMe: 'Com licença', youAreWelcome: 'De nada', milk: 'O leite', apple: 'A maçã', tea: 'O chá', pen: 'A caneta', paper: 'O papel', school: 'A escola', four: 'Quatro', five: 'Cinco', yellow: 'Amarelo', black: 'Preto', white: 'Branco'
+  },
+  ko: { 
+    hello: '안녕하세요', goodbye: '안녕히 가세요', please: '부탁합니다', thankYou: '감사합니다', mother: '어머니', father: '아버지', friend: '친구', brother: '형', sister: '누나', water: '물', bread: '빵', book: '책', one: '일', two: '이', three: '삼', red: '빨간색', blue: '파란색', green: '초록색', sun: '태양', rain: '비', wind: '바람',
+    yes: '네', no: '아니요', welcome: '환영합니다', howAreYou: '어떻게 지내세요?', fine: '잘 지내요', sorry: '죄송합니다', excuseMe: '실례합니다', youAreWelcome: '천만에요', milk: '우유', apple: '사과', tea: '차', pen: '펜', paper: '종이', school: '학교', four: '사', five: '오', yellow: '노란색', black: '검은색', white: '흰색'
+  },
+  tr: { 
+    hello: 'Merhaba', goodbye: 'Hoşça kal', please: 'Lütfen', thankYou: 'Teşekkürler', mother: 'Anne', father: 'Baba', friend: 'Arkadaş', brother: 'Erkek kardeş', sister: 'Kız kardeş', water: 'Su', bread: 'Ekmek', book: 'Kitap', one: 'Bir', two: 'İki', three: 'Üç', red: 'Kırmızı', blue: 'Mavi', green: 'Yeşil', sun: 'Güneş', rain: 'Yağmur', wind: 'Rüzgar',
+    yes: 'Evet', no: 'Hayır', welcome: 'Hoş geldiniz', howAreYou: 'Nasılsınız?', fine: 'İyiyim', sorry: 'Üzgünüm', excuseMe: 'Affedersiniz', youAreWelcome: 'Rica ederim', milk: 'Süt', apple: 'Elma', tea: 'Çay', pen: 'Kalem', paper: 'Kağıt', school: 'Okul', four: 'Dört', five: 'Beş', yellow: 'Sarı', black: 'Siyah', white: 'Beyaz'
+  },
+  ar: { 
+    hello: 'مرحبا', goodbye: 'وداعا', please: 'من فضلك', thankYou: 'شكرا', mother: 'الأم', father: 'الأب', friend: 'الصديق', brother: 'أخ', sister: 'أخت', water: 'الماء', bread: 'الخبز', book: 'الكتاب', one: 'واحد', two: 'اثنين', three: 'ثلاثة', red: 'أحمر', blue: 'أزرق', green: 'أخضر', sun: 'شمس', rain: 'مطر', wind: 'ريح',
+    yes: 'نعم', no: 'لا', welcome: 'مرحباً', howAreYou: 'كيف حالك؟', fine: 'بخير', sorry: 'آسف', excuseMe: 'معذرة', youAreWelcome: 'على الرحب والسعة', milk: 'حليب', apple: 'تفاحة', tea: 'شاي', pen: 'قلم', paper: 'ورقة', school: 'مدرسة', four: 'أربعة', five: 'خمسة', yellow: 'أصفر', black: 'أسود', white: 'أبيض'
+  },
+  nl: { 
+    hello: 'Hallo', goodbye: 'Tot ziens', please: 'Alsjeblieft', thankYou: 'Bedankt', mother: 'De moeder', father: 'De vader', friend: 'De vriend', brother: 'De broer', sister: 'De zus', water: 'Het water', bread: 'Het brood', book: 'Het boek', one: 'Een', two: 'Twee', three: 'Drie', red: 'Rood', blue: 'Blauw', green: 'Groen', sun: 'De zon', rain: 'De regen', wind: 'De wind',
+    yes: 'Ja', no: 'Nee', welcome: 'Welkom', howAreYou: 'Hoe gaat het?', fine: 'Goed', sorry: 'Sorry', excuseMe: 'Pardon', youAreWelcome: 'Graag gedaan', milk: 'Melk', apple: 'Appel', tea: 'Thee', pen: 'Pen', paper: 'Papier', school: 'School', four: 'Vier', five: 'Vijf', yellow: 'Geel', black: 'Zwart', white: 'Wit'
+  },
+  sv: { 
+    hello: 'Hallå', goodbye: 'Hejdå', please: 'Snälla', thankYou: 'Tack', mother: 'Mamman', father: 'Pappan', friend: 'Vännen', brother: 'Brodern', sister: 'Systern', water: 'Vatten', bread: 'Bröd', book: 'Boken', one: 'En', two: 'Två', three: 'Tre', red: 'Röd', blue: 'Blå', green: 'Grön', sun: 'Solen', rain: 'Regn', wind: 'Vind',
+    yes: 'Ja', no: 'Nej', welcome: 'Välkommen', howAreYou: 'Hur mår du?', fine: 'Bra', sorry: 'Förlåt', excuseMe: 'Ursäkta', youAreWelcome: 'Varsågod', milk: 'Mjölk', apple: 'Äpple', tea: 'Te', pen: 'Penna', paper: 'Papper', school: 'Skola', four: 'Fyra', five: 'Fem', yellow: 'Gul', black: 'Svart', white: 'Vit'
+  },
+  hi: { 
+    hello: 'नमस्ते', goodbye: 'अलविदा', please: 'कृपया', thankYou: 'धन्यवाद', mother: 'माता', father: 'पिता', friend: 'मित्र', brother: 'भाई', sister: 'बहन', water: 'पानी', bread: 'रोti', book: 'पुस्तक', one: 'एक', two: 'दो', three: 'तीन', red: 'लाल', blue: 'नीला', green: 'हरा', sun: 'सूर्य', rain: 'वर्षा', wind: 'हवा',
+    yes: 'हाँ', no: 'नहीं', welcome: 'स्वागत', howAreYou: 'आप कैसे हैं?', fine: 'ठीक', sorry: 'माफ़ कीजिये', excuseMe: 'क्षमा करें', youAreWelcome: 'आपका स्वागत है', milk: 'दूध', apple: 'सेब', tea: 'चाय', pen: 'कलम', paper: 'कागज़', school: 'विद्यालय', four: 'चार', five: 'पाँच', yellow: 'पीला', black: 'काला', white: 'सफेद'
+  },
+  en: { 
+    hello: 'Hello', goodbye: 'Goodbye', please: 'Please', thankYou: 'Thank you', mother: 'Mother', father: 'Father', friend: 'Friend', brother: 'Brother', sister: 'Sister', water: 'Water', bread: 'Bread', book: 'Book', one: 'One', two: 'Two', three: 'Three', red: 'Red', blue: 'Blue', green: 'Green', sun: 'Sun', rain: 'Rain', wind: 'Wind',
+    yes: 'Yes', no: 'No', welcome: 'Welcome', howAreYou: 'How are you?', fine: 'Fine', sorry: 'Sorry', excuseMe: 'Excuse me', youAreWelcome: "You're welcome", milk: 'Milk', apple: 'Apple', tea: 'Tea', pen: 'Pen', paper: 'Paper', school: 'School', four: 'Four', five: 'Five', yellow: 'Yellow', black: 'Black', white: 'White'
+  }
 };
 
 // Sample Shop Items
@@ -146,15 +210,18 @@ const TIER1_CATEGORY_VOCAB: Record<number, { key: keyof LangVocab; english: stri
   0: [
     { key: 'hello', english: 'Hello' },
     { key: 'goodbye', english: 'Goodbye' },
-    { key: 'sun', english: 'Sun' },
-    { key: 'rain', english: 'Rain' },
-    { key: 'wind', english: 'Wind' }
+    { key: 'yes', english: 'Yes' },
+    { key: 'no', english: 'No' },
+    { key: 'welcome', english: 'Welcome' },
+    { key: 'howAreYou', english: 'How are you?' },
+    { key: 'fine', english: 'Fine' }
   ],
   1: [
     { key: 'please', english: 'Please' },
     { key: 'thankYou', english: 'Thank you' },
-    { key: 'hello', english: 'Hello' },
-    { key: 'goodbye', english: 'Goodbye' }
+    { key: 'sorry', english: 'Sorry' },
+    { key: 'excuseMe', english: 'Excuse me' },
+    { key: 'youAreWelcome', english: "You're welcome" }
   ],
   2: [
     { key: 'mother', english: 'Mother' },
@@ -166,26 +233,30 @@ const TIER1_CATEGORY_VOCAB: Record<number, { key: keyof LangVocab; english: stri
   3: [
     { key: 'water', english: 'Water' },
     { key: 'bread', english: 'Bread' },
-    { key: 'please', english: 'Please' },
-    { key: 'thankYou', english: 'Thank you' }
+    { key: 'milk', english: 'Milk' },
+    { key: 'apple', english: 'Apple' },
+    { key: 'tea', english: 'Tea' }
   ],
   4: [
     { key: 'book', english: 'Book' },
-    { key: 'please', english: 'Please' },
-    { key: 'thankYou', english: 'Thank you' },
-    { key: 'friend', english: 'Friend' }
+    { key: 'pen', english: 'Pen' },
+    { key: 'paper', english: 'Paper' },
+    { key: 'school', english: 'School' }
   ],
   5: [
     { key: 'one', english: 'One' },
     { key: 'two', english: 'Two' },
     { key: 'three', english: 'Three' },
-    { key: 'book', english: 'Book' }
+    { key: 'four', english: 'Four' },
+    { key: 'five', english: 'Five' }
   ],
   6: [
     { key: 'red', english: 'Red' },
     { key: 'blue', english: 'Blue' },
     { key: 'green', english: 'Green' },
-    { key: 'sun', english: 'Sun' }
+    { key: 'yellow', english: 'Yellow' },
+    { key: 'black', english: 'Black' },
+    { key: 'white', english: 'White' }
   ]
 };
 
@@ -317,7 +388,7 @@ export async function seedDatabase(force = false): Promise<{ success: boolean; m
         if (checkSnap.exists()) {
           const lData = checkSnap.data();
           const firstQ = lData?.questions?.[0];
-          if ((firstQ && firstQ.prompt && firstQ.prompt.includes('"Hello"')) || !lData?.version || lData.version < 4) {
+          if ((firstQ && firstQ.prompt && firstQ.prompt.includes('"Hello"')) || !lData?.version || lData.version < 5) {
             console.log('Old database seed detected. Forcing database upgrade...');
             shouldSeed = true;
           }
@@ -395,7 +466,7 @@ export async function seedDatabase(force = false): Promise<{ success: boolean; m
             title: lessonTitle,
             xpReward: course.tier * 10 + 10,
             questions,
-            version: 4
+            version: 5
           };
 
           const lRef = doc(db, 'lessons', lesson.id);
