@@ -237,78 +237,9 @@ const SAMPLE_BADGES: Badge[] = [
   }
 ];
 
-export const INTERMEDIATE_VOCAB: Record<string, Record<string, string>> = {
-  drink_milk: { en: "I drink milk.", tr: "Süt içerim.", es: "Bebo leche.", fr: "Je bois du lait.", de: "Ich trinke Milch.", ja: "私は牛乳を飲みます。", it: "Bevo latte.", zh: "我喝牛奶。", ru: "Я пью молоко.", pt: "Eu bebo leite.", ko: "저는 우유를 마십니다.", ar: "أنا أشرب الحليب.", nl: "Ik drink melk.", sv: "Jag dricker mjölk.", hi: "मैं दूध पीता हूँ。" },
-  eat_apple: { en: "I eat an apple.", tr: "Elma yerim.", es: "Como una manzana.", fr: "Je mange une pomme.", de: "Ich esse einen Apfel.", ja: "私はリンゴを食べます。", it: "Mangio una mela.", zh: "我吃苹果。", ru: "Я ем яبلوко.", pt: "Eu como uma maçã.", ko: "저는 사과를 먹습니다.", ar: "أنا آكل تفاحة.", nl: "Ik eet een appel.", sv: "Jag äter ett äpple.", hi: "मैं एक सेब खाता हूँ。" },
-  drink_tea: { en: "I drink tea.", tr: "Çay içerim.", es: "Bebo té.", fr: "Je bois du thé.", de: "Ich trinke Tee.", ja: "私はお茶を飲みます。", it: "Bevo tè.", zh: "我喝茶。", ru: "Я пью чай.", pt: "Eu bebo chá.", ko: "저는 차를 마십니다.", ar: "أنا أشرب الشاي.", nl: "Ik drink thee.", sv: "Jag dricker te.", hi: "मैं चाय पीता हूँ।" },
-  write_paper: { en: "I write on paper.", tr: "Kağıda yazarım.", es: "Escribo en papel.", fr: "J'écris sur du papier.", de: "Ich schreibe auf Papier.", ja: "私は紙に書きます。", it: "Scrivo su carta.", zh: "我在纸上写字。", ru: "Я пишу на бумаге.", pt: "Eu escrevo no papel.", ko: "종이에 글을 씁니다.", ar: "أكتب على الورق.", nl: "Ik schrijf op papier.", sv: "Jag skriver på papper.", hi: "मैं कागज पर लिखता हूँ।" },
-  use_pen: { en: "I use a pen.", tr: "Kalem kullanırım.", es: "Uso un bolígrafo.", fr: "J'utilise un stylo.", de: "Ich benutze einen Stift.", ja: "私はペンを使います。", it: "Uso una penna.", zh: "我用一支笔。", ru: "Я использую ручку.", pt: "Eu uso uma caneta.", ko: "저는 펜을 사용합니다.", ar: "أستخدم قلماً.", nl: "Ik gebruik een pen.", sv: "Jag använder en penna.", hi: "मैं एक पेन का उपयोग करता हूँ।" },
-  count_three_four: { en: "I count three and four.", tr: "Üç ve dört diye sayarım.", es: "Cuento tres y cuatro.", fr: "Je compte trois et quatre.", de: "Ich zähle drei und vier.", ja: "三と四を数えます。", it: "Conto tre e quattro.", zh: "我数三和四。", ru: "Я считаю три и четыре.", pt: "Eu conto três e quatro.", ko: "삼과 사를 셉니다.", ar: "أنا أعد ثلاثة وأربعة.", nl: "Ik tel drie en vier.", sv: "Jag räknar tre och fyra.", hi: "मैं तीन और चार गिनता हूँ।" },
-  count_to_five: { en: "I count to five.", tr: "Beşe kadar sayarım.", es: "Cuento hasta cinco.", fr: "Je compte jusqu'à cinq.", de: "Ich zähle bis fünf.", ja: "五まで数えます。", it: "Conto fino a cinque.", zh: "我数到五。", ru: "Я считаю до пяти.", pt: "Eu conto até cinco.", ko: "다섯까지 셉니다.", ar: "أنا أعد إلى خمسة.", nl: "Ik tel tot vyf.", sv: "Jag räknar till fem.", hi: "मैं पाँच तक गिनता हूँ।" },
-  my_friend: { en: "He is my friend.", tr: "O benim arkadaşım.", es: "Él es mi amigo.", fr: "Il est mon ami.", de: "Er ist mein Freund.", ja: "彼は私の友達です。", it: "Lui è il mio amico.", zh: "他是我的朋友。", ru: "Он мой друг.", pt: "Ele é meu amigo.", ko: "그는 제 친구입니다.", ar: "هو صديقي.", nl: "Hij is mijn vriend.", sv: "Han är min vän.", hi: "वह मेरा दोस्त है।" },
-  have_child: { en: "They have a child.", tr: "Onların bir çocuğu var.", es: "Ellos tienen un hijo.", fr: "Ils ont un enfant.", de: "Sie haben ein Kind.", ja: "彼らには子供がいます。", it: "Hanno un bambino.", zh: "他们有一个孩子。", ru: "У них есть ребенок.", pt: "Eles têm um filho.", ko: "그들에게는 아이가 있습니다.", ar: "لديهم طفل.", nl: "Ze hebben een kind.", sv: "De har ett barn.", hi: "उनका एक बच्चा है।" },
-  happy_family: { en: "We are a happy family.", tr: "Biz mutlu bir aileyiz.", es: "Somos una familia feliz.", fr: "Nous sommes une famille heureuse.", de: "Wir sind eine glückliche Familie.", ja: "私たちは幸せな家族です。", it: "Siamo una familia felice.", zh: "เรา是一个幸福的家庭。", ru: "Мы счастливая семья.", pt: "Somos uma família feliz.", ko: "우리는 행복한 가족입니다.", ar: "نحن عائلة سعيدة.", nl: "We zijn een gelukkig gezin.", sv: "Vi är en lycklig familj.", hi: "हम एक सुखी परिवार हैं।" },
-  where_station: { en: "Where is the train station?", tr: "Tren istasyonu nerede?", es: "Conozco la estación de tren.", fr: "Où est la gare ferroviaire ?", de: "Wo ist der Bahnhof?", ja: "駅はどこですか？", it: "Dov'è la stazione ferroviaria?", zh: "火车站在哪里？", ru: "Где находится вокзал?", pt: "Onde fica a estação de trem?", ko: "기차역이 어디인가요?", ar: "أين محطة القطار؟", nl: "Waar is het treinstation?", sv: "Var ligger tågstationen?", hi: "ट्रेन स्टेशन कहाँ है？" },
-  ticket_cost: { en: "How much is the ticket?", tr: "Bilet ne kadar?", es: "¿Cuánto cuesta el billete?", fr: "Combien coûte le billet ?", de: "Wie viel kostet das Ticket?", ja: "チケットはいくらですか？", it: "Quanto costa il biglietto?", zh: "票价是多少？", ru: "Сколько стоит билет?", pt: "Quanto custa o bilhete?", ko: "표는 얼마인가요?", ar: "بكم التذكرة؟", nl: "Hoeveel kost het ticket?", sv: "Vad costar biljetten?", hi: "टिकट कितने का है？" },
-  speak_turkish: { en: "I speak some Turkish.", tr: "Biraz Türkçe konuşuyorum.", es: "Hablo un poco de turco.", fr: "Je parle un peu turc.", de: "Ich spreche ein wenig Türkisch.", ja: "トルコ語が少し話せます。", it: "Parlo un po' di turco.", zh: "我会说一点土耳기어.", ru: "Я немного говорю по-чески.", pt: "Eu falo um pouco de turco.", ko: "터키어를 조금 할 줄 압니다.", ar: "أتحدث القليل من التركية.", nl: "Ik spreek een beetje Turks.", sv: "Jag talar lite turkiska.", hi: "मैं थोड़ी तुर्की बोलता हूँ।" },
-  live_here: { en: "Do you live here?", tr: "Burada mı yaşıyorsunuz?", es: "¿Vives aquí?", fr: "Habitez-vous ici ?", de: "Wohnst du hier?", ja: "ここに住んでいますか？", it: "Vivi qui?", zh: "你住在这里吗？", ru: "Вы здесь живете?", pt: "Você mora aqui?", ko: "여기 사시나요?", ar: "هل تعيش هنا؟", nl: "Woon je hier?", sv: "Bor du här?", hi: "क्या आप यहाँ रहते हैं?" },
-  beautiful_house: { en: "Your house is beautiful.", tr: "Eviniz çok güzel.", es: "Tu casa es hermosa.", fr: "Votre maison est belle.", de: "Dein Haus ist schön.", ja: "あなたの家は美しいです。", it: "La tua casa è bella.", zh: "你的房子很漂亮。", ru: "Ваш дом красивый.", pt: "Sua casa é bonita.", ko: "당신의 집은 아름답습니다.", ar: "بيتك جميل.", nl: "Je huis is mooi.", sv: "Ditt hus är fint.", hi: "आपका घर सुंदर है।" },
-  eat_cheese: { en: "We eat delicious cheese.", tr: "Lezzetli peynir yeriz.", es: "Comemos queso delicioso.", fr: "Nous mangeons du fromage délicieux.", de: "Wir essen leckeren Käse.", ja: "私たちは美味しいチーズを食べます。", it: "Mangiamo del formaggio delizioso.", zh: "我们吃美味的奶酪。", ru: "Мы едим вкусный сыр.", pt: "Comemos queijo delicioso.", ko: "우리는 맛있는 치즈를 meg습니다.", ar: "نحن نأكل جبناً لذيذاً.", nl: "We eten heerlijke kaas.", sv: "Vi äter god ost.", hi: "हम स्वादिष्ट पनीर खाते हैं।" },
-  like_apples: { en: "I like red apples.", tr: "Kırmızı elmaları severim.", es: "Me gustan las manzanas rojas.", fr: "J'aime les pommes rouges.", de: "Ich mag rote Äpfel.", ja: "私は赤いリンゴが好きです。", it: "Mi piacciono le mele rosse.", zh: "我喜欢红苹果。", ru: "Мне нравятся красные яблоки.", pt: "Eu gosto de maçãs vermelhas.", ko: "저는 빨간 사과를 좋아합니다.", ar: "أحب التفاح الأحمر.", nl: "Ik hou de rode appelen.", sv: "Jag gillar röda äpplen.", hi: "मुझे लाल सेब पसंद हैं।" },
-  write_letter: { en: "I write a letter.", tr: "Bir mektup yazarım.", es: "Escribo una carta.", fr: "J'écris une lettre.", de: "Ich schreibe einen Brief.", ja: "私は手紙を書きます。", it: "Scrivo una lettera.", zh: "我写一封信。", ru: "Я пишу письмо.", pt: "Eu escrevo uma carta.", ko: "저는 편지를 씁니다.", ar: "أكتب رسالة.", nl: "Ik schrijf een brief.", sv: "Jag skriver ett brev.", hi: "मैं एक पत्र लिखता हूँ।" },
-  study_lesson: { en: "I study my lesson.", tr: "Dersime çalışırım.", es: "Estudio mi lección.", fr: "J'étudie ma leçon.", de: "Ich lerne meine Lektion.", ja: "私はレッスンを勉強します。", it: "Studio la mia lezione.", zh: "我学习我的课程。", ru: "Я учу свой урок.", pt: "Eu estudo a minha lição.", ko: "저는 공부를 합니다.", ar: "أنا أدرس درسي.", nl: "Ik bestudeer mijn les.", sv: "Jag studerar min lektion.", hi: "मैं अपना पाठ पढ़ता हूँ।" },
-  count_seven_eight: { en: "I count seven and eight.", tr: "Yedi ve sekiz diye sayarım.", es: "Cuento siete y ocho.", fr: "Je compte sept et huit.", de: "Ich zähle sieben und acht.", ja: "七と八を数えます。", it: "Conto sette e otto.", zh: "我数七 and 八。", ru: "Я считаю семь и восемь.", pt: "Eu conto sete e oito.", ko: "칠과 팔을 셉니다.", ar: "أعد سبعة وثمانية.", nl: "Ik tel zeven en acht.", sv: "Jag räknar sju och åtta.", hi: "मैं सात और आठ गिनता हूँ।" },
-  like_yellow: { en: "I like yellow flowers.", tr: "Sarı çiçekleri severim.", es: "Me gustan las flores amarillas.", fr: "J'aime les fleurs jaunes.", de: "Ich mag gelbe Blumen.", ja: "私は黄色い花が好きです。", it: "Mi piacciono i fiori gialli.", zh: "我喜欢黄色的花。", ru: "Мне нравятся желтые цветы.", pt: "Eu gosto de flores amarelas.", ko: "저는 노란 꽃을 좋아합니다.", ar: "أحب الزهور الصفراء.", nl: "Ik hou van gele bloemen.", sv: "Jag gillar gula blommor.", hi: "मुझे पीले फूल पसंद हैं।" },
-  black_white: { en: "I have black and white pens.", tr: "Siyah ve beyaz kalemlerim var.", es: "Tengo bolígrafos negros y blancos.", fr: "J'ai des stylos noirs et blancs.", de: "Ich habe schwarze und weiße Stifte.", ja: "私は黒と白의 ペンを持っています。", it: "Ho penne nere e bianche.", zh: "我有黑白两色的笔。", ru: "У меня есть черные и белые ручки.", pt: "Tenho canetas pretas e brancas.", ko: "저는 검은색과 흰색 펜이 있습니다.", ar: "عندي أقلام سوداء وبيضاء.", nl: "Ik heb zwarte en witte pennen.", sv: "Jag har svarta och vita pennor.", hi: "मेरे पास काले और सफेद पेन हैं।" },
-  weather_nice: { en: "The weather is nice.", tr: "Hava güzel.", es: "El clima está agradable.", fr: "Le temps est beau.", de: "Das Wetter ist schön.", ja: "天気が良いです。", it: "Il tempo è bello.", zh: "天气很好。", ru: "Погода хорошая.", pt: "O tempo está bom.", ko: "날씨가 좋습니다.", ar: "الطقس جميل.", nl: "Het weer is mooi.", sv: "Vädret är fint.", hi: "मौसम अच्छा है।" },
-  station: { en: "Where is the station?", tr: "İstasyon nerede?", es: "¿Dónde está la estación?", fr: "Où est la gare ?", de: "Wo ist der Bahnhof?", it: "Dov'è la stazione?", pt: "Onde fica a estação?", ru: "Где находится станция?", zh: "车站在哪里？", ja: "駅はどこですか？", ko: "역이 어디인가요?", ar: "أين المحطة؟", nl: "Waar is het station?", sv: "Var ligger stationen?", hi: "स्टेशन कहाँ है?" },
-  cost: { en: "How much is this?", tr: "Bu ne kadar?", es: "¿Cuánto cuesta esto?", fr: "Combien ça coûte ?", de: "Wie viel kostet das?", it: "Quanto costa questo?", pt: "Quanto custa isto?", ru: "Сколько это стоит?", zh: "这个多少钱？", ja: "これはいくらですか？", ko: "이것은 얼마인가요?", ar: "بكم هذا؟", nl: "Hoeveel kost dit?", sv: "Hur mycket kostar den här?", hi: "यह कितने का है?" },
-  family: { en: "I love my family.", tr: "Ailemi seviyorum.", es: "Amo a mi familia.", fr: "J'aime ma famille.", de: "Ich liebe meine Familie.", it: "Amo la mia famiglia.", pt: "Eu amo a minha família.", ru: "Я люблю свою семью.", zh: "我爱我的家庭。", ja: "家族を愛しています。", ko: "가족을 사랑합니다.", ar: "أنا أحب عائلتي.", nl: "Ik hou van mijn familie.", sv: "Jag älskar min familj.", hi: "मैं अपने pfरिवार से प्यार करता हूँ。" }, // tr: Ailemi seviyorum.
-  name: { en: "What is your name?", tr: "Adınız nedir?", es: "¿Cómo te llamas?", fr: "Comment vous appelez-vous ?", de: "Wie heißen Sie?", it: "Come ti chiami?", pt: "Qual é o seu nome?", ru: "Как вас зовут?", zh: "你叫什么名字？", ja: "お名前は何ですか？", ko: "이름이 무엇인가요?", ar: "ما اسمك؟", nl: "Wat is je naam?", sv: "Vad heter du?", hi: "आपका नाम क्या है?" },
-  speak: { en: "I speak some English.", tr: "Biraz İngilizce konuşuyorum.", es: "Hablo un poco de inglés.", fr: "Je parle un peu anglais.", de: "Ich spreche ein wenig Englisch.", it: "Parlo un po' di inglese.", pt: "Eu falo um pouco de inglês.", ru: "Я немного говорю по-английски.", zh: "我会说一点英语。", ja: "英語が少し話せます。", ko: "영어를 조금 할 줄 압니다.", ar: "أتحدث القليل من الإنجليزية.", nl: "Ik spreek een beetje Engels.", sv: "Jag talar lite engelska.", hi: "मैं थोड़ी अंग्रेजी बोलता हूँ。" },
-  where_live: { en: "Where do you live?", tr: "Nerede yaşıyorsunuz?", es: "¿Dónde vives?", fr: "Où habitez-vous ?", de: "Wo wohnen Sie?", ja: "どこに住んでいますか？", it: "Dove vivi?", zh: "你住在哪里？", ru: "Где вы живете?", pt: "Onde você mora?", ko: "어디에 살고 계신가요?", ar: "أين تعيش؟", nl: "Waar woon je?", sv: "Var bor du?", hi: "आप कहाँ रहते हैं?" },
-  my_house: { en: "This is my house.", tr: "Bu benim evim.", es: "Esta es mi casa.", fr: "C'est ma maison.", de: "Das ist mein Haus.", ja: "これは私の家です。", it: "Questa è la mia casa.", zh: "这是我的房子。", ru: "Это мой дом.", pt: "Esta é a minha casa.", ko: "이것은 제 집입니다.", ar: "هذا منزلي.", nl: "Dit is mijn huis.", sv: "Det här är mitt hus.", hi: "यह मेरा घर है。" },
-  have_brother: { en: "I have a brother.", tr: "Bir erkek kardeşim var.", es: "Tengo un hermano.", fr: "J'ai un frère.", de: "Ich habe einen Bruder.", ja: "私には兄がいます。", it: "Ho un fratello.", zh: "我有一个哥哥。", ru: "У меня есть брат.", pt: "Eu tenho um irmão.", ko: "저는 남동생이 있습니다.", ar: "عندي أخ.", nl: "Ik heb een broer.", sv: "Jag har en bror.", hi: "मेरा एक भाई है。" },
-  have_sister: { en: "I have a sister.", tr: "Bir kız kardeşim var.", es: "Tengo una hermana.", fr: "J'ai une sœur.", de: "Ich habe eine Schwester.", ja: "私には姉がいます。", it: "Ho una sorella。", zh: "我有一个姐姐。", ru: "У меня есть сестра.", pt: "Eu tenho uma irmã.", ko: "저는 여동생이 있습니다.", ar: "عندي أخت.", nl: "Ik heb een zus.", sv: "Jag har een syster.", hi: "मेरी एक बहन है。" },
-  eat_bread: { en: "I eat bread.", tr: "Ekmek yerim.", es: "Yo como pan.", fr: "Je mange du pain.", de: "Ich esse Brot.", ja: "私はパンを食べます。", it: "Io mangio il pane.", zh: "我吃面包。", ru: "Я ем хлеб.", pt: "Eu como pão.", ko: "저는 빵을 먹습니다.", ar: "أنا آكل الخبز.", nl: "Ik eet brood.", sv: "Jag äter bröd.", hi: "मैं रोटी खाता हूँ。" },
-  drink_water: { en: "I drink water.", tr: "Su içerim.", es: "Bebo agua.", fr: "Je bois de l'eau.", de: "Ich trinke Wasser.", ja: "私は水を飲みます。", it: "Bevo acqua.", zh: "我喝水。", ru: "Я пью воду.", pt: "Eu bebo água.", ko: "저는 물을 마십니다.", ar: "أنا أشرب الماء.", nl: "Ik drink water.", sv: "Jag dricker vatten.", hi: "मैं पानी पीता हूँ。" },
-  read_book: { en: "I read a book.", tr: "Kitap okurum.", es: "Leo un libro.", fr: "Je lis un livre.", de: "Ich lese ein Buch.", ja: "私は本を読みます。", it: "Leggo un libro.", zh: "我读书。", ru: "Я читаю книгу.", pt: "Eu leio um libro.", ko: "저는 책을 읽습니다.", ar: "أنا أقرأ كتاباً.", nl: "Ik lees een boek.", sv: "Jag läser en bok.", hi: "मैं पुस्तक पढ़ता हूँ。" },
-  have_friend: { en: "I have friends.", tr: "Arkadaşlarım var.", es: "Tengo amigos.", fr: "J'ai des amis.", de: "Ich habe Freunde.", ja: "私には友達がいます。", it: "Ho degli amici.", zh: "我有朋友。", ru: "У меня есть друзья.", pt: "Eu tenho amigos.", ko: "저는 친구들이 있습니다.", ar: "عندي أصدقاء.", nl: "Ik heb vrienden.", sv: "Jag har vänner.", hi: "मेरे दोस्त हैं。" },
-  like_colors: { en: "I like colors.", tr: "Renkleri severim.", es: "Me gustan los colores.", fr: "J'aime les couleurs.", de: "Ich mag Farben.", ja: "私は色が好きです。", it: "Mi piacciono i colori.", zh: "我喜欢颜色。", ru: "Мне нравятся цвета.", pt: "Eu gosto de cores.", ko: "저는 색상을 좋아합니다.", ar: "أنا أحب الألوان.", nl: "Ik hou van kleuren.", sv: "Jag gillar färger.", hi: "मुझे रंग पसंद हैं。" },
-  my_parent: { en: "I love my parents.", tr: "Anne babamı seviyorum.", es: "Amo a mis padres.", fr: "J'aime mes parents.", de: "Ich liebe meine Eltern.", ja: "私は両親を愛しています。", it: "Amo i miei genitori.", zh: "我爱我的父母。", ru: "Я люблю своих родителей.", pt: "Eu amo os meus pais.", ko: "저는 부모님을 사랑합니다.", ar: "أنا أحب والدي.", nl: "Ik hou van mijn ouders.", sv: "Jag älskar mina föräldrar.", hi: "मैं अपने माता-पिता से प्यार करता हूँ。" },
-  school_study: { en: "We study at school.", tr: "Okulda ders çalışırız.", es: "Estudiamos en la escuela.", fr: "Nous étudions à l'école.", de: "Wir lernen in der Schule.", ja: "私たちは学校で勉強します。", it: "Studiamo a scuola.", zh: "我们在学校学习。", ru: "Мы учимся в школе.", pt: "Nós estudamos na escola.", ko: "우리는 학교에서 공부합니다.", ar: "نحن ندرس في المدرسة.", nl: "Wij studeren op school.", sv: "Vi studerar i skolan.", hi: "हम स्कूल में पढ़ते हैं。" },
-  good_day: { en: "Have a good day.", tr: "İyi günler dilerim.", es: "Que tengas un buen día.", fr: "Passez une bonne journée.", de: "Einen schönen Tag noch.", ja: "良い一日を。", it: "Buona giornata.", zh: "祝你有美好的一天。", ru: "Хорошего дня.", pt: "Tenha um bom dia.", ko: "좋은 하루 보내세요.", ar: "أتمنى لك يوماً سعيداً.", nl: "Prettige dag.", sv: "Ha en bra dag.", hi: "आपका दिन शुभ हो。" },
-  count_one_two: { en: "I count one and two.", tr: "Bir ve iki diye sayarım.", es: "Cuento uno y dos.", fr: "Je compte un et deux.", de: "Ich zähle eins und zwei.", ja: "一と二を数えます。", it: "Conto uno e due.", zh: "我数一和二。", ru: "Я считаю один и два.", pt: "Eu conto um e dois.", ko: "일과 이를 셉니다.", ar: "أنا أعد واحد واثنين.", nl: "Ik tel een en twee.", sv: "Jag räknar ett och två.", hi: "मैं एक और दो गिनता हूँ。" }
-};
+export let INTERMEDIATE_VOCAB: Record<string, Record<string, string>> = {};
 
-export const ADVANCED_VOCAB: Record<string, Record<string, string>> = {
-  favorite_dish: { en: "My favorite dish is delicious.", tr: "En sevdiğim yemek lezzetlidir.", es: "Mi plato favorito es delicioso.", fr: "Mon plat préféré est délicieux.", de: "Mein Lieblingsgericht ist lecker.", ja: "私の好物は美味しいです。", it: "Il mio piatto preferito è delizioso.", zh: "我最喜欢的菜很好吃。", ru: "Мое любимое блюдо вкусное.", pt: "O meu prato favorito é delicioso.", ko: "내가 가장 좋아하는 음식은 맛있습니다.", ar: "طبقي المفضل لذيذ.", nl: "Mijn favoriete gerecht is heerlijk.", sv: "Min favoriträtt är god.", hi: "मेरा पसंदीदा व्यंजन स्वादिष्ट है।" },
-  drink_hot_coffee: { en: "I drink hot coffee.", tr: "Sıcak kahve içerim.", es: "Bebo café caliente.", fr: "Je bois du café chaud.", de: "Ich trinke heißen Kaffee.", ja: "私は温かいコーヒーを飲みます。", it: "Bevo caffè caldo.", zh: "我喝热咖啡。", ru: "Я пью горячий кофе.", pt: "Eu bebo café quente.", ko: "저는 뜨거운 커피를 마십니다.", ar: "أنا أشرب القهوة الساخنة.", nl: "Ik drink hete koffie.", sv: "Jag dricker varmt kaffe.", hi: "मैं गर्म कॉफी पीता हूँ।" },
-  delicious_dinner: { en: "We had a delicious dinner.", tr: "Lezzetli bir akşam yemeği yedik.", es: "Tuvimos una cena deliciosa.", fr: "Nous avons eu un dîner délicieux.", de: "Wir hatten ein leckeres Abendessen.", ja: "私たちは美味しい夕食を食べました。", it: "Abbiamo fatto una cena deliziosa.", zh: "我们吃了一顿美味的晚餐。", ru: "У нас был вкусный ужин.", pt: "Tivemos um jantar delicioso.", ko: "우리는 맛있는 저녁 식사를 했습니다.", ar: "تناولنا عشاءً لذيذاً.", nl: "We hadden een heerlijk diner.", sv: "Vi åt en god middag.", hi: "हमने एक स्वादिष्ट रात्रिभوز किया।" },
-  write_essay: { en: "Students write academic essays.", tr: "Öğrenciler akademik makaleler yazar.", es: "Los estudiantes escriben ensayos académicos.", fr: "Les étudiants écrivent des dissertations académiques.", de: "Studenten schreiben akademische Aufsätze.", ja: "学生はアカデミックなエッセイを書きます。", it: "Gli studenti scrivono saggi accademici.", zh: "学生们写学术论文。", ru: "Студенты пишут академические эссе.", pt: "Os estudantes escrevem ensaios académicos.", ko: "학생들은 학술 에세이를 씁니다.", ar: "يكتب الطلاب مقالات أكاديمية.", nl: "Studenten schrijven essays.", sv: "Studenter skriver uppsatser.", hi: "छात्र शैक्षणिक निबंध लिखते हैं।" },
-  read_novel: { en: "I love reading novels.", tr: "Roman okumayı severim.", es: "Me encanta leer novelas.", fr: "J'adore lire des romans.", de: "Ich liebe es, Romane zu lesen.", ja: "私は小説を読むのが大好きです。", it: "Adoro leggere romanzi.", zh: "我喜欢读小说。", ru: "Я люблю читать романы.", pt: "Adoro ler romances.", ko: "저는 소설 읽는 것을 좋아합니다.", ar: "أحب قراءة الروايات.", nl: "Ik hou van romans.", sv: "Jag älskar att läsa romaner.", hi: "मुझे उपन्यास पढ़ना बहुत पसंद है।" },
-  advanced_review_a1: { en: "My professional career is starting today.", tr: "Mesleki kariyerim bugün başlıyor.", es: "Mi carrera profesional comienza hoy.", fr: "Ma carrière professionnelle commence aujourd'hui.", de: "Meine berufliche Karriere beginnt heute.", ja: "私のプロフェッショナルなキャリアが今日始まります。", it: "La mia carriera professionale inizia oggi.", zh: "我的职业生涯今天开始。", ru: "Моя профессиональная карьера начинается сегодня.", pt: "Minha carreira profissional começa hoje.", ko: "저의 전문적인 커리어가 오늘 시작됩니다.", ar: "مسيرتي المهنية تبدأ اليوم.", nl: "Mijn professionele carrière begint vandaag.", sv: "Min yrkeskarriär börjar idag.", hi: "मेरा व्यावसायिक करियर आज शुरू हो रहा है।" },
-  advanced_review_a2: { en: "We had a long business discussion.", tr: "Uzun bir iş görüşmesi yaptık.", es: "Tuvimos una larga discusión de negocios.", fr: "Nous avons eu une longue discussion d'affaires.", de: "Wir hatten ein langes Geschäftsgespräch.", ja: "私たちは長いビジネスの議論をしました。", it: "Abbiamo avuto una lunga discussione di lavoro.", zh: "我们进行了很长时间的商务讨论。", ru: "У нас было долгое деловое обсуждение.", pt: "Tivemos uma longa discussão de negócios.", ko: "우리는 오랜 비즈니스 토론을 했습니다.", ar: "كان لدينا مناقشة عمل طويلة.", nl: "We hadden een lange zakelijke discussie.", sv: "Vi hade en lång affärsdiskussion.", hi: "हमारी लंबी व्यावसायिक चर्चा हुई।" },
-  advanced_review_b1: { en: "We prefer to read classical literature.", tr: "Klasik edebiyat okumayı tercih ederiz.", es: "Preferimos leer literatura clásica.", fr: "Nous préférons lire de la littérature classique.", de: "Wir lesen lieber klassische Literatur.", ja: "私たちは古典文学を読むことを好みます。", it: "Preferiamo leggere la letteratura classica.", zh: "我们更喜欢读古典文学。", ru: "Мы предпочитаем читать классическую литературу.", pt: "Preferimos ler literatura clássica.", ko: "우리는 고전 문학 읽는 것을 선호합니다.", ar: "نفضل قراءة الأدب الكلاسيكي.", nl: "We lezen liever klassieke literatuur.", sv: "Vi föredrar att läsa klassisk litteratur.", hi: "हम शास्त्रीय साहित्य पढ़ना पसंद करते हैं।" },
-  advanced_review_b2: { en: "The weather report was completely correct.", tr: "Hava durumu raporu tamamen doğruydu.", es: "El reporte del clima fue completamente correcto.", fr: "Le rapport météo était tout à fait exact.", de: "Der Wetterbericht war völlig korrekt.", ja: "天気予報は完全に正しかったです。", it: "Il bollettino meteorologico era completamente corretto.", zh: "天气预报完全正确。", ru: "Прогноз погоды был абсолютно точным.", pt: "O relatório meteorológico estava completamente correto.", ko: "일기 예보가 완전히 맞았습니다.", ar: "كان تقرير الطقس صحيحاً تماماً.", nl: "Het weerbericht was volkomen juist.", sv: "Väderrapporten var helt korrekt.", hi: "मौसम की रिपोर्ट पूरी तरह से सही थी।" },
-  travel: { en: "If I had money, I would travel.", tr: "Param olsaydı seyahat ederdim.", es: "Si tuviera dinero, viajaría.", fr: "Si j'avais de l'argent, je voyagerais.", de: "Wenn ich Geld hätte, würde ich reisen.", it: "Se avessi soldi, viaggerei.", pt: "Se eu tivesse dinheiro, viajaria.", ru: "Если бы у меня были деньги, я бы путешествовал.", zh: "如果我有钱，我就会去旅行。", ja: "お金があれば旅行するのに。", ko: "돈이 있다면 여행을 갈 텐데요.", ar: "لو كان لدي مال لسافرت.", nl: "Als ik geld had, zou ik reizen.", sv: "Om jag hade pengar skulle jag resa.", hi: "अगर मेरे पास पैसे होते, तो मैं यात्रा करता।" },
-  explain: { en: "Please explain this to me.", tr: "Lütfen bunu bana açıklayın.", es: "Por favor explécame esto.", fr: "S'il vous plaît expliquez-moi cela.", de: "Bitte erklären Sie mir das.", it: "Per favore spiegami questo.", pt: "Por favor, explique-me isto.", ru: "Пожалуйста, объясните мне это.", zh: "请向我解释一下这个。", ja: "これを説明してください。", ko: "이것을 설명해 주세요.", ar: "يرجى شرح هذا لي.", nl: "Leg dit me alstublieft uit.", sv: "Förklara detta för mig, tack.", hi: "कृपया मुझे यह समझाएं।" },
-  actions: { en: "Actions speak louder than words.", tr: "Lafla peynir gemisi yürümez.", es: "Las palabras se las lleva el viento.", fr: "Les actes parlent plus que les mots.", de: "Taten sagen mehr als Worte.", it: "Le azioni contano più delle parole.", pt: "Ações valem mais que palavras.", ru: "Дела говорят громче слов.", zh: "事实胜于雄辩。", ja: "論より証拠。", ko: "말보다 행동이 중요하다.", ar: "الأفعال أبلغ من الأقوال.", nl: "Geen woorden maar daden.", sv: "Handlingar talar högre än ord.", hi: "कथनी से करनी भली।" },
-  rain: { en: "It is raining heavily today.", tr: "Bugün çok şiddetli yağmur yağıyor.", es: "Hoy está lloviendo fuertemente.", fr: "Il pleut à verse aujourd'hui.", de: "Heute regnet es in Strömen.", it: "Oggi sta piovendo forte.", pt: "Hoje está chovendo muito.", ru: "Сегодня идет сильный дождь.", zh: "今天雨下得很大。", ja: "今日は大雨が降っています。", ko: "오늘 비가 많이 내립니다.", ar: "إنها تمطر بغзарة اليوم.", nl: "Het regent hard vandaag.", sv: "Det regnar kraftigt idag.", hi: "आज बहुत तेज बारिश हो रही है।" },
-  meet: { en: "I look forward to meeting you.", tr: "Sizinle tanışmayı dört gözle bekliyorum.", es: "Espero conocerte pronto.", fr: "J'ai hâte de vous rencontrer.", de: "Ich freue mich darauf, Sie kennenzulernen.", it: "Non vedo l'ora di conoscerti.", pt: "Estou ansioso para conhecer você.", ru: "Я с нетерпением жду встречи с вами.", zh: "我期待与您见面。", ja: "お会いできるのを楽しみにしています。", ko: "만나 뵙기를 기대합니다.", ar: "أتطلع للقائك.", nl: "Ik verheug me erop u te ontmoeten.", sv: "Jag ser fram emot att träffa dig.", hi: "मुझे आपसे मिलने का इंतजार है।" },
-  work_office: { en: "We work at the office.", tr: "Ofiste çalışıyoruz.", es: "Trabajamos en la oficina.", fr: "Nous travaillons au bureau.", de: "Wir arbeiten im Büro.", ja: "私たちはオフィスで働いています。", it: "Lavoriamo in ufficio.", zh: "我们在办公室工作。", ru: "Мы работаем в офисе.", pt: "Nós trabalhavamos no escritório.", ko: "우리는 사무실에서 일합니다.", ar: "نحن نعمل في المكتب.", nl: "Wij werken op kantoor.", sv: "Vi arbetar på kontoret.", hi: "हम कार्यालय में काम करते हैं।" },
-  business_meeting: { en: "The business meeting went well.", tr: "İş toplantısı iyi geçti.", es: "La reunión de negocios salió bien.", fr: "La réunion d'affaires s'est bien passée.", de: "Das Geschäftstreffen lief gut.", ja: "会議はうまくいきました。", it: "L'incontro di lavoro è andato bene.", zh: "商务会议进行得很好。", ru: "Деловая встреча прошла хорошо.", pt: "A reunião de negócios correu bem.", ko: "비즈니스 회의가 잘 진행되었습니다.", ar: "سارت اجتماع العمل بشكل جيد.", nl: "De zakelijke bijeenkomst liep goed.", sv: "Affärsmötet gick bra.", hi: "व्यावसायिक बैठक अच्छी रही।" },
-  complex_topic: { en: "We are discussing a complex topic.", tr: "Karmaşık bir konuyu tartışıyoruz.", es: "Estamos discutiendo un tema complejo.", fr: "Nous discutons d'un sujet complexe.", de: "Wir diskutieren ein komplexes Thema.", ja: "複雑なテーマについて議論しています。", it: "Stiamo discutendo un tema complesso.", zh: "我们正在讨论一个复杂的话题。", ru: "Мы обсуждаем сложную тему.", pt: "Estamos discutindo um tema complexo.", ko: "우리는 복잡한 주제에 대해 토론하고 있습니다.", ar: "نحن نناقش موضوعاً معقداً.", nl: "We bespreken een complex onderwerp.", sv: "Vi diskuterer ett komplext ämne.", hi: "हम एक जटिल विषय पर चर्चा कर रहे हैं।" },
-  different_language: { en: "Translating between different languages is hard.", tr: "Farklı diller arasında çeviri yapmak zordur.", es: "Traducir entre diferentes idiomas es difícil.", fr: "Traduire entre différentes langues est difficile.", de: "Das Übersetzen zwischen verschiedenen Sprachen ist schwierig.", ja: "異なる言語間の翻訳は難しいです。", it: "Tradurre tra lingue diverse è difficile.", zh: "在不同语言之间翻译是困难的。", ru: "Переводить с разных языков трудно.", pt: "Traduzir entre línguas diferentes é difícil.", ko: "서로 다른 언어 사이의 번역은 어렵습니다.", ar: "الترجمة بين اللغات المختلفة صعبة.", nl: "Vertalen tussen verschillende talen is moeilijk.", sv: "Att översätta mellan olika språk är svårt.", hi: "विभिन्न भाषाओं के बीच अनुवाद करना कठिन है।" },
-  drink_pure_water: { en: "Humans need to drink pure water.", tr: "İnsanların temiz su içmesi gerekir.", es: "Los humanos necesitan beber agua pura.", fr: "Les humains ont besoin de boire de l'eau pure.", de: "Menschen müssen reines Wasser trinken.", ja: "人間はきれいな水を飲む必要があります。", it: "Gli umani hanno bisogno di bere acqua pura.", zh: "人类需要饮用纯净水。", ru: "Людям нужно пить чистую воду.", pt: "Os humanos precisam de beber água pura.", ko: "인간은 깨끗한 물을 마셔야 합니다.", ar: "يحتاج البشر إلى شرب الماء النقي.", nl: "Mensen moeten schoon water drinken.", sv: "Människor behöver dricka rent vatten.", hi: "मनुष्यों को शुद्ध पानी पीने की आवश्यकता है।" },
-  warm_bread: { en: "Nothing is better than warm bread.", tr: "Sıcak ekmekten daha iyi bir şey yoktur.", es: "Nada es mejor que el pan caliente.", fr: "Rien n'est meilleur que le pain chaud.", de: "Nichts ist besser als warmes Brot.", ja: "焼きたてのパンより美味しいものはありません。", it: "Niente è meglio del pane caldo.", zh: "没有什么比热面包更好的了。", ru: "Нет ничего лучше теплого хлеба.", pt: "Nada é melhor do que pão quente.", ko: "따뜻한 빵보다 더 좋은 것은 없습니다.", ar: "لا شيء أفضل من الخبز الدافئ.", nl: "Niets is beter dan warm brood.", sv: "Inget är bättre än varmt bröd.", hi: "गर्म रोटी से बेहतर कुछ नहीं है।" },
-  read_scientific_book: { en: "I prefer to read scientific books.", tr: "Bilimsel kitaplar okumayı tercih ederim.", es: "Prefiero leer libros científicos.", fr: "Je préfère lire des livres scientifiques.", de: "Ich lese lieber wissenschaftliche Bücher.", ja: "私は科学本を読むのを好みます。", it: "Preferisco leggere libri scientifici.", zh: "我更喜欢读科学书籍。", ru: "Я предпочитаю читать научные книги.", pt: "Eu prefiro ler livros científicos.", ko: "저는 과학 서적을 읽는 것을 선호합니다.", ar: "أفضل قراءة الكتب العلمية.", nl: "Ik lees liever wetenschappelijke boeken.", sv: "Jag föredrar att läsa vetenskapliga böcker.", hi: "मैं वैज्ञानिक पुस्तकें पढ़ना पसंद करता हूँ।" },
-  advanced_study: { en: "Advanced study requires lot of effort.", tr: "İleri düzey çalışma çok çaba gerektirir.", es: "El estudio advanced requiere mucho esfuerzo.", fr: "L'étude avancée demande beaucoup d'efforts.", de: "Fortgeschrittenes Studium erfordert viel Mühe.", ja: "高度な学習には多大な努力が必要です。", it: "Lo studio avancato richiede molto sforzo.", zh: "高级研究需要很多努力。", ru: "Продвинутое обучение требует много усилий.", pt: "O estudo advanced exige muito esforço.", ko: "고급 학습은 많은 노력을 필요로 합니다.", ar: "الدراسة المتقدمة تتطلب الكثير من الجهد.", nl: "Geavanceerde studie vereist veel inspanning.", sv: "Avancerade studier kräver mycket ansträngning.", hi: "उन्नत अध्ययन के लिए बहुत प्रयास की आवश्यकता होती है।" },
-  weather_report: { en: "The weather report says it will rain.", tr: "Hava durumu raporu yağmur yağacağını söylüyor.", es: "El reporte del clima dice que lloverá.", fr: "Le rapport météo indique qu'il va pleuvoir.", de: "Der Wetterbericht sagt Regen voraus.", ja: "天気予報では雨が降ると言っています。", it: "Il bollettino meteorologico dice che pioverà.", zh: "天气预报说会下雨。", ru: "Прогноз погоды говорит, что пойдет дождь.", pt: "O boletim meteorológico diz что vai chover.", ko: "일기 예보에 따르면 비가 올 것이라고 합니다.", ar: "يقول تقرير الطقس إنها ستمطر.", nl: "Het weerbericht zegt dat het gaat regenen.", sv: "Väderrapporten säger att det ska regna.", hi: "मौसम की रिपोर्ट कहती है कि बारिश होगी।" },
-  professional_goal: { en: "My professional goal is language mastery.", tr: "Mesleki hedefim dil uzmanlığıdır.", es: "Mi objetivo profesional es el dominio del idioma.", fr: "Mon objectif professionnel est la maîtrise de la langue.", de: "Mein berufliches Ziel ist die Beherrschung der Sprache.", ja: "私の専門的な目標は語学の習得です。", it: "Il mio obiettivo professionale è la padronanza della lingua.", zh: "我的专业目标 es精通语言。", ru: "Моя профессиональная цель - владение языком.", pt: "O meu objetivo profissional é a fluência no idioma.", ko: "저의 전문적인 목표는 언어 마스터입니다.", ar: "هدفي المهني هو إتقان اللغة.", nl: "Mijn professionele doel is taalbeheersing.", sv: "Mitt yrkesmässiga mål är att behärska språket.", hi: "मेरा व्यावसायिक लक्ष्य भाषा में महारत हासिल करना है।" },
-  scientific_research: { en: "We support scientific research projects.", tr: "Bilimsel araştırma projelerini destekliyoruz.", es: "Apoyamos proyectos de investigación científica.", fr: "Nous soutenons les projets de recherche scientifique.", de: "Wir unterstützen wissenschaftliche Forschungsprojekte.", ja: "私たちは科学研究プロジェクトを支援しています。", it: "Sosteniamo progetti di ricerca scientifica.", zh: "我们支持科学研究项目。", ru: "Мы поддерживаем проекты научных исследований.", pt: "Apoiamos projetos de pesquisa científica.", ko: "우리는 과학 연구 프로젝트를 지원합니다.", ar: "نحن ندعم مشاريع البحث العلمي.", nl: "Wij ondersteunen wetenschappelijke onderzoeksprojecten.", sv: "Vi stödjer vetenskapliga forskningsprojekt.", hi: "हम वैज्ञानिक अनुसंधान परियोजनाओं का समर्थन करते हैं।" },
-  complex_dialogue: { en: "They had a complex dialogue yesterday.", tr: "Dün karmaşık bir diyalog kurdular.", es: "Ayer tuvieron un diálogo complejo.", fr: "Ils ont eu un dialogue complexe hier.", de: "Sie hatten gestern einen komplexen Dialog.", ja: "昨日、彼らは複雑な対話をしました。", it: "Ieri hanno avuto un dialogue complexe.", zh: "他们昨天进行了一次复杂的对话。", ru: "Вчера у них был сложный диалог.", pt: "Eles tiveram um dialogue complexo ontem.", ko: "그들은 어제 복잡한 대화를 나눴습니다.", ar: "كان لديهم حوار معقد أمس.", nl: "Ze hadden gisteren een complexe dialoog.", sv: "De hade en komplex dialog igår.", hi: "कल उनके बीच bir diyalog kuruldu." }
-};
+export let ADVANCED_VOCAB: Record<string, Record<string, string>> = {};
 
 
 
@@ -400,23 +331,69 @@ const TIER1_CATEGORY_VOCAB: Record<number, { key: keyof LangVocab; english: stri
 };
 
 const TIER2_CATEGORY_VOCAB: Record<number, string[]> = {
-  0: ['family', 'have_friend', 'my_parent', 'have_brother', 'have_sister', 'my_friend', 'have_child', 'happy_family', 'family', 'have_friend'],
-  1: ['my_parent', 'have_brother', 'have_sister', 'have_child', 'happy_family', 'my_friend', 'family', 'have_brother', 'have_sister', 'my_parent'],
-  2: ['name', 'speak', 'good_day', 'where_live', 'cost', 'ticket_cost', 'speak_turkish', 'live_here', 'good_day', 'name'],
-  3: ['drink_water', 'eat_bread', 'drink_milk', 'eat_apple', 'drink_tea', 'eat_cheese', 'like_apples', 'drink_water', 'eat_bread', 'drink_milk'],
-  4: ['read_book', 'school_study', 'write_paper', 'use_pen', 'write_letter', 'study_lesson', 'read_book', 'school_study', 'write_paper', 'use_pen'],
-  5: ['count_one_two', 'count_three_four', 'count_to_five', 'count_seven_eight', 'cost', 'ticket_cost', 'count_one_two', 'count_three_four', 'count_to_five', 'count_seven_eight'],
-  6: ['my_house', 'like_colors', 'station', 'where_live', 'weather_nice', 'where_station', 'beautiful_house', 'like_yellow', 'black_white', 'my_house']
+  0: [
+    'family_have_mother_i', 'family_have_father_i', 'family_have_brother_i', 'family_have_sister_i', 'family_have_friend_i',
+    'family_have_child_i', 'family_see_mother_i', 'family_see_father_i', 'family_see_brother_i', 'family_see_sister_i'
+  ],
+  1: [
+    'family_have_mother_we', 'family_have_father_we', 'family_have_brother_we', 'family_have_sister_we', 'family_have_friend_we',
+    'family_have_child_we', 'family_see_mother_we', 'family_see_father_we', 'family_see_brother_we', 'family_see_sister_we'
+  ],
+  2: [
+    'social_see_house_i', 'social_see_car_i', 'social_see_friend_i', 'social_have_house_i', 'social_have_car_i',
+    'social_see_house_we', 'social_see_car_we', 'social_see_friend_we', 'social_have_house_we', 'social_have_car_we'
+  ],
+  3: [
+    'dining_eat_bread_i', 'dining_eat_cheese_i', 'dining_eat_apple_i', 'dining_eat_meat_i', 'dining_eat_egg_i',
+    'dining_drink_water_i', 'dining_drink_milk_i', 'dining_drink_tea_i', 'dining_drink_coffee_i', 'dining_drink_juice_i'
+  ],
+  4: [
+    'media_read_book_i', 'media_read_novel_i', 'media_read_letter_i', 'media_write_letter_i', 'media_write_essay_i',
+    'media_read_book_we', 'media_read_novel_we', 'media_read_letter_we', 'media_write_letter_we', 'media_write_essay_we'
+  ],
+  5: [
+    'quantities_have_book_i', 'quantities_have_apple_i', 'quantities_have_car_i',
+    'quantities_have_book_we', 'quantities_have_apple_we', 'quantities_have_car_we',
+    'quantities_have_book_i', 'quantities_have_apple_i', 'quantities_have_car_i', 'quantities_have_book_we'
+  ],
+  6: [
+    'environment_see_house_i', 'environment_see_car_i', 'environment_see_house_we', 'environment_see_car_we',
+    'environment_see_house_i', 'environment_see_car_i', 'environment_see_house_we', 'environment_see_car_we',
+    'environment_see_house_i', 'environment_see_car_i'
+  ]
 };
 
 const TIER3_CATEGORY_VOCAB: Record<number, string[]> = {
-  0: ['work_office', 'business_meeting', 'professional_goal', 'meet', 'explain', 'advanced_review_a1', 'advanced_review_a2', 'work_office', 'business_meeting', 'professional_goal'],
-  1: ['complex_topic', 'complex_dialogue', 'explain', 'actions', 'meet', 'advanced_review_a2', 'complex_topic', 'complex_dialogue', 'explain', 'actions'],
-  2: ['different_language', 'explain', 'travel', 'actions', 'meet', 'advanced_review_a1', 'different_language', 'explain', 'travel', 'actions'],
-  3: ['drink_pure_water', 'warm_bread', 'favorite_dish', 'drink_hot_coffee', 'delicious_dinner', 'drink_pure_water', 'warm_bread', 'favorite_dish', 'drink_hot_coffee', 'delicious_dinner'],
-  4: ['read_scientific_book', 'advanced_study', 'scientific_research', 'write_essay', 'read_novel', 'advanced_review_b1', 'read_scientific_book', 'advanced_study', 'scientific_research', 'write_essay'],
-  5: ['work_office', 'business_meeting', 'complex_topic', 'different_language', 'drink_pure_water', 'advanced_review_a1', 'advanced_review_a2', 'work_office', 'business_meeting', 'complex_topic'],
-  6: ['warm_bread', 'read_scientific_book', 'advanced_study', 'weather_report', 'professional_goal', 'advanced_review_b1', 'advanced_review_b2', 'warm_bread', 'read_scientific_book', 'advanced_study']
+  0: [
+    'family_have_mother_i', 'family_have_father_i', 'family_have_brother_i', 'family_have_sister_i', 'family_have_friend_i',
+    'family_have_child_i', 'family_see_mother_i', 'family_see_father_i', 'family_see_brother_i', 'family_see_sister_i'
+  ],
+  1: [
+    'family_have_mother_we', 'family_have_father_we', 'family_have_brother_we', 'family_have_sister_we', 'family_have_friend_we',
+    'family_have_child_we', 'family_see_mother_we', 'family_see_father_we', 'family_see_brother_we', 'family_see_sister_we'
+  ],
+  2: [
+    'social_see_house_i', 'social_see_car_i', 'social_see_friend_i', 'social_have_house_i', 'social_have_car_i',
+    'social_see_house_we', 'social_see_car_we', 'social_see_friend_we', 'social_have_house_we', 'social_have_car_we'
+  ],
+  3: [
+    'dining_eat_bread_i', 'dining_eat_cheese_i', 'dining_eat_apple_i', 'dining_eat_meat_i', 'dining_eat_egg_i',
+    'dining_drink_water_i', 'dining_drink_milk_i', 'dining_drink_tea_i', 'dining_drink_coffee_i', 'dining_drink_juice_i'
+  ],
+  4: [
+    'media_read_book_i', 'media_read_novel_i', 'media_read_letter_i', 'media_write_letter_i', 'media_write_essay_i',
+    'media_read_book_we', 'media_read_novel_we', 'media_read_letter_we', 'media_write_letter_we', 'media_write_essay_we'
+  ],
+  5: [
+    'quantities_have_book_i', 'quantities_have_apple_i', 'quantities_have_car_i',
+    'quantities_have_book_we', 'quantities_have_apple_we', 'quantities_have_car_we',
+    'quantities_have_book_i', 'quantities_have_apple_i', 'quantities_have_car_i', 'quantities_have_book_we'
+  ],
+  6: [
+    'environment_see_house_i', 'environment_see_car_i', 'environment_see_house_we', 'environment_see_car_we',
+    'environment_see_house_i', 'environment_see_car_i', 'environment_see_house_we', 'environment_see_car_we',
+    'environment_see_house_i', 'environment_see_car_i'
+  ]
 };
 
 function shuffleOptions(options: string[]): string[] {
@@ -535,12 +512,569 @@ export function generateQuestionsForLesson(lang: Language, tier: number, lessonI
       { id: `q_${lang.id}_3_${lessonIndex}_10`, type: 'tap-pairs', prompt: 'Match advanced terms', options: [p0.target, p0.source, p1.target, p1.source, p2.target, p2.source, p3.target, p3.source], correctAnswer: `${p0.target}:${p0.source},${p1.target}:${p1.source},${p2.target}:${p2.source},${p3.target}:${p3.source}` }
     ];
   }
-}export async function seedDatabase(force = false): Promise<{ success: boolean; message: string }> {
+}
+interface VerbConjugation {
+  i: string;
+  we: string;
+}
+
+interface GrammarRule {
+  order: 'SVO' | 'SOV';
+  space: boolean;
+  subjects: { i: string; we: string };
+  verbs: {
+    eat: VerbConjugation;
+    drink: VerbConjugation;
+    read: VerbConjugation;
+    write: VerbConjugation;
+    see: VerbConjugation;
+    have: VerbConjugation;
+  };
+  objects: Record<string, string>;
+  objectsAdv: Record<string, string>;
+}
+
+export const MULTILINGUAL_GRAMMAR: Record<string, GrammarRule> = {
+  en: {
+    order: 'SVO',
+    space: true,
+    subjects: { i: "I", we: "We" },
+    verbs: {
+      eat: { i: "eat", we: "eat" },
+      drink: { i: "drink", we: "drink" },
+      read: { i: "read", we: "read" },
+      write: { i: "write", we: "write" },
+      see: { i: "see", we: "see" },
+      have: { i: "have", we: "have" }
+    },
+    objects: {
+      bread: "bread", cheese: "cheese", apple: "an apple", meat: "meat", egg: "an egg", fish: "fish", rice: "rice", fruit: "fruit",
+      water: "water", milk: "milk", tea: "tea", coffee: "coffee", juice: "juice",
+      book: "a book", novel: "a novel", letter: "a letter", essay: "an essay", paper: "on paper",
+      mother: "my mother", father: "my father", brother: "a brother", sister: "a sister", friend: "a friend", child: "a child",
+      house: "a house", car: "a car"
+    },
+    objectsAdv: {
+      bread: "warm bread", cheese: "delicious cheese", apple: "a red apple", meat: "fresh meat", egg: "a fresh egg", fish: "grilled fish", rice: "spicy rice", fruit: "sweet fruit",
+      water: "pure water", milk: "warm milk", tea: "hot tea", coffee: "hot coffee", juice: "fresh juice",
+      book: "a scientific book", novel: "a classical novel", letter: "an important letter", essay: "an academic essay", paper: "on clean paper",
+      mother: "my beloved mother", father: "my beloved father", brother: "an older brother", sister: "a younger sister", friend: "a close friend", child: "a lovely child",
+      house: "a beautiful house", car: "a fast car"
+    }
+  },
+  tr: {
+    order: 'SOV',
+    space: true,
+    subjects: { i: "", we: "" },
+    verbs: {
+      eat: { i: "yerim", we: "yeriz" },
+      drink: { i: "içerim", we: "içeriz" },
+      read: { i: "okurum", we: "okuruz" },
+      write: { i: "yazarım", we: "yazarız" },
+      see: { i: "görüyorum", we: "görüyoruz" },
+      have: { i: "sahibiyim", we: "sahibiz" }
+    },
+    objects: {
+      bread: "ekmek", cheese: "peynir", apple: "elma", meat: "et", egg: "yumurta", fish: "balık", rice: "pilav", fruit: "meyve",
+      water: "su", milk: "süt", tea: "çay", coffee: "kahve", juice: "meyve suyu",
+      book: "bir kitap", novel: "bir roman", letter: "bir mektup", essay: "bir makale", paper: "kağıda",
+      mother: "annemi", father: "babamı", brother: "bir erkek kardeşe", sister: "bir kız kardeşe", friend: "bir arkadaşa", child: "bir çocuğa",
+      house: "bir eve", car: "bir arabaya"
+    },
+    objectsAdv: {
+      bread: "sıcak ekmek", cheese: "lezzetli peynir", apple: "kırmızı elma", meat: "taze et", egg: "taze yumurta", fish: "ızgara balık", rice: "baharatlı pilav", fruit: "tatlı meyve",
+      water: "temiz su", milk: "ılık süt", tea: "sıcak çay", coffee: "sıcak kahve", juice: "taze meyve suyu",
+      book: "bilimsel bir kitap", novel: "klasik bir roman", letter: "önemli bir mektup", essay: "akademik bir makale", paper: "temiz kağıda",
+      mother: "sevgili annemi", father: "sevgili babamı", brother: "büyük bir erkek kardeşe", sister: "küçük bir kız kardeşe", friend: "yakın bir arkadaşa", child: "sevimli bir çocuğa",
+      house: "güzel bir eve", car: "hızlı bir arabaya"
+    }
+  },
+  es: {
+    order: 'SVO',
+    space: true,
+    subjects: { i: "", we: "" },
+    verbs: {
+      eat: { i: "como", we: "comemos" },
+      drink: { i: "bebo", we: "bebemos" },
+      read: { i: "leo", we: "leemos" },
+      write: { i: "escribo", we: "escribimos" },
+      see: { i: "veo", we: "vemos" },
+      have: { i: "tengo", we: "tenemos" }
+    },
+    objects: {
+      bread: "pan", cheese: "queso", apple: "una manzana", meat: "carne", egg: "un huevo", fish: "pescado", rice: "arroz", fruit: "fruta",
+      water: "agua", milk: "leche", tea: "té", coffee: "café", juice: "jugo",
+      book: "un libro", novel: "una novela", letter: "una carta", essay: "un ensayo", paper: "en papel",
+      mother: "a mi madre", father: "a mi padre", brother: "un hermano", sister: "una hermana", friend: "un amigo", child: "un hijo",
+      house: "una casa", car: "un carro"
+    },
+    objectsAdv: {
+      bread: "pan caliente", cheese: "queso delicioso", apple: "una manzana roja", meat: "carne fresca", egg: "un huevo fresco", fish: "pescado asado", rice: "arroz picante", fruit: "fruta dulce",
+      water: "agua pura", milk: "leche tibia", tea: "té caliente", coffee: "café caliente", juice: "jugo fresco",
+      book: "un libro científico", novel: "una novela clásica", letter: "una carta importante", essay: "un ensayo académico", paper: "en papel limpio",
+      mother: "a mi querida madre", father: "a mi querido padre", brother: "un hermano mayor", sister: "una hermana menor", friend: "un amigo cercano", child: "un hijo adorable",
+      house: "una casa hermosa", car: "un carro rápido"
+    }
+  },
+  fr: {
+    order: 'SVO',
+    space: true,
+    subjects: { i: "Je", we: "Nous" },
+    verbs: {
+      eat: { i: "mange", we: "mangeons" },
+      drink: { i: "bois", we: "buvons" },
+      read: { i: "lis", we: "lisons" },
+      write: { i: "écris", we: "écrivons" },
+      see: { i: "vois", we: "voyons" },
+      have: { i: "ai", we: "avons" }
+    },
+    objects: {
+      bread: "du pain", cheese: "du fromage", apple: "une pomme", meat: "de la viande", egg: "un œuf", fish: "du poisson", rice: "du riz", fruit: "des fruits",
+      water: "de l'eau", milk: "du lait", tea: "du thé", coffee: "du café", juice: "du jus",
+      book: "un livre", novel: "un roman", letter: "une lettre", essay: "une dissertation", paper: "sur du papier",
+      mother: "ma mère", father: "mon père", brother: "un frère", sister: "une sœur", friend: "un ami", child: "un enfant",
+      house: "une maison", car: "une voiture"
+    },
+    objectsAdv: {
+      bread: "du pain chaud", cheese: "du fromage délicieux", apple: "une pomme rouge", meat: "de la viande fraîche", egg: "un œuf frais", fish: "du poisson grillé", rice: "du riz épicé", fruit: "des fruits doux",
+      water: "de l'eau pure", milk: "du lait chaud", tea: "du thé chaud", coffee: "du café chaud", juice: "du jus frais",
+      book: "un livre scientifique", novel: "un roman classique", letter: "une lettre importante", essay: "une dissertation académique", paper: "sur du papier propre",
+      mother: "ma mère bien-aimée", father: "mon père bien-aimé", brother: "un frère aîné", sister: "une sœur cadette", friend: "un ami proche", child: "un bel enfant",
+      house: "une belle maison", car: "une voiture rapide"
+    }
+  },
+  de: {
+    order: 'SVO',
+    space: true,
+    subjects: { i: "Ich", we: "Wir" },
+    verbs: {
+      eat: { i: "esse", we: "essen" },
+      drink: { i: "trinke", we: "trinken" },
+      read: { i: "lese", we: "lesen" },
+      write: { i: "schreibe", we: "schreiben" },
+      see: { i: "sehe", we: "sehen" },
+      have: { i: "habe", we: "haben" }
+    },
+    objects: {
+      bread: "Brot", cheese: "Käse", apple: "einen Apfel", meat: "Fleisch", egg: "ein Ei", fish: "Fisch", rice: "Reis", fruit: "Obst",
+      water: "Wasser", milk: "Milch", tea: "Tee", coffee: "Kaffee", juice: "Saft",
+      book: "ein Buch", novel: "einen Roman", letter: "einen Brief", essay: "einen Aufsatz", paper: "auf Papier",
+      mother: "meine Mutter", father: "meinen Vater", brother: "einen Bruder", sister: "eine Schwester", friend: "einen Freund", child: "ein kind",
+      house: "ein Haus", car: "ein Auto"
+    },
+    objectsAdv: {
+      bread: "warmes Brot", cheese: "leckeren Käse", apple: "einen roten Apfel", meat: "frisches Fleisch", egg: "ein frisches Ei", fish: "gegrillten Fisch", rice: "scharfen Reis", fruit: "süßes Obst",
+      water: "reines Wasser", milk: "warme Milch", tea: "heißen Tee", coffee: "heißen Kaffee", juice: "frischen Saft",
+      book: "ein wissenschaftliches Buch", novel: "einen klassischen Roman", letter: "einen wichtigen Brief", essay: "einen akademischen Aufsatz", paper: "auf sauberem Papier",
+      mother: "meine geliebte Mutter", father: "meinen geliebten Vater", brother: "einen älteren Bruder", sister: "eine jüngere Schwester", friend: "einen engen Freund", child: "ein liebes Kind",
+      house: "ein schönes Haus", car: "ein schnelles Auto"
+    }
+  },
+  it: {
+    order: 'SVO',
+    space: true,
+    subjects: { i: "", we: "" },
+    verbs: {
+      eat: { i: "mangio", we: "mangiamo" },
+      drink: { i: "bebo", we: "beviamo" },
+      read: { i: "leggo", we: "leggiamo" },
+      write: { i: "scrivo", we: "scriviamo" },
+      see: { i: "vedo", we: "vediamo" },
+      have: { i: "ho", we: "abbiamo" }
+    },
+    objects: {
+      bread: "pane", cheese: "formaggio", apple: "una mela", meat: "carne", egg: "un uovo", fish: "pesce", rice: "riso", fruit: "frutta",
+      water: "acqua", milk: "latte", tea: "tè", coffee: "caffè", juice: "succo",
+      book: "un libro", novel: "un romanzo", letter: "una lettera", essay: "un saggio", paper: "su carta",
+      mother: "mia madre", father: "mio padre", brother: "un fratello", sister: "una sorella", friend: "un amico", child: "un bambino",
+      house: "una casa", car: "un'auto"
+    },
+    objectsAdv: {
+      bread: "pane caldo", cheese: "formaggio delizioso", apple: "una mela rossa", meat: "carne fresca", egg: "un uovo fresco", fish: "pesce grigliato", rice: "riso picante", fruit: "frutta dolce",
+      water: "acqua pura", milk: "latte caldo", tea: "tè caldo", coffee: "caffè caldo", juice: "succo fresco",
+      book: "un libro scientifico", novel: "un romanzo classico", letter: "una lettera importante", essay: "un saggio accademico", paper: "su carta pulita",
+      mother: "mia madre amata", father: "mio padre amato", brother: "un fratello maggiore", sister: "una sorella minore", friend: "un amico intimo", child: "un bel bambino",
+      house: "una casa bella", car: "un'auto veloce"
+    }
+  },
+  pt: {
+    order: 'SVO',
+    space: true,
+    subjects: { i: "", we: "" },
+    verbs: {
+      eat: { i: "como", we: "comemos" },
+      drink: { i: "bebo", we: "bebemos" },
+      read: { i: "leio", we: "lemos" },
+      write: { i: "escrevo", we: "escrevemos" },
+      see: { i: "vejo", we: "vemos" },
+      have: { i: "tenho", we: "temos" }
+    },
+    objects: {
+      bread: "pão", cheese: "queijo", apple: "uma maçã", meat: "carne", egg: "um ovo", fish: "peixe", rice: "arroz", fruit: "fruta",
+      water: "água", milk: "leite", tea: "chá", coffee: "café", juice: "suco",
+      book: "um livro", novel: "um romance", letter: "uma carta", essay: "uma redação", paper: "em papel",
+      mother: "minha mãe", father: "meu pai", brother: "um irmão", sister: "uma irmã", friend: "um amigo", child: "um filho",
+      house: "uma casa", car: "um carro"
+    },
+    objectsAdv: {
+      bread: "pão quente", cheese: "queijo delicioso", apple: "uma maçã vermelha", meat: "carne fresca", egg: "um ovo fresco", fish: "peixe grelhado", rice: "arroz picante", fruit: "fruta doce",
+      water: "água pura", milk: "leite morno", tea: "chá quente", coffee: "café quente", juice: "suco fresco",
+      book: "um livro científico", novel: "um romance clássico", letter: "uma carta importante", essay: "uma redação académica", paper: "em papel limpo",
+      mother: "minha amada mãe", father: "meu amado pai", brother: "um irmão mais velho", sister: "uma irmã mais nova", friend: "um amigo próximo", child: "um filho adorável",
+      house: "uma casa bonita", car: "um carro rápido"
+    }
+  },
+  nl: {
+    order: 'SVO',
+    space: true,
+    subjects: { i: "Ik", we: "We" },
+    verbs: {
+      eat: { i: "eet", we: "eten" },
+      drink: { i: "drink", we: "drinken" },
+      read: { i: "lees", we: "lezen" },
+      write: { i: "schrijf", we: "schrijven" },
+      see: { i: "zie", we: "zien" },
+      have: { i: "heb", we: "hebben" }
+    },
+    objects: {
+      bread: "brood", cheese: "kaas", apple: "een appel", meat: "vlees", egg: "een ei", fish: "vis", rice: "rijst", fruit: "fruit",
+      water: "water", milk: "melk", tea: "thee", coffee: "koffie", juice: "sap",
+      book: "een boek", novel: "een roman", letter: "een brief", essay: "een essay", paper: "op papier",
+      mother: "mijn moeder", father: "mijn vader", brother: "een broer", sister: "een zus", friend: "een vriend", child: "een kind",
+      house: "een huis", car: "een auto"
+    },
+    objectsAdv: {
+      bread: "warm brood", cheese: "heerlijke kaas", apple: "een rode appel", meat: "vers vlees", egg: "een vers ei", fish: "gegrilde vis", rice: "pittige rijst", fruit: "zoet fruit",
+      water: "schoon water", milk: "warme melk", tea: "hete thee", coffee: "hete koffie", juice: "vers sap",
+      book: "een wetenschappelijk boek", novel: "een klassieke roman", letter: "een belangrijke brief", essay: "een academisch essay", paper: "op schoon papier",
+      mother: "mijn geliefde moeder", father: "mijn geliefde vader", brother: "een oudere broer", sister: "een jongere zus", friend: "een hechte vriend", child: "een lief kind",
+      house: "een mooi huis", car: "een snelle auto"
+    }
+  },
+  sv: {
+    order: 'SVO',
+    space: true,
+    subjects: { i: "Jag", we: "Vi" },
+    verbs: {
+      eat: { i: "äter", we: "äter" },
+      drink: { i: "dricker", we: "dricker" },
+      read: { i: "läser", we: "läser" },
+      write: { i: "skriver", we: "skriver" },
+      see: { i: "ser", we: "ser" },
+      have: { i: "har", we: "har" }
+    },
+    objects: {
+      bread: "bröd", cheese: "ost", apple: "ett äpple", meat: "kött", egg: "ett ägg", fish: "fisk", rice: "ris", fruit: "frukt",
+      water: "vatten", milk: "mjölk", tea: "te", coffee: "kaffe", juice: "juice",
+      book: "en bok", novel: "en roman", letter: "ett brev", essay: "en uppsats", paper: "på papper",
+      mother: "min mamma", father: "min pappa", brother: "en bror", sister: "en syster", friend: "en vän", child: "ett barn",
+      house: "ett hus", car: "en bil"
+    },
+    objectsAdv: {
+      bread: "varmt bröd", cheese: "god ost", apple: "ett rött äpple", meat: "färsk kött", egg: "ett färskt ägg", fish: "grillad fisk", rice: "kryddigt ris", fruit: "söt frukt",
+      water: "rent vatten", milk: "varm mjölk", tea: "hett te", coffee: "varmt kaffe", juice: "färsk juice",
+      book: "en vetenskaplig bok", novel: "en klassisk roman", letter: "ett viktigt brev", essay: "en akademisk uppsats", paper: "på rent papper",
+      mother: "min älskade mamma", father: "min älskade pappa", brother: "en äldre bror", sister: "en yngre syster", friend: "en nära vän", child: "ett fint barn",
+      house: "ett fint hus", car: "en snabb bil"
+    }
+  },
+  ru: {
+    order: 'SVO',
+    space: true,
+    subjects: { i: "Я", we: "Мы" },
+    verbs: {
+      eat: { i: "ем", we: "едим" },
+      drink: { i: "пью", we: "пьем" },
+      read: { i: "читаю", we: "читаем" },
+      write: { i: "пишу", we: "пишем" },
+      see: { i: "вижу", we: "видим" },
+      have: { i: "имею", we: "имеем" }
+    },
+    objects: {
+      bread: "хлеб", cheese: "сыр", apple: "яблоко", meat: "мясо", egg: "яйцо", fish: "рыбу", rice: "рис", fruit: "фрукты",
+      water: "воду", milk: "молоко", tea: "чай", coffee: "кофе", juice: "сок",
+      book: "книгу", novel: "роман", letter: "письмо", essay: "эссе", paper: "на бумаге",
+      mother: "маму", father: "отца", brother: "брата", sister: "сестру", friend: "друга", child: "ребенка",
+      house: "дом", car: "машину"
+    },
+    objectsAdv: {
+      bread: "теплый хлеб", cheese: "вкусный сыр", apple: "красное яблоко", meat: "свежее мясо", egg: "свежее яйцо", fish: "жареную рыбу", rice: "острый рис", fruit: "сладкие фрукты",
+      water: "чистую воду", milk: "теплое молоко", tea: "горячий чай", coffee: "горячий кофе", juice: "свежий сок",
+      book: "научную книгу", novel: "классический роман", letter: "важное письмо", essay: "академическое эссе", paper: "на чистой бумаге",
+      mother: "любимую маму", father: "любимого отца", brother: "старшего брата", sister: "младшую сестру", friend: "близкого друга", child: "милого ребенка",
+      house: "красивый дом", car: "быструю машину"
+    }
+  },
+  zh: {
+    order: 'SVO',
+    space: false,
+    subjects: { i: "我", we: "我们" },
+    verbs: {
+      eat: { i: "吃", we: "吃" },
+      drink: { i: "喝", we: "喝" },
+      read: { i: "读", we: "读" },
+      write: { i: "写", we: "写" },
+      see: { i: "看见", we: "看见" },
+      have: { i: "有", we: "有" }
+    },
+    objects: {
+      bread: "面包", cheese: "奶酪", apple: "苹果", meat: "肉", egg: "鸡蛋", fish: "鱼", rice: "米饭", fruit: "水果",
+      water: "水", milk: "牛奶", tea: "茶", coffee: "咖啡", juice: "果汁",
+      book: "书", novel: "小说", letter: "信", essay: "文章", paper: "在纸上",
+      mother: "妈妈", father: "爸爸", brother: "哥哥", sister: "姐姐", friend: "朋友", child: "孩子",
+      house: "房子", car: "车"
+    },
+    objectsAdv: {
+      bread: "热面包", cheese: "美味的奶酪", apple: "红苹果", meat: "新鲜的肉", egg: "新鲜的鸡蛋", fish: "烤鱼", rice: "辛辣的米饭", fruit: "甜水果",
+      water: "纯净水", milk: "热牛奶", tea: "热茶", coffee: "热咖啡", juice: "新鲜果汁",
+      book: "科学书籍", novel: "经典小说", letter: "重要的信", essay: "学术文章", paper: "在干净的纸上",
+      mother: "亲爱的妈妈", father: "亲爱的爸爸", brother: "哥哥", sister: "妹妹", friend: "密友", child: "可爱的孩子",
+      house: "漂亮的房子", car: "快车"
+    }
+  },
+  ja: {
+    order: 'SOV',
+    space: false,
+    subjects: { i: "私は", we: "私たちは" },
+    verbs: {
+      eat: { i: "食べます", we: "食べます" },
+      drink: { i: "飲みます", we: "飲みます" },
+      read: { i: "読みます", we: "読みます" },
+      write: { i: "書きます", we: "書きます" },
+      see: { i: "見ます", we: "見ます" },
+      have: { i: "持っています", we: "持っています" }
+    },
+    objects: {
+      bread: "パンを", cheese: "チーズを", apple: "りんごを", meat: "肉を", egg: "卵を", fish: "魚を", rice: "ご飯を", fruit: "果物を",
+      water: "水を", milk: "牛乳を", tea: "お茶を", coffee: "コーヒーを", juice: "ジュースを",
+      book: "本を", novel: "小説を", letter: "手紙を", essay: "作文を", paper: "紙に",
+      mother: "母を", father: "父を", brother: "兄を", sister: "姉を", friend: "友達を", child: "子供を",
+      house: "家を", car: "車を"
+    },
+    objectsAdv: {
+      bread: "温かいパンを", cheese: "美味しいチーズを", apple: "赤いりんごを", meat: "新鮮な肉を", egg: "新鮮な卵を", fish: "焼き魚を", rice: "辛いご飯を", fruit: "甘い果物を",
+      water: "きれいな水を", milk: "温かい牛乳を", tea: "温かいお茶を", coffee: "温かいコーヒーを", juice: "新鮮なジュースを",
+      book: "科学の本を", novel: "古典的な小説を", letter: "重要な手紙を", essay: "学術的な作文を", paper: "きれいな紙に",
+      mother: "愛する母を", father: "愛する父を", brother: "兄を", sister: "妹を", friend: "親しい友達を", child: "可愛い子供を",
+      house: "美しい家を", car: "速い車を"
+    }
+  },
+  ko: {
+    order: 'SOV',
+    space: true,
+    subjects: { i: "저는", we: "우리는" },
+    verbs: {
+      eat: { i: "먹습니다", we: "먹습니다" },
+      drink: { i: "마십니다", we: "마십니다" },
+      read: { i: "읽습니다", we: "읽습니다" },
+      write: { i: "씁니다", we: "씁니다" },
+      see: { i: "봅니다", we: "봅니다" },
+      have: { i: "가지고 있습니다", we: "가지고 있습니다" }
+    },
+    objects: {
+      bread: "빵을", cheese: "치즈를", apple: "사과를", meat: "고기를", egg: "계란을", fish: "생선을", rice: "밥을", fruit: "과일을",
+      water: "물을", milk: "우유를", tea: "차를", coffee: "커피를", juice: "주스를",
+      book: "책을", novel: "소설을", letter: "편지를", essay: "에세이를", paper: "종이에",
+      mother: "어머니를", father: "아버지를", brother: "형을", sister: "누나를", friend: "친구를", child: "아이를",
+      house: "집을", car: "차를"
+    },
+    objectsAdv: {
+      bread: "따뜻한 빵을", cheese: "맛있는 치즈를", apple: "빨간 사과를", meat: "신선한 고기를", egg: "신선한 계란을", fish: "구운 생선을", rice: "매운 밥을", fruit: "단 과일을",
+      water: "깨끗한 물을", milk: "따뜻한 우유를", tea: "뜨거운 차를", coffee: "뜨거운 커피를", juice: "신선한 주스를",
+      book: "과학 책을", novel: "고전 소설을", letter: "중요한 편지를", essay: "학술 에세이를", paper: "깨끗한 종이에",
+      mother: "사랑하는 어머니를", father: "사랑하는 아버지를", brother: "형을", sister: "여동생을", friend: "친한 친구를", child: "사랑스러운 아이를",
+      house: "아름다운 집을", car: "빠른 차를"
+    }
+  },
+  ar: {
+    order: 'SVO',
+    space: true,
+    subjects: { i: "أنا", we: "نحن" },
+    verbs: {
+      eat: { i: "آكل", we: "نأكل" },
+      drink: { i: "أشرب", we: "نشرب" },
+      read: { i: "أقرأ", we: "نقرأ" },
+      write: { i: "أكتب", we: "نكتب" },
+      see: { i: "أرى", we: "نرى" },
+      have: { i: "عندي", we: "عندنا" }
+    },
+    objects: {
+      bread: "الخبز", cheese: "الجبن", apple: "تفاحة", meat: "اللحم", egg: "بيضة", fish: "السمك", rice: "الأرز", fruit: "الفاكهة",
+      water: "الماء", milk: "الحليب", tea: "الشاي", coffee: "القهوة", juice: "العصير",
+      book: "كتاباً", novel: "رواية", letter: "رسالة", essay: "مقالاً", paper: "على الورق",
+      mother: "أمي", father: "أبي", brother: "أخاً", sister: "أختاً", friend: "صديقاً", child: "طفلاً",
+      house: "منزلاً", car: "سيارة"
+    },
+    objectsAdv: {
+      bread: "الخبز الدافئ", cheese: "الجبن اللذيذ", apple: "تفاحة حمراء", meat: "اللحم الطازج", egg: "بيضة طازجة", fish: "السمك المشوي", rice: "الأرز الحار", fruit: "الفاكهة الحلوة",
+      water: "الماء النقي", milk: "الحليب الدافئ", tea: "الشاي الساخن", coffee: "القهوة الساخنة", juice: "العصير الطازج",
+      book: "كتاباً علمياً", novel: "رواية كلاسيكية", letter: "رسالة هامة", essay: "مقالاً أكاديمياً", paper: "على ورق نظيف",
+      mother: "أمي الحبيبة", father: "أبي الحبيب", brother: "أخاً أكبر", sister: "أختاً أصغر", friend: "صديقاً مقرباً", child: "طفلاً جميلاً",
+      house: "منزلاً جميلاً", car: "سيارة سريعة"
+    }
+  },
+  hi: {
+    order: 'SOV',
+    space: true,
+    subjects: { i: "मैं", we: "हम" },
+    verbs: {
+      eat: { i: "खाता हूँ", we: "खाते हैं" },
+      drink: { i: "पीता हूँ", we: "पीते हैं" },
+      read: { i: "पढ़ता हूँ", we: "पढ़ते हैं" },
+      write: { i: "लिखता हूँ", we: "लिखते हैं" },
+      see: { i: "देखता हूँ", we: "देखते हैं" },
+      have: { i: "पास है", we: "पास है" }
+    },
+    objects: {
+      bread: "रोटी", cheese: "पनीर", apple: "सेब", meat: "मांस", egg: "अंडा", fish: "मछली", rice: "चावल", fruit: "फल",
+      water: "पानी", milk: "दूध", tea: "चाय", coffee: "कॉफी", juice: "रस",
+      book: "एक किताब", novel: "एक उपन्यास", letter: "एक पत्र", essay: "एक निबंध", paper: "कागज़ पर",
+      mother: "अपनी माँ को", father: "अपने पिता को", brother: "एक भाई", sister: "एक बहन", friend: "एक दोस्त", child: "एक बच्चा",
+      house: "एक घर", car: "एक कार"
+    },
+    objectsAdv: {
+      bread: "गर्म रोटी", cheese: "स्वादिष्ट पनीर", apple: "एक लाल सेब", meat: "ताज़ा मांस", egg: "ताज़ा अंडा", fish: "भुनी हुई मछली", rice: "तीखा चावल", fruit: "मीठा फल",
+      water: "शुद्ध पानी", milk: "गर्म दूध", tea: "गर्म चाय", coffee: "गर्म कॉफी", juice: "ताज़ा रस",
+      book: "एक वैज्ञानिक पुस्तक", novel: "एक शास्त्रीय उपन्यास", letter: "एक महत्वपूर्ण पत्र", essay: "एक शैक्षणिक निबंध", paper: "साफ कागज़ पर",
+      mother: "अपनी प्यारी माँ को", father: "अपने प्यारे पिता को", brother: "एक बड़े भाई", sister: "एक छोटी बहन", friend: "एक करीबी दोस्त", child: "एक प्यारा बच्चा",
+      house: "एक सुंदर घर", car: "एक तेज़ कार"
+    }
+  }
+};
+
+
+export function buildDynamicVocabLists() {
+  const foodNouns = ['bread', 'cheese', 'apple', 'meat', 'egg', 'fish', 'rice', 'fruit'];
+  const drinkNouns = ['water', 'milk', 'tea', 'coffee', 'juice'];
+  const familyNouns = ['mother', 'father', 'brother', 'sister', 'friend', 'child'];
+  const envNouns = ['house', 'car'];
+
+  const langCodes = ['es', 'fr', 'de', 'ja', 'it', 'zh', 'ru', 'pt', 'ko', 'tr', 'ar', 'nl', 'sv', 'hi', 'en'];
+
+  // Helper to build a sentence
+  const buildSentence = (lang: string, subjectKey: 'i' | 'we', verbKey: 'eat' | 'drink' | 'read' | 'write' | 'see' | 'have', nounKey: string, isAdvanced = false) => {
+    const grammar = MULTILINGUAL_GRAMMAR[lang] || MULTILINGUAL_GRAMMAR.en;
+    let subject = grammar.subjects[subjectKey];
+    
+    // Hindi special have case
+    if (lang === 'hi' && verbKey === 'have') {
+      subject = subjectKey === 'i' ? "मेरे" : "हमारे";
+    }
+
+    const verb = grammar.verbs[verbKey][subjectKey];
+    const object = isAdvanced ? grammar.objectsAdv[nounKey] : grammar.objects[nounKey];
+
+    const spacer = grammar.space ? ' ' : '';
+    const endPunct = (lang === 'ja' || lang === 'zh') ? '。' : '.';
+
+    let words: string[] = [];
+    if (grammar.order === 'SVO') {
+      words = [subject, verb, object].filter(Boolean);
+    } else {
+      words = [subject, object, verb].filter(Boolean);
+    }
+
+    let sentence = words.join(spacer);
+    if (!grammar.space) {
+      sentence = sentence.replace(/\s+/g, '');
+    }
+    // Capitalize first character
+    if (sentence.length > 0) {
+      sentence = sentence.charAt(0).toUpperCase() + sentence.slice(1);
+    }
+    return sentence + endPunct;
+  };
+
+  // Populate dynamic vocabulary maps
+  const addCategoryVocab = (categoryKey: string, subjectKey: 'i' | 'we', verbKey: 'eat' | 'drink' | 'read' | 'write' | 'see' | 'have', nounsList: string[], isAdvanced: boolean) => {
+    const targetMap = isAdvanced ? ADVANCED_VOCAB : INTERMEDIATE_VOCAB;
+    
+    for (const noun of nounsList) {
+      const key = `${categoryKey}_${verbKey}_${noun}_${subjectKey}`;
+      const translations: Record<string, string> = {};
+      
+      for (const lang of langCodes) {
+        translations[lang] = buildSentence(lang, subjectKey, verbKey, noun, isAdvanced);
+      }
+      
+      targetMap[key] = translations;
+    }
+  };
+
+  // Intermediate (Tier 2) Seeding
+  // Category 0 & 1: Family / Relatives
+  addCategoryVocab('family', 'i', 'have', familyNouns, false);
+  addCategoryVocab('family', 'we', 'have', familyNouns, false);
+  addCategoryVocab('family', 'i', 'see', familyNouns, false);
+  addCategoryVocab('family', 'we', 'see', familyNouns, false);
+
+  // Category 2: Social
+  addCategoryVocab('social', 'i', 'see', envNouns.concat(['friend']), false);
+  addCategoryVocab('social', 'we', 'see', envNouns.concat(['friend']), false);
+  addCategoryVocab('social', 'i', 'have', envNouns, false);
+  addCategoryVocab('social', 'we', 'have', envNouns, false);
+
+  // Category 3: Dining / Food & Drink
+  addCategoryVocab('dining', 'i', 'eat', foodNouns, false);
+  addCategoryVocab('dining', 'we', 'eat', foodNouns, false);
+  addCategoryVocab('dining', 'i', 'drink', drinkNouns, false);
+  addCategoryVocab('dining', 'we', 'drink', drinkNouns, false);
+
+  // Category 4: Media / Study
+  addCategoryVocab('media', 'i', 'read', ['book', 'novel', 'letter'], false);
+  addCategoryVocab('media', 'we', 'read', ['book', 'novel', 'letter'], false);
+  addCategoryVocab('media', 'i', 'write', ['letter', 'essay', 'paper'], false);
+  addCategoryVocab('media', 'we', 'write', ['letter', 'essay', 'paper'], false);
+
+  // Category 5: Quantities (have multiple items)
+  addCategoryVocab('quantities', 'i', 'have', ['book', 'apple', 'car'], false);
+  addCategoryVocab('quantities', 'we', 'have', ['book', 'apple', 'car'], false);
+
+  // Category 6: Environment
+  addCategoryVocab('environment', 'i', 'see', envNouns, false);
+  addCategoryVocab('environment', 'we', 'see', envNouns, false);
+
+  // Advanced (Tier 3) Seeding
+  // Category 0 & 1: Family
+  addCategoryVocab('family', 'i', 'have', familyNouns, true);
+  addCategoryVocab('family', 'we', 'have', familyNouns, true);
+  addCategoryVocab('family', 'i', 'see', familyNouns, true);
+  addCategoryVocab('family', 'we', 'see', familyNouns, true);
+
+  // Category 2: Social
+  addCategoryVocab('social', 'i', 'see', envNouns.concat(['friend']), true);
+  addCategoryVocab('social', 'we', 'see', envNouns.concat(['friend']), true);
+  addCategoryVocab('social', 'i', 'have', envNouns, true);
+  addCategoryVocab('social', 'we', 'have', envNouns, true);
+
+  // Category 3: Dining
+  addCategoryVocab('dining', 'i', 'eat', foodNouns, true);
+  addCategoryVocab('dining', 'we', 'eat', foodNouns, true);
+  addCategoryVocab('dining', 'i', 'drink', drinkNouns, true);
+  addCategoryVocab('dining', 'we', 'drink', drinkNouns, true);
+
+  // Category 4: Media
+  addCategoryVocab('media', 'i', 'read', ['book', 'novel', 'letter'], true);
+  addCategoryVocab('media', 'we', 'read', ['book', 'novel', 'letter'], true);
+  addCategoryVocab('media', 'i', 'write', ['letter', 'essay', 'paper'], true);
+  addCategoryVocab('media', 'we', 'write', ['letter', 'essay', 'paper'], true);
+
+  // Category 5: Quantities
+  addCategoryVocab('quantities', 'i', 'have', ['book', 'apple', 'car'], true);
+  addCategoryVocab('quantities', 'we', 'have', ['book', 'apple', 'car'], true);
+
+  // Category 6: Environment
+  addCategoryVocab('environment', 'i', 'see', envNouns, true);
+  addCategoryVocab('environment', 'we', 'see', envNouns, true);
+}
+
+export async function seedDatabase(force = false): Promise<{ success: boolean; message: string }> {
   if (!db) {
     return { success: false, message: 'Firebase database is not initialized.' };
   }
 
   try {
+    buildDynamicVocabLists();
     const langSnap = await getDocs(collection(db, 'languages'));
     
     let shouldSeed = langSnap.size === 0 || force;
@@ -551,7 +1085,7 @@ export function generateQuestionsForLesson(lang: Language, tier: number, lessonI
         if (checkSnap.exists()) {
           const lData = checkSnap.data();
           const firstQ = lData?.questions?.[0];
-          if ((firstQ && firstQ.prompt && firstQ.prompt.includes('"Hello"')) || !lData?.version || lData.version < 8) {
+          if ((firstQ && firstQ.prompt && firstQ.prompt.includes('"Hello"')) || !lData?.version || lData.version < 9) {
             console.log('Old database seed detected. Forcing database upgrade...');
             shouldSeed = true;
           }
@@ -629,7 +1163,7 @@ export function generateQuestionsForLesson(lang: Language, tier: number, lessonI
             title: lessonTitle,
             xpReward: course.tier * 10 + 10,
             questions,
-            version: 8
+            version: 9
           };
 
           const lRef = doc(db, 'lessons', lesson.id);
