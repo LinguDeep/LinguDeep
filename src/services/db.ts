@@ -48,7 +48,7 @@ export interface Course {
 
 export interface Question {
   id: string;
-  type: 'multiple-choice' | 'translate' | 'tap-pairs' | 'fill-blank';
+  type: 'multiple-choice' | 'translate' | 'tap-pairs' | 'fill-blank' | 'sentence-builder';
   prompt: string;
   options?: string[];
   correctAnswer: string; // for tap-pairs or translations, can be comma separated or single string. We'll verify string match.

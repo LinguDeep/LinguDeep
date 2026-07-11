@@ -158,6 +158,12 @@ const localizeQuestionsForUser = (questions: Question[], targetLang: string, nat
           ...q,
           prompt: `Translate: "${nativePromptWord}"`
         };
+      } else if (q.type === 'sentence-builder') {
+        const nativePromptWord = translatePhrase(promptWord, nativeLang);
+        return {
+          ...q,
+          prompt: `Translate: "${nativePromptWord}"`
+        };
       }
     }
     
@@ -253,6 +259,9 @@ const LessonPlayer: React.FC<LessonPlayerProps> = ({
   const [tapLeftWords, setTapLeftWords] = useState<string[]>([]);
   const [tapRightWords, setTapRightWords] = useState<string[]>([]);
   const [tapFeedbackMessage, setTapFeedbackMessage] = useState<string | null>(null);
+
+  // Sentence Builder state
+  const [selectedChipIndices, setSelectedChipIndices] = useState<number[]>([]);
 
   // Fetch lesson data
   useEffect(() => {
@@ -392,12 +401,12 @@ const LessonPlayer: React.FC<LessonPlayerProps> = ({
     );
   }
 
-  // Normalization logic for Turkish İ combiners
+  // Normalization logic for Turkish İ combiners and Spanish punctuation
   const cleanStringForCompare = (str: string) => {
     return englishLowerCase(str.trim())
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "")
-      .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g, "")
+      .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?¿¡]/g, "")
       .replace(/\s+/g, " ");
   };
 
@@ -412,6 +421,12 @@ const LessonPlayer: React.FC<LessonPlayerProps> = ({
     } else if (currentQuestion.type === 'translate') {
       if (!translateInput.trim()) return;
       const userAns = cleanStringForCompare(translateInput);
+      const correctAns = cleanStringForCompare(currentQuestion.correctAnswer);
+      correct = userAns === correctAns;
+    } else if (currentQuestion.type === 'sentence-builder') {
+      if (selectedChipIndices.length === 0) return;
+      const userWords = selectedChipIndices.map(idx => currentQuestion.options?.[idx] || '');
+      const userAns = cleanStringForCompare(userWords.join(' '));
       const correctAns = cleanStringForCompare(currentQuestion.correctAnswer);
       correct = userAns === correctAns;
     }
@@ -437,6 +452,7 @@ const LessonPlayer: React.FC<LessonPlayerProps> = ({
     setSelectedOption(null);
     setTranslateInput('');
     setIsAnswered(false);
+    setSelectedChipIndices([]);
     
     if (currentIdx < lesson.questions.length - 1) {
       setCurrentIdx((prev) => prev + 1);
@@ -542,6 +558,20 @@ const LessonPlayer: React.FC<LessonPlayerProps> = ({
       </div>
     );
   }
+
+  const isCheckDisabled = () => {
+    if (!currentQuestion) return true;
+    if (currentQuestion.type === 'multiple-choice' || currentQuestion.type === 'fill-blank') {
+      return !selectedOption;
+    }
+    if (currentQuestion.type === 'translate') {
+      return !translateInput.trim();
+    }
+    if (currentQuestion.type === 'sentence-builder') {
+      return selectedChipIndices.length === 0;
+    }
+    return false;
+  };
 
   return (
     <div className={`min-h-screen flex flex-col justify-between p-4 md:p-6 transition-colors ${
@@ -735,6 +765,81 @@ const LessonPlayer: React.FC<LessonPlayerProps> = ({
             </div>
           </div>
         )}
+
+        {currentQuestion.type === 'sentence-builder' && (
+          <div className="space-y-6">
+            {/* Selected Area */}
+            <div className={`flex flex-wrap gap-2.5 p-4.5 min-h-[80px] border-2 border-dashed rounded-2xl items-center transition-all ${
+              theme === 'dark' ? 'border-slate-800 bg-slate-950/40' : 'border-slate-200 bg-slate-50/50'
+            }`}>
+              {selectedChipIndices.map((optionIdx, idx) => {
+                const chip = currentQuestion.options?.[optionIdx] || '';
+                return (
+                  <button
+                    key={`${chip}-${idx}`}
+                    disabled={isAnswered}
+                    onClick={() => {
+                      setSelectedChipIndices(prev => prev.filter((_, i) => i !== idx));
+                    }}
+                    className={`font-outfit font-extrabold px-4 py-2.5 rounded-xl border-2 border-b-4 transition-all hover:-translate-y-0.5 active:translate-y-0 text-sm md:text-base cursor-pointer shadow-playful-inner ${
+                      theme === 'dark'
+                        ? 'border-indigo-650 bg-indigo-500 text-white'
+                        : 'border-indigo-400 bg-indigo-500 hover:bg-indigo-400 text-white'
+                    }`}
+                  >
+                    {chip}
+                  </button>
+                );
+              })}
+              {selectedChipIndices.length === 0 && (
+                <span className={`text-sm italic mx-auto select-none ${
+                  theme === 'dark' ? 'text-slate-650' : 'text-slate-400'
+                }`}>
+                  {interfaceLang === 'tr' ? 'Cümleyi kurmak için kelimelere dokunun' : 'Tap words to build the sentence'}
+                </span>
+              )}
+            </div>
+
+            {/* Shelf Grid */}
+            <div className="flex flex-wrap gap-3.5 justify-center items-center p-2 min-h-[100px]">
+              {currentQuestion.options?.map((chip, idx) => {
+                const isSelected = selectedChipIndices.includes(idx);
+                
+                if (isSelected) {
+                  return (
+                    <div
+                      key={`placeholder-${idx}`}
+                      className={`px-4 py-2.5 rounded-xl border-2 border-dashed text-sm md:text-base font-extrabold select-none opacity-20 ${
+                        theme === 'dark'
+                          ? 'border-slate-800 bg-slate-950/20 text-transparent'
+                          : 'border-slate-200 bg-slate-100/40 text-transparent'
+                      }`}
+                    >
+                      {chip}
+                    </div>
+                  );
+                }
+
+                let btnClass = theme === 'dark'
+                  ? "border-slate-800 bg-slate-900/80 hover:bg-slate-800 text-slate-200 hover:-translate-y-0.5"
+                  : "border-slate-200 bg-white hover:bg-slate-50 text-slate-700 shadow-sm hover:-translate-y-0.5";
+
+                return (
+                  <button
+                    key={`chip-${idx}`}
+                    disabled={isAnswered}
+                    onClick={() => {
+                      setSelectedChipIndices(prev => [...prev, idx]);
+                    }}
+                    className={`font-outfit font-extrabold px-4 py-2.5 rounded-xl border-2 border-b-4 transition-all active:translate-y-0 text-sm md:text-base cursor-pointer shadow-playful-inner ${btnClass}`}
+                  >
+                    {chip}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Answer Verification Check Bar */}
@@ -751,9 +856,9 @@ const LessonPlayer: React.FC<LessonPlayerProps> = ({
               </div>
               <button
                 onClick={handleCheckAnswer}
-                disabled={(!selectedOption && !translateInput && currentQuestion.type !== 'tap-pairs')}
+                disabled={isCheckDisabled()}
                 className={`w-full sm:w-auto px-10 py-4 rounded-2xl disabled:opacity-40 font-extrabold transition-all ${
-                  (!selectedOption && !translateInput && currentQuestion.type !== 'tap-pairs')
+                  isCheckDisabled()
                     ? theme === 'dark' 
                       ? 'bg-slate-850 border-b-4 border-slate-950 text-slate-600 cursor-not-allowed' 
                       : 'bg-slate-200 border-b-4 border-slate-300 text-slate-450 cursor-not-allowed'
