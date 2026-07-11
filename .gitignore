@@ -70,3 +70,10 @@ dist-ssr/
 
 # LinguDeep local archive files
 lingudeep-dist.zip
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
